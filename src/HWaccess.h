@@ -15,7 +15,7 @@
  * Zur Not : Ein Clean auf das Projekt ausf�hren
  */
 
-//#define SIMULATION
+#define SIMULATION
 
 // Die drei folgenden includes d�rfen nur in dieser Datei stehen
 
