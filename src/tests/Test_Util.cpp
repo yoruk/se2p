@@ -12,9 +12,21 @@ void test_Util_start() {
 
 	printf("Bit 1 setzen\n");fflush(stdout);
 	setBit(&reg, BIT_0);
+	printf("Ist Bit 1 gesetzt? ");fflush(stdout);
+	if(bitIsSet(&reg, BIT_0)) {
+		printf("Ja\n");fflush(stdout);
+	} else {
+		printf("Nein\n");fflush(stdout);
+	}
 	printf("reg: 0x%x\n\n", reg);fflush(stdout);
 
 	printf("Bit 1 loeschen\n");fflush(stdout);
 	unsetBit(&reg, BIT_0);
+	printf("Ist Bit 1 gesetzt? ");fflush(stdout);
+	if(bitIsSet(&reg, BIT_0)) {
+		printf("Ja\n");fflush(stdout);
+	} else {
+		printf("Nein\n");fflush(stdout);
+	}
 	printf("reg: 0x%x\n\n", reg);fflush(stdout);
 }
