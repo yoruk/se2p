@@ -1,9 +1,9 @@
-#ifndef HAL_H_
-#define HAL_H_
+#ifndef HW_H_
+#define HW_H_
 
 #include "stdbool.h"
 
-void initHal();
-bool initDone();
+void init_HW();
+bool init_HW_Done();
 
-#endif /* HAL_H_ */
+#endif /* HW_H_ */

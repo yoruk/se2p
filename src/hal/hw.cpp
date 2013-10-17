@@ -1,15 +1,18 @@
-#include <cstdlib>
+#include <stdlib.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include <errno.h>
+#include <unistd.h>
 #include "../HWaccess.h"
 #include "hw.h"
+#include "../Global.h"
 
 static bool done = false;
 
 void init_HW() {
 	if(!done) {
 #ifdef SIMULATION
-	cout << "Simulation is running" << endl;
+	printf("Simulation is running\n");fflush(stdout);
 	IOaccess_open(); // Open connection to simulation
 #endif
 
