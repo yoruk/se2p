@@ -5,7 +5,8 @@
 #include "Gate.h"
 #include "hw.h"
 
-//using namespace std;
+using namespace std;
+
 static Mutex* mutex;
 static Gate* gate;
 
@@ -18,14 +19,7 @@ Gate* Gate::getInstance() {
 		init_HW();
 	}
 
-//	if(gate == 0) {
-//		gate = new Gate();
-//		return gate;
-//	} else {
-//		return gate;
-//	}
-
-	if(Gate::gate == 0) {
+	if(!gate) {
 		gate = new Gate();
 	}
 

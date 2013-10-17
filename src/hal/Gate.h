@@ -15,7 +15,7 @@ protected:
     Gate();
 
 private:
-    static Gate* gate;
+
 };
 
 #endif /* GATE_H_ */
