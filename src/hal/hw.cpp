@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <stdbool.h>
+#include <errno.h>
 #include "../HWaccess.h"
 #include "hw.h"
 
@@ -15,7 +16,7 @@ void init_HW() {
 	// get access rights for hardware
 	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
 		perror("milestone1_start(): ThreadCtl access failed\n");
-		return -1;
+		exit(EXIT_FAILURE);
 	}
 
 	// Initialize digital io card
