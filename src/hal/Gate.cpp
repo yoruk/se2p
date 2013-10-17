@@ -27,27 +27,27 @@ Gate* Gate::getInstance() {
 }
 
 int Gate::status() {
-	return bitIsSet((unsigned char*)DIO_A, BIT_4);
+	return bitIsSet((unsigned char*)DIO_A, GATE);
 }
 
 void Gate::close() {
-	mutex->lock();
+//	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	unsetBit(&reg, BIT_4);
+	unsetBit(&reg, GATE);
 	out8(DIO_A, reg);
 
-	mutex->unlock();
+//	mutex->unlock();
 }
 
 void Gate::open() {
-	mutex->lock();
+//	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	setBit(&reg, BIT_4);
+	setBit(&reg, GATE);
 	out8(DIO_A, reg);
 
-	mutex->unlock();
+//	mutex->unlock();
 }
 
 
