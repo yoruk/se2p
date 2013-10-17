@@ -11,7 +11,7 @@ void unsetBit(unsigned char* reg, const unsigned bit) {
 }
 
 bool bitIsSet(unsigned char* reg, const unsigned bit) {
-	if(*reg & bit != 0) {
+	if((*reg & bit) != 0) {
 		return true;
 	} else {
 		return false;
