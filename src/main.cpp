@@ -4,6 +4,7 @@
 #include "tests/Test_Mutex.h"
 #include "tests/Test_Util.h"
 #include "tests/Test_Gate.h"
+#include "tests/Test_TrafficLight.h"
 #include "HWaccess.h"
 
 int main(int argc, char *argv[]) {
@@ -16,7 +17,8 @@ int main(int argc, char *argv[]) {
 	//return test_Mutex_start();
 
 	//test_Util_start();
-	test_Gate_start();
+	//test_Gate_start();
+	  test_TrafficLight_start();
 
 #ifdef SIMULATION
 	IOaccess_close(); // Open connection to simulation
