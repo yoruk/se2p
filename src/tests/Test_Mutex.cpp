@@ -14,7 +14,7 @@ static Mutex* mutex;
 static int id1 = 1;
 static int id2 = 2;
 
-void* thread(void* arg) {
+static void* thread(void* arg) {
 	 while(true){
 		 mutex->lock();
 		 printf("Thread %d enters critical section\n",arg); fflush(stdout);
