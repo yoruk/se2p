@@ -14,6 +14,12 @@
 #define SLOW 0x04
 #define STOP 0x08
 
+#define STOPPED 0
+#define RUNNING_SLOW 1
+#define RUNNING_FAST 2
+#define DIRECT_LEFT 0
+#define DIRECT_RIGHT 1
+
 // gate
 #define GATE 0x10
 

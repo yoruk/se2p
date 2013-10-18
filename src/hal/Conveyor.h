@@ -8,22 +8,18 @@ public:
 	static Conveyor* getInstance();
 	virtual ~Conveyor();
 
-	int statusLeft();
-	int statusRight();
-	int statusSlow();
-	int statusStop();
+	int getDirection();
+	int getSpeed();
 
 	void moveRight();
-
 	void moveLeft();
-
 	void moveSlow();
 
 	void conveyorStop();
+	void conveyorContinue();
 
 private:
 	Conveyor();
-
 };
 
 #endif /* CONVEYOR_H_ */
