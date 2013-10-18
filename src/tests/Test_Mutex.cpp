@@ -14,7 +14,7 @@ static Mutex* mutex;
 static int id1 = 1;
 static int id2 = 2;
 
-static void* thread(void* arg) {
+void* mutex_thread(void* arg) {
 	 while(true){
 		 mutex->lock();
 		 printf("Thread %d enters critical section\n",arg); fflush(stdout);
@@ -29,8 +29,8 @@ static void* thread(void* arg) {
 int test_Mutex_start() {
 	mutex = new Mutex();
 
-	pthread_create(&t1,NULL,&thread,(void*) id1);
-	pthread_create(&t2,NULL,&thread,(void*) id2);
+	pthread_create(&t1,NULL,&mutex_thread,(void*) id1);
+	pthread_create(&t2,NULL,&mutex_thread,(void*) id2);
 
 	sleep(RUNTIME);
 

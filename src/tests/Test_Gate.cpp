@@ -13,7 +13,7 @@ static unsigned char id2 = 1;
 
 Gate* gate = Gate::getInstance();
 
-static void* thread(void* arg) {
+void* gate_thread(void* arg) {
 	int id = ((int)arg)%2;
 	unsigned char after;
 
@@ -49,8 +49,8 @@ static void* thread(void* arg) {
 void test_Gate_start() {
 	mutex = new Mutex();
 
-	pthread_create(&t1,NULL,&thread,(void*) id1);
-	pthread_create(&t2,NULL,&thread,(void*) id2);
+	pthread_create(&t1,NULL,&gate_thread,(void*) id1);
+	pthread_create(&t2,NULL,&gate_thread,(void*) id2);
 
 	sleep(RUNTIME);
 
