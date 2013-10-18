@@ -24,8 +24,16 @@ TrafficLight* TrafficLight::getInstance() {
 	return light;
 }
 
-int TrafficLight::status(unsigned int color) {
-	return bitIsSet((unsigned char*) DIO_A, color);
+int TrafficLight::statusRed() {
+	return bitIsSet((unsigned char*) DIO_A, RED);
+}
+
+int TrafficLight::statusYellow() {
+	return bitIsSet((unsigned char*) DIO_A, YELLOW);
+}
+
+int TrafficLight::statusGreen() {
+	return bitIsSet((unsigned char*) DIO_A, GREEN);
 }
 
 void TrafficLight::redOn() {

@@ -8,7 +8,9 @@ public:
 	static TrafficLight* getInstance();
 	virtual ~TrafficLight();
 
-	int status(unsigned int Color);
+	int statusRed();
+	int statusYellow();
+	int statusGreen();
 
 	void redOn();
 	void redOff();
