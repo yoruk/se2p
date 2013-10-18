@@ -11,11 +11,8 @@ public:
     void close();
     void open();
 
-protected:
-    Gate();
-
 private:
-
+    Gate();
 };
 
 #endif /* GATE_H_ */

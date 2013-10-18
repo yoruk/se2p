@@ -47,6 +47,3 @@ void Gate::open() {
 
 	mutex->unlock();
 }
-
-
-
