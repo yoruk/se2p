@@ -5,9 +5,7 @@
 #include "Gate.h"
 #include "hw.h"
 
-using namespace std;
-
-static Mutex* mutex;
+static Mutex* mutex = new Mutex();
 static Gate* gate;
 
 Gate::Gate() {}
@@ -31,23 +29,23 @@ int Gate::status() {
 }
 
 void Gate::close() {
-//	mutex->lock();
+	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
 	unsetBit(&reg, GATE);
 	out8(DIO_A, reg);
 
-//	mutex->unlock();
+	mutex->unlock();
 }
 
 void Gate::open() {
-//	mutex->lock();
+	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
 	setBit(&reg, GATE);
 	out8(DIO_A, reg);
 
-//	mutex->unlock();
+	mutex->unlock();
 }
 
 
