@@ -25,7 +25,8 @@ Gate* Gate::getInstance() {
 }
 
 int Gate::status() {
-	return bitIsSet((unsigned char*)DIO_A, GATE);
+	unsigned char reg = in8(DIO_A);
+	return bitIsSet(&reg, GATE);
 }
 
 void Gate::close() {
