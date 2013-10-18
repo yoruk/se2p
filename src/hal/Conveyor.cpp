@@ -2,33 +2,45 @@
 #include "../HWaccess.h"
 #include "../Global.h"
 #include "Util.h"
-#include "Treadmill.h"
+#include "Conveyor.h"
 #include "hw.h"
 
 static Mutex* mutex = new Mutex();
-static Treadmill* treadmill;
+static Conveyor* conveyor;
 
-Treadmill::Treadmill() {}
+Conveyor::Conveyor() {}
 
-Treadmill::~Treadmill() {}
+Conveyor::~Conveyor() {}
 
-Treadmill* Treadmill::getInstance(){
+Conveyor* Conveyor::getInstance(){
 	if (!init_HW_Done()) {
 		init_HW();
 	}
 
-	if (!treadmill) {
-		treadmill = new Treadmill();
+	if (!conveyor) {
+		conveyor = new Conveyor();
 	}
 
-	return treadmill;
+	return conveyor;
 }
 
-int status(unsigned int treadmill){
-	return bitIsSet((unsigned char*) DIO_A, treadmill);
+int Conveyor::statusRight(){
+	return bitIsSet((unsigned char*) DIO_A, RIGHT);
 }
 
-void moveRight(){
+int Conveyor::statusLeft(){
+	return bitIsSet((unsigned char*) DIO_A, LEFT);
+}
+
+int Conveyor::statusSlow(){
+	return bitIsSet((unsigned char*) DIO_A, SLOW);
+}
+
+int Conveyor::statusStop(){
+	return bitIsSet((unsigned char*) DIO_A, STOP);
+}
+
+void Conveyor::moveRight(){
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
@@ -38,7 +50,7 @@ void moveRight(){
 	mutex->unlock();
 }
 
-void moveLeft(){
+void Conveyor::moveLeft(){
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
@@ -48,7 +60,7 @@ void moveLeft(){
 	mutex->unlock();
 }
 
-void moveSlow(){
+void Conveyor::moveSlow(){
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
@@ -58,7 +70,7 @@ void moveSlow(){
 	mutex->unlock();
 }
 
-void treadmilStop(){
+void Conveyor::conveyorStop(){
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
