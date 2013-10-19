@@ -28,6 +28,10 @@
 #define YELLOW 0x40
 #define RED 0x80
 
+// serial interface
+#define SERIAL_INTERFACE_1 "/dev/ser1"
+#define SERIAL_INTERFACE_2 "/dev/ser2"
+
 // bitmasks for single bits
 #define BIT_0 0x01
 #define BIT_1 0x02
