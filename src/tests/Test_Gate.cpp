@@ -4,29 +4,29 @@
 #include <pthread.h>
 #include "../hal/Gate.h"
 
-#define RUNTIME 10
+#define RUNTIME 20
 
 static Mutex* mutex;
 static pthread_t t1, t2;
 static unsigned char id1 = 0;
 static unsigned char id2 = 1;
 
-Gate* gate = Gate::getInstance();
-
 void* gate_thread(void* arg) {
-	int id = ((int)arg)%2;
+	Gate* gate = Gate::getInstance();
+	int id = (int)arg;
 	unsigned char after;
 
-	printf("Thread %d Memmory address of Gate: 0x%x\n",id, gate);fflush(stdout);
+	printf("Thread %d Memmory address of Gate: 0x%x\n", id, gate);fflush(stdout);
 
 	while(true) {
+			sleep(id+1);
+
 			mutex->lock();
 
 			if(id == 0){
 				printf("Thread %d is closing Gate\n", id);fflush(stdout);
 				gate->close();
-
-			}else{
+			} else {
 				printf("Thread %d is opening Gate\n", id);fflush(stdout);
 				gate->open();
 			}
@@ -38,9 +38,8 @@ void* gate_thread(void* arg) {
 				printf("!!!\n");fflush(stdout);
 			}
 
-			mutex->unlock();
-
 			sleep(id+1);
+			mutex->unlock();
 	}
 
 	pthread_exit(NULL);
