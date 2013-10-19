@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #define WAIT 1
 #define RUNTIME 10
@@ -13,9 +14,10 @@ static pthread_t t1, t2;
 static Mutex* mutex;
 static int id1 = 1;
 static int id2 = 2;
+static bool run = true;
 
 void* mutex_thread(void* arg) {
-	 while(true){
+	 while(run){
 		 mutex->lock();
 		 printf("Thread %d enters critical section\n",arg); fflush(stdout);
 		 printf("Thread %d left critical section \n",arg); fflush(stdout);
@@ -34,8 +36,9 @@ int test_Mutex_start() {
 
 	sleep(RUNTIME);
 
-	pthread_cancel(t1);
-	pthread_cancel(t2);
+//	pthread_cancel(t1);
+//	pthread_cancel(t2);
+	run = false;
 
 	pthread_join(t1,NULL);
 	pthread_join(t2,NULL);
