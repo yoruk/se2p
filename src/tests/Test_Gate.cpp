@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <stdbool.h>
 #include "../hal/Gate.h"
 
 #define RUNTIME 20
@@ -10,6 +11,7 @@ static Mutex* mutex;
 static pthread_t t1, t2;
 static unsigned char id1 = 0;
 static unsigned char id2 = 1;
+static bool run = true;
 
 void* gate_thread(void* arg) {
 	Gate* gate = Gate::getInstance();
@@ -18,7 +20,7 @@ void* gate_thread(void* arg) {
 
 	printf("Thread %d Memmory address of Gate: 0x%x\n", id, gate);fflush(stdout);
 
-	while(true) {
+	while(run) {
 			sleep(id+1);
 
 			mutex->lock();
@@ -33,10 +35,6 @@ void* gate_thread(void* arg) {
 
 			after = gate->status();
 			printf("Thread %d gate status after %d\n", id, after);fflush(stdout);
-
-			if(((after == 1) && (id == 0)) || ((after == 0) && (id == 1))) {
-				printf("!!!\n");fflush(stdout);
-			}
 
 			sleep(id+1);
 			mutex->unlock();
@@ -53,9 +51,12 @@ void test_Gate_start() {
 
 	sleep(RUNTIME);
 
-	pthread_cancel(t1);
-	pthread_cancel(t2);
+//	pthread_cancel(t1);
+//	pthread_cancel(t2);
+	run = false;
 
 	pthread_join(t1,NULL);
 	pthread_join(t2,NULL);
+
+	delete mutex;
 }
