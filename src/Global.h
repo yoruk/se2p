@@ -37,10 +37,14 @@
 #define TRAFFIC_LIGHT_YELLOW BIT_6
 #define TRAFFIC_LIGHT_RED BIT_7
 
+// led
+#define LED_START_BUTTON BIT_0
+#define LED_RESET_BUTTON BIT_1
+#define LED_Q1 BIT_2
+#define LED_Q2 BIT_3
+
 // serial interface
 #define SERIAL_INTERFACE_1 "/dev/ser1"
 #define SERIAL_INTERFACE_2 "/dev/ser2"
-
-
 
 #endif /* GLOBAL_H_ */
