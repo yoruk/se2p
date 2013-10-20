@@ -10,7 +10,7 @@
 ///
 /// \param	reg		the register that holds the bit to be set
 /// \param	bit		bitmask with the bit to be set
-void setBit(unsigned char* reg, const unsigned bit) {
+void setBit(unsigned char* reg, const unsigned char bit) {
 	*reg |= bit;
 }
 
@@ -18,7 +18,7 @@ void setBit(unsigned char* reg, const unsigned bit) {
 ///
 /// \param	reg		the register that holds the bit to be unset
 /// \param	bit		bitmask with the bit to be unset
-void unsetBit(unsigned char* reg, const unsigned bit) {
+void unsetBit(unsigned char* reg, const unsigned char bit) {
 	*reg &= ~bit;
 }
 
@@ -27,7 +27,7 @@ void unsetBit(unsigned char* reg, const unsigned bit) {
 /// \param	reg		the register that holds the bit to be checked
 /// \param	bit		bitmask with the bit to be checked
 /// \return 		bit has been set or not
-bool bitIsSet(unsigned char* reg, const unsigned bit) {
+bool bitIsSet(unsigned char* reg, const unsigned char bit) {
 	if((*reg & bit) != 0) {
 		return true;
 	} else {
