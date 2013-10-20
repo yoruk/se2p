@@ -5,12 +5,16 @@
 #include "Gate.h"
 #include "hw.h"
 
-static Mutex* mutex = new Mutex();
+static Mutex* mutex;
 static Gate* gate;
 
-Gate::Gate() {}
+Gate::Gate() {
+	mutex = new Mutex();
+}
 
-Gate::~Gate() {}
+Gate::~Gate() {
+	delete mutex;
+}
 
 Gate* Gate::getInstance() {
 	if(!init_HW_Done()) {
