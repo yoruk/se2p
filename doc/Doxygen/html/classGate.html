@@ -93,22 +93,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a612d63f09ecbc825508af7cf0a9e245b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a612d63f09ecbc825508af7cf0a9e245b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> ()</td></tr>
+<tr class="memitem:aa04556acb1cdc5715e38ced8f28c6b27"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa04556acb1cdc5715e38ced8f28c6b27"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGate.html#aa04556acb1cdc5715e38ced8f28c6b27">~Gate</a> ()</td></tr>
+<tr class="memdesc:aa04556acb1cdc5715e38ced8f28c6b27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gate-deconstructor. <br/></td></tr>
+<tr class="separator:aa04556acb1cdc5715e38ced8f28c6b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a612d63f09ecbc825508af7cf0a9e245b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGate.html#a612d63f09ecbc825508af7cf0a9e245b">status</a> ()</td></tr>
 <tr class="separator:a612d63f09ecbc825508af7cf0a9e245b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3733611cc86dfe641915fcbfaf4d41c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3733611cc86dfe641915fcbfaf4d41c8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGate.html#a3733611cc86dfe641915fcbfaf4d41c8">close</a> ()</td></tr>
+<tr class="memdesc:a3733611cc86dfe641915fcbfaf4d41c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">closes the gate <br/></td></tr>
 <tr class="separator:a3733611cc86dfe641915fcbfaf4d41c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b6e01294cd8f5dbb5c93831c5cd3c3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b6e01294cd8f5dbb5c93831c5cd3c3f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGate.html#a6b6e01294cd8f5dbb5c93831c5cd3c3f">open</a> ()</td></tr>
+<tr class="memdesc:a6b6e01294cd8f5dbb5c93831c5cd3c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">opens the gate <br/></td></tr>
 <tr class="separator:a6b6e01294cd8f5dbb5c93831c5cd3c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4ffd53b738c40cd854b2eb0ed7c6d23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4ffd53b738c40cd854b2eb0ed7c6d23"></a>
-static <a class="el" href="classGate.html">Gate</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> ()</td></tr>
+static <a class="el" href="classGate.html">Gate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGate.html#ac4ffd53b738c40cd854b2eb0ed7c6d23">getInstance</a> ()</td></tr>
+<tr class="memdesc:ac4ffd53b738c40cd854b2eb0ed7c6d23"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the only running instance of <a class="el" href="classGate.html">Gate</a> <br/></td></tr>
 <tr class="separator:ac4ffd53b738c40cd854b2eb0ed7c6d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a612d63f09ecbc825508af7cf0a9e245b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Gate::status </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>checks if gate is open/closed</p>
+<dl class="section return"><dt>Returns</dt><dd>the status of the gate, 0=closed, 1=open </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/hal/<a class="el" href="Gate_8h_source.html">Gate.h</a></li>
 <li>src/hal/Gate.cpp</li>
@@ -116,7 +140,7 @@ static <a class="el" href="classGate.html">Gate</a> *&#160;</td><td class="memIt
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 20 2013 15:03:44 for SE2P by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 20 2013 15:23:26 for SE2P by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
