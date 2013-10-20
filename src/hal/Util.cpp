@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include "Util.h"
 
-/// This class contents some util functions
+/// This module contents some util functions
 /// which are used for setting/resetting bits
 /// and for checking if a bit has been set.
 
