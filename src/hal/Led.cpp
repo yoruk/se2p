@@ -8,12 +8,9 @@
 
 /// This class gives access to the writeable
 /// Leds on Port C
-///
-/// \var	mutex 		the mutex for controlling the access
-/// \var	led			the led object itself
 
-static Mutex* mutex;
-static Led* led;
+static Mutex* mutex; /// the mutex for controlling the access
+static Led* led; /// the led object itself
 
 /// Led-Constructor
 Led::Led() {
