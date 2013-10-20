@@ -7,8 +7,13 @@
 #include "hw.h"
 #include "../Global.h"
 
+/// This module holds the function for
+/// getting the correct access right to the hardware
+
+/// hardware has been intialized or not
 static bool done = false;
 
+/// initializes the hardware
 void init_HW() {
 	if(!done) {
 		// get access rights for hardware
@@ -24,6 +29,8 @@ void init_HW() {
 	}
 }
 
+/// checks if hardware has been initialized
+/// \return		yes or no
 bool init_HW_Done() {
 	return done;
 }
