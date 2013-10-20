@@ -25,22 +25,22 @@ TrafficLight* TrafficLight::getInstance() {
 }
 
 int TrafficLight::statusRed() {
-	return bitIsSet((unsigned char*) DIO_A, RED);
+	return bitIsSet((unsigned char*) DIO_A, TRAFFIC_LIGHT_RED);
 }
 
 int TrafficLight::statusYellow() {
-	return bitIsSet((unsigned char*) DIO_A, YELLOW);
+	return bitIsSet((unsigned char*) DIO_A, TRAFFIC_LIGHT_YELLOW);
 }
 
 int TrafficLight::statusGreen() {
-	return bitIsSet((unsigned char*) DIO_A, GREEN);
+	return bitIsSet((unsigned char*) DIO_A, TRAFFIC_LIGHT_GREEN);
 }
 
 void TrafficLight::redOn() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	setBit(&reg, RED);
+	setBit(&reg, TRAFFIC_LIGHT_RED);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -50,7 +50,7 @@ void TrafficLight::redOff() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	unsetBit(&reg, RED);
+	unsetBit(&reg, TRAFFIC_LIGHT_RED);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -60,7 +60,7 @@ void TrafficLight::yellowOn() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	setBit(&reg, YELLOW);
+	setBit(&reg, TRAFFIC_LIGHT_YELLOW);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -70,7 +70,7 @@ void TrafficLight::yellowOff() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	unsetBit(&reg, YELLOW);
+	unsetBit(&reg, TRAFFIC_LIGHT_YELLOW);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -80,7 +80,7 @@ void TrafficLight::greenOn() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	setBit(&reg, GREEN);
+	setBit(&reg, TRAFFIC_LIGHT_GREEN);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -90,7 +90,7 @@ void TrafficLight::greenOff() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	unsetBit(&reg, GREEN);
+	unsetBit(&reg, TRAFFIC_LIGHT_GREEN);
 	out8(DIO_A, reg);
 
 	mutex->unlock();

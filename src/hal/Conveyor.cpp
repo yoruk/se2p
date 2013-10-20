@@ -27,20 +27,20 @@ Conveyor* Conveyor::getInstance() {
 }
 
 int Conveyor::getDirection() {
-	if (bitIsSet((unsigned char*) DIO_A, RIGHT)) {
-		return DIRECT_RIGHT;
+	if (bitIsSet((unsigned char*) DIO_A, CONVEYOR_RIGHT)) {
+		return CONVEYOR_DIRECTION_RIGHT;
 	} else {
-		return DIRECT_LEFT;
+		return CONVEYOR_DIRECTION_LEFT;
 	}
 }
 
 int Conveyor::getSpeed() {
-	if (bitIsSet((unsigned char*) DIO_A, STOP)) {
-		return STOPPED;
-	} else if (bitIsSet((unsigned char*) DIO_A, SLOW)) {
-		return RUNNING_SLOW;
+	if (bitIsSet((unsigned char*) DIO_A, CONVEYOR_STOP)) {
+		return CONVEYOR_STOPPED;
+	} else if (bitIsSet((unsigned char*) DIO_A, CONVEYOR_SLOW)) {
+		return CONVEYOR_RUNNING_SLOW;
 	} else {
-		return RUNNING_FAST;
+		return CONVEYOR_RUNNING_FAST;
 	}
 }
 
@@ -48,8 +48,8 @@ void Conveyor::moveRight() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	unsetBit(&reg, LEFT);
-	setBit(&reg, RIGHT);
+	unsetBit(&reg, CONVEYOR_LEFT);
+	setBit(&reg, CONVEYOR_RIGHT);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -59,8 +59,8 @@ void Conveyor::moveLeft() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	unsetBit(&reg, RIGHT);
-	setBit(&reg, LEFT);
+	unsetBit(&reg, CONVEYOR_RIGHT);
+	setBit(&reg, CONVEYOR_LEFT);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -70,7 +70,7 @@ void Conveyor::moveSlow() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	setBit(&reg, SLOW);
+	setBit(&reg, CONVEYOR_SLOW);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -80,7 +80,7 @@ void Conveyor::conveyorStop() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	setBit(&reg, STOP);
+	setBit(&reg, CONVEYOR_STOP);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
@@ -90,7 +90,7 @@ void Conveyor::conveyorContinue() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_A);
-	unsetBit(&reg, STOP);
+	unsetBit(&reg, CONVEYOR_STOP);
 	out8(DIO_A, reg);
 
 	mutex->unlock();
