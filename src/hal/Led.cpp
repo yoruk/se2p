@@ -6,17 +6,26 @@
 #include "Led.h"
 #include "hw.h"
 
+/// This class gives access to the writeable
+/// Leds on Port C
+///
+/// \var	mutex 		the mutex for controlling the access
+/// \var	led			the led object itself
+
 static Mutex* mutex;
 static Led* led;
 
+/// Led-Constructor
 Led::Led() {
 	mutex = new Mutex();
 }
 
+/// Led-Deconstructor
 Led::~Led() {
 	delete mutex;
 }
 
+/// returns the only running instance of Led
 Led* Led::getInstance() {
 	if(!init_HW_Done()) {
 		init_HW();
@@ -29,6 +38,7 @@ Led* Led::getInstance() {
 	return led;
 }
 
+/// turns the start-button led on
 void Led::led_StartButton_On() {
 	mutex->lock();
 
@@ -39,6 +49,7 @@ void Led::led_StartButton_On() {
 	mutex->unlock();
 }
 
+/// turns the start-button led off
 void Led::led_StartButton_Off() {
 	mutex->lock();
 
@@ -49,6 +60,7 @@ void Led::led_StartButton_Off() {
 	mutex->unlock();
 }
 
+/// turns the reset-button led on
 void Led::led_ResetButton_On() {
 	mutex->lock();
 
@@ -59,6 +71,7 @@ void Led::led_ResetButton_On() {
 	mutex->unlock();
 }
 
+/// turns the reset-button led off
 void Led::led_ResetButton_Off() {
 	mutex->lock();
 
@@ -69,6 +82,7 @@ void Led::led_ResetButton_Off() {
 	mutex->unlock();
 }
 
+/// turns the q1 led on
 void Led::led_Q1_On() {
 	mutex->lock();
 
@@ -79,6 +93,7 @@ void Led::led_Q1_On() {
 	mutex->unlock();
 }
 
+/// turns the q1 led off
 void Led::led_Q1_Off() {
 	mutex->lock();
 
@@ -89,6 +104,7 @@ void Led::led_Q1_Off() {
 	mutex->unlock();
 }
 
+/// turns the q2 led on
 void Led::led_Q2_On() {
 	mutex->lock();
 
@@ -99,6 +115,7 @@ void Led::led_Q2_On() {
 	mutex->unlock();
 }
 
+/// turns the q2 led off
 void Led::led_Q2_Off() {
 	mutex->lock();
 
