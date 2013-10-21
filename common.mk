@@ -22,18 +22,19 @@ VFLAG_g=-gstabs+
 #===== EXTRA_SRCVPATH - a space-separated list of directories to search for source files.
 EXTRA_SRCVPATH+=$(PROJECT_ROOT)/src  \
 	$(PROJECT_ROOT)/src/tests $(PROJECT_ROOT)/src/hal  \
-	$(PROJECT_ROOT)/src/milestone1
+	$(PROJECT_ROOT)/src/milestone1  \
+	$(PROJECT_ROOT)/src/milestone2
 
 #===== LIBS - a space-separated list of library items to be included in the link.
 LIBS+=ioaccess
-
-#===== CCFLAGS - add the flags to the C compiler command line. 
-CCFLAGS+=-DSIMULATION
 
 #===== EXTRA_INCVPATH - a space-separated list of directories to search for include files.
 EXTRA_INCVPATH+=$(PROJECT_ROOT)/src  \
 	$(PROJECT_ROOT)/src/tests $(PROJECT_ROOT)/src/hal  \
 	$(PROJECT_ROOT)/src/milestone1
+
+#===== CCFLAGS - add the flags to the C compiler command line. 
+CCFLAGS+=-DSIMULATION
 
 include $(MKFILES_ROOT)/qmacros.mk
 ifndef QNX_INTERNAL
