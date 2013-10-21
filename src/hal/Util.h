@@ -3,6 +3,6 @@
 
 void setBit(unsigned char* reg, const unsigned char bit);
 void unsetBit(unsigned char* reg, const unsigned char bit);
-bool bitIsSet(unsigned char* reg, const unsigned char bit);
+int bitIsSet(unsigned char* reg, const unsigned char bit);
 
 #endif /* UTIL_H_ */
