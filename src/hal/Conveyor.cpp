@@ -76,6 +76,16 @@ void Conveyor::moveSlow() {
 	mutex->unlock();
 }
 
+void Conveyor::moveFast() {
+	mutex->lock();
+
+	unsigned char reg = in8(DIO_A);
+	unsetBit(&reg, CONVEYOR_SLOW);
+	out8(DIO_A, reg);
+
+	mutex->unlock();
+}
+
 void Conveyor::conveyorStop() {
 	mutex->lock();
 

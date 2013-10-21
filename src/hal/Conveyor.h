@@ -14,6 +14,7 @@ public:
 	void moveRight();
 	void moveLeft();
 	void moveSlow();
+	void moveFast();
 
 	void conveyorStop();
 	void conveyorContinue();
