@@ -5,17 +5,24 @@
 #include <termios.h>
 #include <errno.h>
 #include <iostream.h>
+#include <cstdlib>
+#include <stdbool.h>
+#include "Global.h"
+#include "hw.h"
 
 class Serial {
 public:
-	Serial();
+	static Serial* getInstance();
 	virtual ~Serial();
 
-	int sendMessage(char message);
-	int readMessage(char* buffer);
+	int sendMessage(unsigned char message[]);
+	int readMessage(char* buf);
 
 private:
+	Serial();
 	int sd;
+	int fileDescriptor;
+	bool isStopped;
 };
 
 #endif /* SERIAL_H_ */
