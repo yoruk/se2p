@@ -23,6 +23,8 @@ TrafficLight::~TrafficLight() {
 
 /// returns the only running instance of TrafficLight
 TrafficLight* TrafficLight::getInstance() {
+	mutex->lock();
+
 	if (!init_HW_Done()) {
 		init_HW();
 	}
@@ -30,6 +32,8 @@ TrafficLight* TrafficLight::getInstance() {
 	if (!light) {
 		light = new TrafficLight();
 	}
+
+	mutex->unlock();
 
 	return light;
 }
