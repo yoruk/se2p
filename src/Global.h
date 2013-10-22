@@ -17,6 +17,8 @@
 #define BIT_5 0x20
 #define BIT_6 0x40
 #define BIT_7 0x80
+#define BIT_NONE 0x00
+#define BIT_ALL 0xff
 
 // conveyor
 #define CONVEYOR_RIGHT BIT_0
