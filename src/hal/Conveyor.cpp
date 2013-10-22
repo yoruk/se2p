@@ -23,6 +23,8 @@ Conveyor::~Conveyor() {
 
 /// returns the only running instance of Conveyor
 Conveyor* Conveyor::getInstance() {
+	mutex->lock();
+
 	if (!init_HW_Done()) {
 		init_HW();
 	}
@@ -30,6 +32,8 @@ Conveyor* Conveyor::getInstance() {
 	if (!conveyor) {
 		conveyor = new Conveyor();
 	}
+
+	mutex->unlock();
 
 	return conveyor;
 }
