@@ -8,7 +8,7 @@
 #include "../hal/Conveyor.h"
 
 #define WAIT 2
-#define LONG_WAIT 10
+#define LONG_WAIT 5
 
 void led_test() {
 	Led* led = Led::getInstance();
@@ -17,45 +17,37 @@ void led_test() {
 
 	// on
 	printf("switching on: start-button-led\n");fflush(stdout);
-	sleep(WAIT);
 	led->led_StartButton_On();
-	printf("start-button-led is switched on\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching on: reset-button-led\n");fflush(stdout);
-	sleep(WAIT);
 	led->led_ResetButton_On();
-	printf("reset-button-led is switched on\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching on: q1-led\n");fflush(stdout);
-	sleep(WAIT);
 	led->led_Q1_On();
-	printf("q1-led is switched on\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching on: q2-led\n");fflush(stdout);
-	sleep(WAIT);
 	led->led_Q2_On();
-	printf("q2-led is switched on\n");fflush(stdout);
+	sleep(WAIT);
 
 	// off
 	printf("switching off: start-button-led\n");fflush(stdout);
-	sleep(WAIT);
 	led->led_StartButton_Off();
-	printf("start-button-led is switched off\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching off: reset-button-led\n");fflush(stdout);
-	sleep(WAIT);
 	led->led_ResetButton_Off();
-	printf("reset-button-led is switched off\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching off: q1-led\n");fflush(stdout);
-	sleep(WAIT);
 	led->led_Q1_Off();
-	printf("q1-led is switched off\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching off: q2-led\n");fflush(stdout);
-	sleep(WAIT);
 	led->led_Q2_Off();
-	printf("q2-led is switched off\n");fflush(stdout);
+	sleep(WAIT);
 }
 
 void trafficlight_test() {
@@ -65,35 +57,29 @@ void trafficlight_test() {
 
 	// on
 	printf("switching on: red-light\n");fflush(stdout);
-	sleep(WAIT);
 	tlight->redOn();
-	printf("red-led is switched on\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching on: yellow-light\n");fflush(stdout);
-	sleep(WAIT);
 	tlight->yellowOn();
-	printf("yellow-light is switched on\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching on: green-light\n");fflush(stdout);
-	sleep(WAIT);
 	tlight->greenOn();
-	printf("green-light is switched on\n");fflush(stdout);
+	sleep(WAIT);
 
 	// off
 	printf("switching off: red-light\n");fflush(stdout);
-	sleep(WAIT);
 	tlight->redOff();
-	printf("red-led is switched off\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching off: yellow-light\n");fflush(stdout);
-	sleep(WAIT);
 	tlight->yellowOff();
-	printf("yellow-light is switched of\n");fflush(stdout);
+	sleep(WAIT);
 
 	printf("switching off: green-light\n");fflush(stdout);
-	sleep(WAIT);
 	tlight->greenOff();
-	printf("green-light is switched off\n");fflush(stdout);
+	sleep(WAIT);
 }
 
 void gate_test() {
@@ -102,25 +88,21 @@ void gate_test() {
 	printf("\n::testing gate::\n");fflush(stdout);
 
 	// open
-	printf("opening gate:\n");fflush(stdout);
-	sleep(WAIT);
+	printf("opening gate\n");fflush(stdout);
 	gate->open();
-	printf("gate opened\n");fflush(stdout);
-
-	printf("closing gate:\n");fflush(stdout);
 	sleep(WAIT);
+
+	printf("closing gate\n");fflush(stdout);
 	gate->close();
-	printf("gate closed\n");fflush(stdout);
-
-	printf("opening gate:\n");fflush(stdout);
 	sleep(WAIT);
+
+	printf("opening gate\n");fflush(stdout);
 	gate->open();
-	printf("gate opened\n");fflush(stdout);
-
-	printf("closing gate:\n");fflush(stdout);
 	sleep(WAIT);
+
+	printf("closing gate\n");fflush(stdout);
 	gate->close();
-	printf("gate closed\n");fflush(stdout);
+	sleep(WAIT);
 }
 
 void conveyor_test() {
@@ -130,44 +112,37 @@ void conveyor_test() {
 
 	// right
 	printf("conveyor: start moving, direction right, slow speed\n");fflush(stdout);
-	sleep(LONG_WAIT);
 	conveyor->moveSlow();
 	conveyor->moveRight();
-	printf("conveyor is moving\n");fflush(stdout);
+	sleep(LONG_WAIT);
 
 	printf("conveyor: normal speed\n");fflush(stdout);
-	sleep(LONG_WAIT);
 	conveyor->moveFast();
-	printf("conveyor is moving fast\n");fflush(stdout);
+	sleep(LONG_WAIT);
 
 	// stop
 	printf("conveyor: stop\n");fflush(stdout);
-	sleep(LONG_WAIT);
 	conveyor->conveyorStop();
-	printf("conveyor stopped\n");fflush(stdout);
+	sleep(LONG_WAIT);
 
 	// continue
 	printf("conveyor: continue moving\n");fflush(stdout);
-	sleep(LONG_WAIT);
 	conveyor->conveyorContinue();
-	printf("conveyor continued\n");fflush(stdout);
+	sleep(LONG_WAIT);
 
 	// left
 	printf("conveyor: reverse, direction left, fast speed\n");fflush(stdout);
-	sleep(LONG_WAIT);
 	conveyor->moveLeft();
-	printf("conveyor reversed\n");fflush(stdout);
+	sleep(LONG_WAIT);
 
 	printf("conveyor: slowing down\n");fflush(stdout);
-	sleep(LONG_WAIT);
 	conveyor->moveSlow();
-	printf("conveyor slowed down\n");fflush(stdout);
+	sleep(LONG_WAIT);
 
 	// stop
 	printf("conveyor: stopping\n");fflush(stdout);
-	sleep(LONG_WAIT);
 	conveyor->conveyorStop();
-	printf("conveyor stopped\n");fflush(stdout);
+	sleep(LONG_WAIT);
 }
 
 void simple_milestone2_start() {
