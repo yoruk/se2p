@@ -27,7 +27,7 @@ void unsetBit(unsigned char* reg, const unsigned char bit) {
 /// \param	reg		the register that holds the bit to be checked
 /// \param	bit		bitmask with the bit to be checked
 /// \return 		bit has been set or not
-bool bitIsSet(unsigned char* reg, const unsigned char bit) {
+int bitIsSet(unsigned char* reg, const unsigned char bit) {
 	if((*reg & bit) != 0) {
 		return true;
 	} else {
