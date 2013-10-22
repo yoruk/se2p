@@ -5,15 +5,23 @@
 #include "Conveyor.h"
 #include "hw.h"
 
-static Mutex* mutex = new Mutex();
-static Conveyor* conveyor;
+/// This class gives access to the Conveyor-belt
+/// can move it in both direction (Left/Right) with a determine Direction (Fast/Slow) and also checks the status
 
+static Mutex* mutex; /// the mutex for controlling the access
+static Conveyor* conveyor; /// the conveyor object itself
+
+/// Conveyor-constructor
 Conveyor::Conveyor() {
+	mutex = new Mutex();
 }
 
+/// Conveyor -deconstructor
 Conveyor::~Conveyor() {
+	delete mutex;
 }
 
+/// returns the only running instance of Conveyor
 Conveyor* Conveyor::getInstance() {
 	if (!init_HW_Done()) {
 		init_HW();
@@ -26,6 +34,10 @@ Conveyor* Conveyor::getInstance() {
 	return conveyor;
 }
 
+/// checks if Conveyor's direction is Left/Right
+///
+/// \return 		direction
+///					0=left, 1=right
 int Conveyor::getDirection() {
 	if (bitIsSet((unsigned char*) DIO_A, CONVEYOR_RIGHT)) {
 		return CONVEYOR_DIRECTION_RIGHT;
@@ -34,6 +46,10 @@ int Conveyor::getDirection() {
 	}
 }
 
+/// checks speed of Conveyor
+///
+/// \return 		speed status
+///					0=stopped, 1=slow, 2=fast
 int Conveyor::getSpeed() {
 	if (bitIsSet((unsigned char*) DIO_A, CONVEYOR_STOP)) {
 		return CONVEYOR_STOPPED;
@@ -44,6 +60,7 @@ int Conveyor::getSpeed() {
 	}
 }
 
+/// moves the conveyor to the right, after resetting the "move left" bit
 void Conveyor::moveRight() {
 	mutex->lock();
 
@@ -55,6 +72,7 @@ void Conveyor::moveRight() {
 	mutex->unlock();
 }
 
+/// moves the conveyor to the left, after resetting the "move right" bit
 void Conveyor::moveLeft() {
 	mutex->lock();
 
@@ -66,6 +84,7 @@ void Conveyor::moveLeft() {
 	mutex->unlock();
 }
 
+/// sets the "move slow" bit, whether the conveyor-belt is moving or not
 void Conveyor::moveSlow() {
 	mutex->lock();
 
@@ -76,6 +95,7 @@ void Conveyor::moveSlow() {
 	mutex->unlock();
 }
 
+/// resets the "move slow" bit, whether the conveyor-belt is moving or not
 void Conveyor::moveFast() {
 	mutex->lock();
 
@@ -86,6 +106,7 @@ void Conveyor::moveFast() {
 	mutex->unlock();
 }
 
+/// sets the "stop" bit and the conveyor stops whether other bits are sets or not
 void Conveyor::conveyorStop() {
 	mutex->lock();
 
@@ -96,6 +117,7 @@ void Conveyor::conveyorStop() {
 	mutex->unlock();
 }
 
+/// resets the "stop" bit
 void Conveyor::conveyorContinue() {
 	mutex->lock();
 
