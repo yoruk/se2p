@@ -9,13 +9,11 @@
 /// This class gives access to the writeable
 /// Leds on Port C
 
-static Mutex* mutex; /// the mutex for controlling the access
+static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
 static Led* led; /// the led object itself
 
 /// Led-Constructor
-Led::Led() {
-	mutex = new Mutex();
-}
+Led::Led() {}
 
 /// Led-Deconstructor
 Led::~Led() {
