@@ -23,6 +23,8 @@ Gate::~Gate() {
 
 /// returns the only running instance of Gate
 Gate* Gate::getInstance() {
+	mutex->lock();
+
 	if(!init_HW_Done()) {
 		init_HW();
 	}
@@ -30,6 +32,8 @@ Gate* Gate::getInstance() {
 	if(!gate) {
 		gate = new Gate();
 	}
+
+	mutex->unlock();
 
 	return gate;
 }
