@@ -5,13 +5,23 @@
 #include "TrafficLight.h"
 #include "hw.h"
 
-static Mutex* mutex = new Mutex();
-static TrafficLight* light;
+/// This class gives access to the Trafficlight
+/// can light it green a/o yellow a/o red
 
-TrafficLight::TrafficLight() {}
+static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
+static TrafficLight* light; /// the Trafficlight object itself
 
-TrafficLight::~TrafficLight() {}
+/// TrafficLight-constructor
+TrafficLight::TrafficLight() {
+	mutex = new Mutex();
+}
 
+/// TrafficLight-deconstructor
+TrafficLight::~TrafficLight() {
+	delete mutex;
+}
+
+/// returns the only running instance of TrafficLight
 TrafficLight* TrafficLight::getInstance() {
 	if (!init_HW_Done()) {
 		init_HW();
@@ -24,18 +34,22 @@ TrafficLight* TrafficLight::getInstance() {
 	return light;
 }
 
+/// checks if the "red" bit has been set or not
 int TrafficLight::statusRed() {
 	return bitIsSet((unsigned char*) DIO_A, TRAFFIC_LIGHT_RED);
 }
 
+/// checks if the "yellow bit" has been set or not
 int TrafficLight::statusYellow() {
 	return bitIsSet((unsigned char*) DIO_A, TRAFFIC_LIGHT_YELLOW);
 }
 
+/// checks if the "green" bit has been set or not
 int TrafficLight::statusGreen() {
 	return bitIsSet((unsigned char*) DIO_A, TRAFFIC_LIGHT_GREEN);
 }
 
+/// sets the "red" bit
 void TrafficLight::redOn() {
 	mutex->lock();
 
@@ -46,6 +60,7 @@ void TrafficLight::redOn() {
 	mutex->unlock();
 }
 
+/// resets the "red" bit
 void TrafficLight::redOff() {
 	mutex->lock();
 
@@ -56,6 +71,7 @@ void TrafficLight::redOff() {
 	mutex->unlock();
 }
 
+/// sets the "yellow" bit
 void TrafficLight::yellowOn() {
 	mutex->lock();
 
@@ -66,6 +82,7 @@ void TrafficLight::yellowOn() {
 	mutex->unlock();
 }
 
+/// resets the "yellow" bit
 void TrafficLight::yellowOff() {
 	mutex->lock();
 
@@ -76,6 +93,7 @@ void TrafficLight::yellowOff() {
 	mutex->unlock();
 }
 
+/// sets the "green" bit
 void TrafficLight::greenOn() {
 	mutex->lock();
 
@@ -86,6 +104,7 @@ void TrafficLight::greenOn() {
 	mutex->unlock();
 }
 
+/// resets the "green" bit
 void TrafficLight::greenOff() {
 	mutex->lock();
 
