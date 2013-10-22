@@ -24,6 +24,8 @@ Led::~Led() {
 
 /// returns the only running instance of Led
 Led* Led::getInstance() {
+	mutex->lock();
+
 	if(!init_HW_Done()) {
 		init_HW();
 	}
@@ -31,6 +33,8 @@ Led* Led::getInstance() {
 	if(!led) {
 		led = new Led();
 	}
+
+	mutex->unlock();
 
 	return led;
 }
