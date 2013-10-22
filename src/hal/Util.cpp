@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
+#include "../Global.h"
 #include "Util.h"
 
 /// This module contents some util functions
@@ -20,6 +21,10 @@ void setBit(unsigned char* reg, const unsigned char bit) {
 /// \param	bit		bitmask with the bit to be unset
 void unsetBit(unsigned char* reg, const unsigned char bit) {
 	*reg &= ~bit;
+}
+
+void resetBits(unsigned char* reg) {
+	*reg = BIT_NONE;
 }
 
 /// checks if a certain bit is set
