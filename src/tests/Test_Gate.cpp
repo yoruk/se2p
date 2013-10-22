@@ -6,22 +6,23 @@
 #include "../hal/Gate.h"
 
 #define RUNTIME 20
+#define WAIT 1000000
 
+static Gate* gate;
 static Mutex* mutex;
 static pthread_t t1, t2;
-static unsigned char id1 = 0;
-static unsigned char id2 = 1;
+static unsigned int id0 = 0;
+static unsigned int id1 = 1;
 static bool run = true;
 
 void* gate_thread(void* arg) {
-	Gate* gate = Gate::getInstance();
-	int id = (int)arg;
-	unsigned char after;
+	int id = *((int*)arg);
+	int after;
 
 	printf("Thread %d Memmory address of Gate: 0x%x\n", id, gate);fflush(stdout);
 
 	while(run) {
-			sleep(id+1);
+			usleep(WAIT);
 
 			mutex->lock();
 
@@ -36,18 +37,20 @@ void* gate_thread(void* arg) {
 			after = gate->status();
 			printf("Thread %d gate status after %d\n", id, after);fflush(stdout);
 
-			sleep(id+1);
+			usleep(WAIT);
 			mutex->unlock();
 	}
 
+	printf("thread %d ended\n", id);fflush(stdout);
 	pthread_exit(NULL);
 }
 
 void test_Gate_start() {
+	gate = Gate::getInstance();
 	mutex = new Mutex();
 
-	pthread_create(&t1,NULL,&gate_thread,(void*) id1);
-	pthread_create(&t2,NULL,&gate_thread,(void*) id2);
+	pthread_create(&t1,NULL,&gate_thread,(void*) (&id0));
+	pthread_create(&t2,NULL,&gate_thread,(void*) (&id1));
 
 	sleep(RUNTIME);
 
@@ -59,4 +62,5 @@ void test_Gate_start() {
 	pthread_join(t2,NULL);
 
 	delete mutex;
+	delete gate;
 }
