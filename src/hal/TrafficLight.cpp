@@ -12,9 +12,7 @@ static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
 static TrafficLight* light; /// the Trafficlight object itself
 
 /// TrafficLight-constructor
-TrafficLight::TrafficLight() {
-	mutex = new Mutex();
-}
+TrafficLight::TrafficLight() {}
 
 /// TrafficLight-deconstructor
 TrafficLight::~TrafficLight() {
