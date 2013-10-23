@@ -8,15 +8,21 @@
 /// This class gives access to the Trafficlight
 /// can light it green a/o yellow a/o red
 
-static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
+static Mutex* mutex; /// the mutex for controlling the access
 static TrafficLight* light; /// the Trafficlight object itself
 
 /// TrafficLight-constructor
-TrafficLight::TrafficLight() {}
+TrafficLight::TrafficLight() {
+	mutex = new Mutex();
+}
 
 /// TrafficLight-deconstructor
 TrafficLight::~TrafficLight() {
 	delete mutex;
+	mutex = NULL;
+
+	delete light;
+	light = NULL;
 }
 
 /// returns the only running instance of TrafficLight
