@@ -8,19 +8,14 @@
 /// This class gives access to the Conveyor-belt
 /// can move it in both direction (Left/Right) with a determine Direction (Fast/Slow) and also checks the status
 
-static Mutex* mutex; /// the mutex for controlling the access
+static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
 static Conveyor* conveyor; /// the conveyor object itself
 
 /// Conveyor-constructor
-Conveyor::Conveyor() {
-	mutex = new Mutex();
-}
+Conveyor::Conveyor() {}
 
 /// Conveyor -deconstructor
 Conveyor::~Conveyor() {
-	delete mutex;
-	mutex = NULL;
-
 	delete conveyor;
 	conveyor = NULL;
 }
