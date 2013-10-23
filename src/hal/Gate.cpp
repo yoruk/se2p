@@ -8,15 +8,21 @@
 /// This class gives access to the gates
 /// can open/close the gate and also checks the status
 
-static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
+static Mutex* mutex; /// the mutex for controlling the access
 static Gate* gate; /// the gate object itself
 
 /// Gate-constructor
-Gate::Gate() {}
+Gate::Gate() {
+	 mutex = new Mutex();
+}
 
 /// Gate-deconstructor
 Gate::~Gate() {
 	delete mutex;
+	mutex = NULL;
+
+	delete gate;
+	gate = NULL;
 }
 
 /// returns the only running instance of Gate
