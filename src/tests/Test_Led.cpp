@@ -9,15 +9,15 @@
 #define RUNTIME 30
 #define SLEEP 1
 
+static Gate* led;
 static Mutex* mutex;
 static pthread_t t1, t2;
-static unsigned char id1 = 0;
-static unsigned char id2 = 1;
+static unsigned int id0 = 0;
+static unsigned int id1 = 1;
 static bool run = true;
 
 void* led_thread(void* arg) {
-	Led* led = Led::getInstance();
-	int id = (int)arg;
+	int id = *((int*)arg);
 
 	while(run) {
 			sleep(id+1);
@@ -25,6 +25,8 @@ void* led_thread(void* arg) {
 			mutex->lock();
 
 			if(id == 0){
+				printf("Light On!\n");fflush(stdout);
+
 				sleep(SLEEP);
 				led->led_StartButton_On();
 				sleep(SLEEP);
@@ -34,6 +36,8 @@ void* led_thread(void* arg) {
 				sleep(SLEEP);
 				led->led_Q2_On();
 			} else {
+				printf("Light Off!\n");fflush(stdout);
+
 				sleep(SLEEP);
 				led->led_StartButton_Off();
 				sleep(SLEEP);
@@ -53,12 +57,13 @@ void* led_thread(void* arg) {
 }
 
 void test_Led_start() {
-	printf("Test_Util/test_Led_start()\n\n");fflush(stdout);
-
+	led = Led::getInstance();
 	mutex = new Mutex();
 
-	pthread_create(&t1, NULL, &led_thread, (void*)id1);
-	pthread_create(&t2, NULL, &led_thread, (void*)id2);
+	printf("Test_Util/test_Led_start()\n\n");fflush(stdout);
+
+	pthread_create(&t1, NULL, &led_thread, (&id0));
+	pthread_create(&t2, NULL, &led_thread, (&id1));
 
 	sleep(RUNTIME);
 
