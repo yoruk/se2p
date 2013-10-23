@@ -15,6 +15,9 @@
  * Zur Not : Ein Clean auf das Projekt ausf�hren
  */
 
+#ifndef _HWACCESS_H_
+#define _HWACCESS_H_
+
 //#define SIMULATION
 
 // Die drei folgenden includes d�rfen nur in dieser Datei stehen
@@ -27,4 +30,5 @@
 #include <ioaccess.h>
 #endif
 
+#endif
 // End of File
