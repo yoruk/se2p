@@ -15,35 +15,35 @@ static int id0 = 0;
 static int id1 = 1;
 static bool run = true;
 
-static void* gate_simple_thread_1(void* arg) {
-	while(run) {
-		usleep(WAIT);
-		mutex->lock();
+//static void* gate_simple_thread_1(void* arg) {
+//	while(run) {
+//		usleep(WAIT);
+//		mutex->lock();
+//
+//		printf("thread 1\n");fflush(stdout);
+//		gate->open();
+//
+//		usleep(WAIT);
+//		mutex->unlock();
+//	}
+//
+//	pthread_exit(NULL);
+//}
 
-		printf("thread 1\n");fflush(stdout);
-		gate->open();
-
-		usleep(WAIT);
-		mutex->unlock();
-	}
-
-	pthread_exit(NULL);
-}
-
-static void* gate_simple_thread_2(void* arg) {
-	while(run) {
-		usleep(WAIT);
-		mutex->lock();
-
-		printf("thread 2\n");fflush(stdout);
-		gate->close();
-
-		usleep(WAIT);
-		mutex->unlock();
-	}
-
-	pthread_exit(NULL);
-}
+//static void* gate_simple_thread_2(void* arg) {
+//	while(run) {
+//		usleep(WAIT);
+//		mutex->lock();
+//
+//		printf("thread 2\n");fflush(stdout);
+//		gate->close();
+//
+//		usleep(WAIT);
+//		mutex->unlock();
+//	}
+//
+//	pthread_exit(NULL);
+//}
 
 
 static void* gate_simple_single_thread(void* arg) {
