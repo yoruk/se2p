@@ -9,7 +9,7 @@
 #define RUNTIME 30
 #define SLEEP 1
 
-static Gate* led;
+static Led* led;
 static Mutex* mutex;
 static pthread_t t1, t2;
 static unsigned int id0 = 0;
