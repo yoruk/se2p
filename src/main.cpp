@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
-#include "milestone1/Milestone1.h"
+#include "HWaccess.h"
+
 #include "tests/Test_Mutex.h"
 #include "tests/Test_Util.h"
 #include "tests/Test_Gate.h"
@@ -9,8 +10,12 @@
 #include "tests/Test_Conveyor.h"
 #include "tests/Test_Led.h"
 #include "tests/Test_Serial.h"
-#include "HWaccess.h"
+
+#include "examples/msgSndRcvRpl/msgSndRcvRpl.h"
+
+#include "milestone1/Milestone1.h"
 #include "milestone2/Simple_Milestone2.h"
+
 
 int main(int argc, char *argv[]) {
 #ifdef SIMULATION
@@ -22,12 +27,14 @@ int main(int argc, char *argv[]) {
 	//return test_Mutex_start();
 	//test_Util_start();
 
-	test_Gate_start();
+	//test_Gate_start();
 	//test_Led_start();
 	//test_TrafficLight_start();
 	//test_Conveyor_start();
 	//test_Simple_Gate_start();
 	//test_Serial_start();
+
+	msgSndRcvRpl_start();
 
 	//simple_milestone2_start();
 
