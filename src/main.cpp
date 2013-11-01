@@ -11,7 +11,7 @@
 #include "tests/Test_Led.h"
 #include "tests/Test_Serial.h"
 
-#include "examples/messageSendReceiveReply/messageSendReceiveReply.h"
+#include "examples/msgSendReceiveReply/msgSendReceiveReply.h"
 
 #include "milestone1/Milestone1.h"
 #include "milestone2/Simple_Milestone2.h"
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 	//test_Simple_Gate_start();
 	//test_Serial_start();
 
-	messageSendReceiveReply_start();
+	msgSendReceiveReply_start();
 
 	//simple_milestone2_start();
 

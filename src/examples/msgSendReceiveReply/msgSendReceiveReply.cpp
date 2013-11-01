@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "messageSendReceiveReply.h"
+#include "msgSendReceiveReply.h"
 #include "Server.h"
 #include "Client.h"
 
-void messageSendReceiveReply_start() {
+void msgSendReceiveReply_start() {
 	printf("running messageSendReceiveReply_start()\n");fflush(stdout);
 
 	Server* server = new Server();
