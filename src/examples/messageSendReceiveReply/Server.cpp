@@ -1,11 +1,11 @@
 #include <iostream>
 #include <unistd.h>
 #include <errno.h>
-#include "msgSndRcvRpl.h"
+#include "messageSendReceiveReply.h"
 #include "Server.h"
 #include "sys/neutrino.h"
 
-extern int channelId;
+int channelId = -1;
 
 Server::Server() {
 	// TODO Auto-generated constructor stub
