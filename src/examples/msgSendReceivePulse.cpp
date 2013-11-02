@@ -83,7 +83,7 @@ static void* client(void* arg) {
 }
 
 void msgSendReceivePulse_start() {
-	printf("running messageSendReceivePulse_start()\n");fflush(stdout);
+	printf("running msgSendReceivePulse_start()\n");fflush(stdout);
 
 	pthread_create(&t1, NULL, &server, NULL);
 	pthread_create(&t2, NULL, &client, NULL);
