@@ -12,7 +12,7 @@
 #include "tests/Test_Serial.h"
 
 #include "examples/msgSendReceiveReply.h"
-//#include "examples/msgSendReceivePulse.h"
+#include "examples/msgSendReceivePulse.h"
 
 #include "milestone1/Milestone1.h"
 #include "milestone2/Simple_Milestone2.h"
@@ -34,8 +34,8 @@ int main(int argc, char *argv[]) {
 	//test_Simple_Gate_start();
 	//test_Serial_start();
 
-	msgSendReceiveReply_start();
-	//msgSendReceivePulse_start();
+	//msgSendReceiveReply_start();
+	msgSendReceivePulse_start();
 
 	//simple_milestone2_start();
 
