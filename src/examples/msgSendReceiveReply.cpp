@@ -90,7 +90,7 @@ static void* client(void* arg) {
 }
 
 void msgSendReceiveReply_start() {
-	printf("running messageSendReceiveReply_start()\n");fflush(stdout);
+	printf("running msgSendReceiveReply_start()\n");fflush(stdout);
 
 	pthread_create(&t1, NULL, &server, NULL);
 	pthread_create(&t2, NULL, &client, NULL);
