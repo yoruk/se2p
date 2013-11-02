@@ -40,8 +40,8 @@ static void* server(void* arg) {
 		printf("Server: receiving message: %s\n", msgBuffer);fflush(stdout);
 
 		strcpy(msgBuffer, "Got the message");
-		MsgReply(receiveId, EOK, msgBuffer, sizeof(msgBuffer));
-		if(receiveId == -1) {
+		res = MsgReply(receiveId, EOK, msgBuffer, sizeof(msgBuffer));
+		if(res == -1) {
 			printf("msgSendReceiveReply: server: error replying message!\n");fflush(stdout);
 			exit(EXIT_FAILURE);
 		}
