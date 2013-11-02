@@ -23,7 +23,8 @@ VFLAG_g=-gstabs+
 EXTRA_SRCVPATH+=$(PROJECT_ROOT)/src  \
 	$(PROJECT_ROOT)/src/tests $(PROJECT_ROOT)/src/hal  \
 	$(PROJECT_ROOT)/src/milestone1  \
-	$(PROJECT_ROOT)/src/milestone2
+	$(PROJECT_ROOT)/src/milestone2  \
+	$(PROJECT_ROOT)/src/examples
 
 #===== LIBS - a space-separated list of library items to be included in the link.
 LIBS+=ioaccess
