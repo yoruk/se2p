@@ -22,6 +22,13 @@
 #define BIT_FIRST_NIBBLE 0x0f
 #define BIT_SECOND_NIBBLE 0xf0
 
+#define OFFS_INT_STATUS 0x0F
+#define PB_STATUS       0x02
+#define PC_STATUS       0x08
+#define OFFS_INT_CTRL   0x0B
+#define PB_CTRL         0x02
+#define PC_CTRL         0x04
+
 // conveyor
 #define CONVEYOR_RIGHT BIT_0
 #define CONVEYOR_LEFT BIT_1
