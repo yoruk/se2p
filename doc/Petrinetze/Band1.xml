@@ -1,0 +1,2172 @@
+<?xml version="1.0" encoding="iso-8859-1"?><pnml>
+<net id="Net-One" type="P/T net">
+<token id="Default" enabled="true" red="0" green="0" blue="0"/>
+<labels x="913" y="138" width="113" height="53" border="true">
+<text>conveyorContinue()
+yellowOff()
+greenOn()</text>
+</labels>
+<labels x="1164" y="207" width="92" height="53" border="true">
+<text>conveyorStop()
+greenOff()
+yellowOn()</text>
+</labels>
+<labels x="1353" y="407" width="105" height="37" border="true">
+<text>LS Weihe frei testen</text>
+</labels>
+<labels x="622" y="463" width="69" height="22" border="true">
+<text>moveFast()</text>
+</labels>
+<labels x="422" y="459" width="72" height="23" border="true">
+<text>moveSlow()</text>
+</labels>
+<labels x="1160" y="671" width="93" height="37" border="true">
+<text>redflashingOn()
+conveyorStop()</text>
+</labels>
+<labels x="1114" y="933" width="115" height="57" border="true">
+<text>redOff()
+greenOn()
+conveyorContinue()</text>
+</labels>
+<labels x="1362" y="897" width="50" height="21" border="true">
+<text>redOn()</text>
+</labels>
+<labels x="262" y="451" width="41" height="21" border="true">
+<text>start()</text>
+</labels>
+<place id="AmpelGelb">
+<graphics>
+<position x="450.0" y="525.0"/>
+</graphics>
+<name>
+<value>AmpelGelb</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="AmpelGrün">
+<graphics>
+<position x="450.0" y="645.0"/>
+</graphics>
+<name>
+<value>AmpelGrün</value>
+<graphics>
+<offset x="8.333333333333334" y="-0.8333333333333333"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="AmpelRot">
+<graphics>
+<position x="435.0" y="795.0"/>
+</graphics>
+<name>
+<value>AmpelRot</value>
+<graphics>
+<offset x="40.833333333333336" y="48.333333333333336"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="AmpelRotBlinkt">
+<graphics>
+<position x="660.0" y="660.0"/>
+</graphics>
+<name>
+<value>AmpelRotBlinkt</value>
+<graphics>
+<offset x="110.83333333333331" y="18.333333333333332"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="BL-on">
+<graphics>
+<position x="615.0" y="165.0"/>
+</graphics>
+<name>
+<value>BL-on</value>
+<graphics>
+<offset x="61.8131868131868" y="21.15384615384615"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="BR-on">
+<graphics>
+<position x="450.0" y="165.0"/>
+</graphics>
+<name>
+<value>BR-on</value>
+<graphics>
+<offset x="33.99999999999997" y="46.85714285714286"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="B-slowed">
+<graphics>
+<position x="450.0" y="285.0"/>
+</graphics>
+<name>
+<value>B-slowed</value>
+<graphics>
+<offset x="43.714285714285715" y="39.71428571428571"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="B-stop">
+<graphics>
+<position x="450.0" y="75.0"/>
+</graphics>
+<name>
+<value>B-stop</value>
+<graphics>
+<offset x="0.0" y="5.714285714285714"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="GZ">
+<graphics>
+<position x="165.0" y="405.0"/>
+</graphics>
+<name>
+<value>GZ</value>
+<graphics>
+<offset x="-0.8333333333333334" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,4</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>4</value>
+</capacity>
+</place>
+<place id="GZ Ampel">
+<graphics>
+<position x="255.0" y="645.0"/>
+</graphics>
+<name>
+<value>GZ Ampel</value>
+<graphics>
+<offset x="28.0" y="-9.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,1</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="GZ Band">
+<graphics>
+<position x="240.0" y="165.0"/>
+</graphics>
+<name>
+<value>GZ Band</value>
+<graphics>
+<offset x="29.0" y="-6.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,1</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="Hoehenmessung">
+<graphics>
+<position x="540.0" y="405.0"/>
+</graphics>
+<name>
+<value>Hoehenmessung</value>
+<graphics>
+<offset x="54.6153846153846" y="-7.692307692307691"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="MetallDetektor">
+<graphics>
+<position x="945.0" y="405.0"/>
+</graphics>
+<name>
+<value>MetallDetektor</value>
+<graphics>
+<offset x="45.38461538461537" y="-9.999999999999998"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="movingToEnd">
+<graphics>
+<position x="1275.0" y="255.0"/>
+</graphics>
+<name>
+<value>movingToEnd</value>
+<graphics>
+<offset x="55.357142857142854" y="-14.047619047619047"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>3</value>
+</capacity>
+</place>
+<place id="movingToH">
+<graphics>
+<position x="345.0" y="405.0"/>
+</graphics>
+<name>
+<value>movingToH</value>
+<graphics>
+<offset x="46.15384615384615" y="39.99999999999999"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="movingToW">
+<graphics>
+<position x="735.0" y="405.0"/>
+</graphics>
+<name>
+<value>movingToW</value>
+<graphics>
+<offset x="39.67948717948717" y="-12.820512820512816"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>3</value>
+</capacity>
+</place>
+<place id="P0">
+<graphics>
+<position x="1305.0" y="885.0"/>
+</graphics>
+<name>
+<value>P0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="RutscheVoll">
+<graphics>
+<position x="1185.0" y="720.0"/>
+</graphics>
+<name>
+<value>RutscheVoll</value>
+<graphics>
+<offset x="43.333333333333336" y="40.83333333333333"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="waitingItemMoved">
+<graphics>
+<position x="1020.0" y="255.0"/>
+</graphics>
+<name>
+<value>waitingItemMoved</value>
+<graphics>
+<offset x="62.26190476190473" y="45.119047619047606"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="Weiche geschlossen">
+<graphics>
+<position x="945.0" y="555.0"/>
+</graphics>
+<name>
+<value>Weiche geschlossen</value>
+<graphics>
+<offset x="135.83333333333334" y="18.333333333333332"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="WeicheOffen">
+<graphics>
+<position x="1155.0" y="405.0"/>
+</graphics>
+<name>
+<value>WeicheOffen</value>
+<graphics>
+<offset x="48.92857142857143" y="-8.095238095238093"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="Werkstück in LS-R">
+<graphics>
+<position x="945.0" y="720.0"/>
+</graphics>
+<name>
+<value>Werkstück in LS-R</value>
+<graphics>
+<offset x="-2.5" y="2.220446049250313E-16"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<place id="Werkstück In Rutsche">
+<graphics>
+<position x="945.0" y="885.0"/>
+</graphics>
+<name>
+<value>Werkstück In Rutsche</value>
+<graphics>
+<offset x="66.66666666666667" y="43.333333333333336"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>1</value>
+</capacity>
+</place>
+<transition id="">
+<graphics>
+<position x="165.0" y="825.0"/>
+</graphics>
+<name>
+<value/>
+<graphics>
+<offset x="-14.0" y="22.0"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="flach">
+<graphics>
+<position x="945.0" y="480.0"/>
+</graphics>
+<name>
+<value>flach</value>
+<graphics>
+<offset x="9.615384615384631" y="-6.538461538461531"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="green">
+<graphics>
+<position x="495.0" y="585.0"/>
+</graphics>
+<name>
+<value>green</value>
+<graphics>
+<offset x="65.0" y="28.33333333333333"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="green  ">
+<graphics>
+<position x="405.0" y="720.0"/>
+</graphics>
+<name>
+<value>green  </value>
+<graphics>
+<offset x="-5.833333333333333" y="14.166666666666664"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id=" green ">
+<graphics>
+<position x="585.0" y="705.0"/>
+</graphics>
+<name>
+<value> green </value>
+<graphics>
+<offset x="32.5" y="45.83333333333334"/>
+</graphics>
+</name>
+<orientation>
+<value>180</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="left">
+<graphics>
+<position x="555.0" y="150.0"/>
+</graphics>
+<name>
+<value>left</value>
+<graphics>
+<offset x="23.57142857142859" y="-18.571428571428566"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-BA">
+<graphics>
+<position x="255.0" y="405.0"/>
+</graphics>
+<name>
+<value>LS-BA</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-End">
+<graphics>
+<position x="1200.0" y="255.0"/>
+</graphics>
+<name>
+<value>LS-End</value>
+<graphics>
+<offset x="70.0" y="26.666666666666668"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-End  x">
+<graphics>
+<position x="1020.0" y="135.0"/>
+</graphics>
+<name>
+<value>LS-End  x</value>
+<graphics>
+<offset x="84.16666666666667" y="27.499999999999996"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-H">
+<graphics>
+<position x="435.0" y="405.0"/>
+</graphics>
+<name>
+<value>LS-H</value>
+<graphics>
+<offset x="28.076923076923077" y="-19.61538461538461"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-H   x">
+<graphics>
+<position x="630.0" y="405.0"/>
+</graphics>
+<name>
+<value>LS-H   x</value>
+<graphics>
+<offset x="40.38461538461533" y="-21.153846153846146"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-R">
+<graphics>
+<position x="945.0" y="630.0"/>
+</graphics>
+<name>
+<value>LS-R</value>
+<graphics>
+<offset x="61.66666666666667" y="16.666666666666668"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-R x">
+<graphics>
+<position x="945.0" y="810.0"/>
+</graphics>
+<name>
+<value>LS-R x</value>
+<graphics>
+<offset x="-6.666666666666668" y="19.166666666666668"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-W">
+<graphics>
+<position x="840.0" y="405.0"/>
+</graphics>
+<name>
+<value>LS-W</value>
+<graphics>
+<offset x="28.076923076923062" y="-20.38461538461538"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="Q-Taste">
+<graphics>
+<position x="1305.0" y="720.0"/>
+</graphics>
+<name>
+<value>Q-Taste</value>
+<graphics>
+<offset x="10.000000000000002" y="39.99999999999999"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="red">
+<graphics>
+<position x="480.0" y="720.0"/>
+</graphics>
+<name>
+<value>red</value>
+<graphics>
+<offset x="61.66666666666667" y="17.500000000000004"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="red  ">
+<graphics>
+<position x="585.0" y="765.0"/>
+</graphics>
+<name>
+<value>red  </value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="red-B">
+<graphics>
+<position x="585.0" y="630.0"/>
+</graphics>
+<name>
+<value>red-B</value>
+<graphics>
+<offset x="33.33333333333333" y="-18.33333333333334"/>
+</graphics>
+</name>
+<orientation>
+<value>180</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="right">
+<graphics>
+<position x="555.0" y="195.0"/>
+</graphics>
+<name>
+<value>right</value>
+<graphics>
+<offset x="27.857142857142854" y="48.571428571428584"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="slow">
+<graphics>
+<position x="495.0" y="225.0"/>
+</graphics>
+<name>
+<value>slow</value>
+<graphics>
+<offset x="58.68131868131862" y="21.648351648351642"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="slow   x">
+<graphics>
+<position x="405.0" y="240.0"/>
+</graphics>
+<name>
+<value>slow   x</value>
+<graphics>
+<offset x="3.27472527472527" y="22.758241758241752"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="start">
+<graphics>
+<position x="330.0" y="165.0"/>
+</graphics>
+<name>
+<value>start</value>
+<graphics>
+<offset x="-6.0" y="29.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="start ">
+<graphics>
+<position x="315.0" y="645.0"/>
+</graphics>
+<name>
+<value>start </value>
+<graphics>
+<offset x="-2.666666666666668" y="27.5"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="S-Taste               LS-R x ">
+<graphics>
+<position x="1140.0" y="885.0"/>
+</graphics>
+<name>
+<value>S-Taste               LS-R x </value>
+<graphics>
+<offset x="73.00000000000001" y="27.666666666666664"/>
+</graphics>
+</name>
+<orientation>
+<value>180</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="stop">
+<graphics>
+<position x="405.0" y="120.0"/>
+</graphics>
+<name>
+<value>stop</value>
+<graphics>
+<offset x="-3.1318681318681323" y="8.62637362637361"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="stop   ">
+<graphics>
+<position x="705.0" y="60.0"/>
+</graphics>
+<name>
+<value>stop   </value>
+<graphics>
+<offset x="68.07692307692307" y="8.846153846153845"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="stop    ">
+<graphics>
+<position x="630.0" y="105.0"/>
+</graphics>
+<name>
+<value>stop    </value>
+<graphics>
+<offset x="64.99999999999997" y="6.538461538461539"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="stop   x">
+<graphics>
+<position x="495.0" y="120.0"/>
+</graphics>
+<name>
+<value>stop   x</value>
+<graphics>
+<offset x="69.99999999999996" y="5.714285714285714"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="Timer">
+<graphics>
+<position x="1080.0" y="720.0"/>
+</graphics>
+<name>
+<value>Timer</value>
+<graphics>
+<offset x="5.0" y="32.5"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>3.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="wait">
+<graphics>
+<position x="1275.0" y="405.0"/>
+</graphics>
+<name>
+<value>wait</value>
+<graphics>
+<offset x="56.19047619047618" y="8.571428571428568"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>5.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="x  flach">
+<graphics>
+<position x="1050.0" y="405.0"/>
+</graphics>
+<name>
+<value>x  flach</value>
+<graphics>
+<offset x="-2.6923076923076943" y="26.53846153846154"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="Yellow">
+<graphics>
+<position x="405.0" y="585.0"/>
+</graphics>
+<name>
+<value>Yellow</value>
+<graphics>
+<offset x="-0.8333333333333335" y="22.5"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<arc id="AmpelGelb to green" source="AmpelGelb" target="green">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="471" y="548" curvePoint="false"/>
+<arcpath id="001" x="506" y="591" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="AmpelGrün to red" source="AmpelGrün" target="red">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="467" y="670" curvePoint="false"/>
+<arcpath id="001" x="491" y="726" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="AmpelGrün to red-B" source="AmpelGrün" target="red-B">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="476" y="655" curvePoint="false"/>
+<arcpath id="001" x="592" y="641" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="AmpelGrün to Yellow" source="AmpelGrün" target="Yellow">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="452" y="645" curvePoint="false"/>
+<arcpath id="001" x="416" y="601" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="AmpelRotBlinkt to  green " source="AmpelRotBlinkt" target=" green ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="659" y="680" curvePoint="false"/>
+<arcpath id="001" x="602" y="716" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="AmpelRotBlinkt to red  " source="AmpelRotBlinkt" target="red  ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="663" y="684" curvePoint="false"/>
+<arcpath id="001" x="601" y="777" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="AmpelRot to green  " source="AmpelRot" target="green  ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="441" y="793" curvePoint="false"/>
+<arcpath id="001" x="416" y="736" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="BL-on to stop    " source="BL-on" target="stop    ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="628" y="162" curvePoint="false"/>
+<arcpath id="001" x="629" y="158" curvePoint="false"/>
+<arcpath id="002" x="642" y="132" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="B-slowed to stop   " source="B-slowed" target="stop   ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="476" y="296" curvePoint="false"/>
+<arcpath id="001" x="719" y="294" curvePoint="false"/>
+<arcpath id="002" x="717" y="87" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="flach to Weiche geschlossen" source="flach" target="Weiche geschlossen">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="956" y="496" curvePoint="false"/>
+<arcpath id="001" x="956" y="552" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="green to AmpelGrün" source="green" target="AmpelGrün">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="506" y="601" curvePoint="false"/>
+<arcpath id="001" x="471" y="645" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="green   to AmpelGrün" source="green  " target="AmpelGrün">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="416" y="726" curvePoint="false"/>
+<arcpath id="001" x="453" y="669" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id=" green  to AmpelGrün" source=" green " target="AmpelGrün">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="592" y="716" curvePoint="false"/>
+<arcpath id="001" x="475" y="663" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="GZ Ampel to start " source="GZ Ampel" target="start ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="281" y="657" curvePoint="false"/>
+<arcpath id="001" x="321" y="657" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="GZ Band to start" source="GZ Band" target="start">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="266" y="177" curvePoint="false"/>
+<arcpath id="001" x="336" y="177" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="GZ to LS-BA" source="GZ" target="LS-BA">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="191" y="417" curvePoint="false"/>
+<arcpath id="001" x="261" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Hoehenmessung to LS-H   x" source="Hoehenmessung" target="LS-H   x">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="566" y="417" curvePoint="false"/>
+<arcpath id="001" x="636" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="left to BL-on" source="left" target="BL-on">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="571" y="162" curvePoint="false"/>
+<arcpath id="001" x="612" y="173" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-BA to movingToH" source="LS-BA" target="movingToH">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="271" y="417" curvePoint="false"/>
+<arcpath id="001" x="342" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-End to waitingItemMoved" source="LS-End" target="waitingItemMoved">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1206" y="267" curvePoint="false"/>
+<arcpath id="001" x="1046" y="267" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-End  x to GZ" source="LS-End  x" target="GZ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1031" y="141" curvePoint="false"/>
+<arcpath id="001" x="1029" y="25" curvePoint="false"/>
+<arcpath id="002" x="173" y="29" curvePoint="false"/>
+<arcpath id="003" x="176" y="402" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-H to Hoehenmessung" source="LS-H" target="Hoehenmessung">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="451" y="417" curvePoint="false"/>
+<arcpath id="001" x="537" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-H   x to movingToW" source="LS-H   x" target="movingToW">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="646" y="417" curvePoint="false"/>
+<arcpath id="001" x="732" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-R to Werkstück in LS-R" source="LS-R" target="Werkstück in LS-R">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="956" y="646" curvePoint="false"/>
+<arcpath id="001" x="956" y="717" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-R x to Werkstück In Rutsche" source="LS-R x" target="Werkstück In Rutsche">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="956" y="826" curvePoint="false"/>
+<arcpath id="001" x="956" y="882" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-W to MetallDetektor" source="LS-W" target="MetallDetektor">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="856" y="417" curvePoint="false"/>
+<arcpath id="001" x="942" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="MetallDetektor to flach" source="MetallDetektor" target="flach">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="956" y="431" curvePoint="false"/>
+<arcpath id="001" x="956" y="486" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="MetallDetektor to x  flach" source="MetallDetektor" target="x  flach">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="971" y="417" curvePoint="false"/>
+<arcpath id="001" x="1056" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="movingToH to LS-H" source="movingToH" target="LS-H">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="371" y="417" curvePoint="false"/>
+<arcpath id="001" x="441" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="movingToW to LS-W" source="movingToW" target="LS-W">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="761" y="417" curvePoint="false"/>
+<arcpath id="001" x="846" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P0 to S-Taste               LS-R x " source="P0" target="S-Taste               LS-R x ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1302" y="896" curvePoint="false"/>
+<arcpath id="001" x="1157" y="896" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P10 to T15" source="WeicheOffen" target="wait">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1181" y="417" curvePoint="false"/>
+<arcpath id="001" x="1281" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P11 to T16" source="movingToEnd" target="LS-End">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1272" y="267" curvePoint="false"/>
+<arcpath id="001" x="1216" y="267" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P2 to T2" source="BR-on" target="slow">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="470" y="189" curvePoint="false"/>
+<arcpath id="001" x="502" y="232" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P2 to T3" source="BR-on" target="stop">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="451" y="166" curvePoint="false"/>
+<arcpath id="001" x="421" y="137" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P2 to T5" source="BR-on" target="left">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="476" y="174" curvePoint="false"/>
+<arcpath id="001" x="561" y="162" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P3 to T1" source="B-slowed" target="slow   x">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="451" y="285" curvePoint="false"/>
+<arcpath id="001" x="421" y="252" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P4 to T4" source="B-stop" target="stop   x">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="472" y="97" curvePoint="false"/>
+<arcpath id="001" x="502" y="127" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P5 to T6" source="BL-on" target="right">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="613" y="184" curvePoint="false"/>
+<arcpath id="001" x="571" y="207" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Q-Taste to P0" source="Q-Taste" target="P0">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1317" y="747" curvePoint="false"/>
+<arcpath id="001" x="1317" y="882" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="red-B to AmpelRotBlinkt" source="red-B" target="AmpelRotBlinkt">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="602" y="641" curvePoint="false"/>
+<arcpath id="001" x="658" y="665" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="red to AmpelRot" source="red" target="AmpelRot">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="491" y="736" curvePoint="false"/>
+<arcpath id="001" x="455" y="794" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="red   to AmpelRot" source="red  " target="AmpelRot">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="591" y="777" curvePoint="false"/>
+<arcpath id="001" x="537" y="777" curvePoint="false"/>
+<arcpath id="002" x="461" y="802" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="right to BR-on" source="right" target="BR-on">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="561" y="207" curvePoint="false"/>
+<arcpath id="001" x="476" y="181" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="RutscheVoll to Q-Taste" source="RutscheVoll" target="Q-Taste">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1211" y="732" curvePoint="false"/>
+<arcpath id="001" x="1311" y="732" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="slow to B-slowed" source="slow" target="B-slowed">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="501" y="242" curvePoint="false"/>
+<arcpath id="001" x="470" y="284" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="slow   x to BR-on" source="slow   x" target="BR-on">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="417" y="237" curvePoint="false"/>
+<arcpath id="001" x="453" y="189" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="start  to AmpelGrün" source="start " target="AmpelGrün">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="331" y="657" curvePoint="false"/>
+<arcpath id="001" x="447" y="657" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="start to BR-on" source="start" target="BR-on">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="346" y="177" curvePoint="false"/>
+<arcpath id="001" x="447" y="177" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="S-Taste               LS-R x  to Werkstück In Rutsche" source="S-Taste               LS-R x " target="Werkstück In Rutsche">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1147" y="896" curvePoint="false"/>
+<arcpath id="001" x="972" y="896" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="stop to B-stop" source="stop" target="B-stop">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="422" y="127" curvePoint="false"/>
+<arcpath id="001" x="451" y="97" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="stop    to B-stop" source="stop   " target="B-stop">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="717" y="57" curvePoint="false"/>
+<arcpath id="001" x="717" y="42" curvePoint="false"/>
+<arcpath id="002" x="462" y="42" curvePoint="false"/>
+<arcpath id="003" x="462" y="72" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="stop     to B-stop" source="stop    " target="B-stop">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="642" y="102" curvePoint="false"/>
+<arcpath id="001" x="642" y="87" curvePoint="false"/>
+<arcpath id="002" x="477" y="87" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="stop   x to BR-on" source="stop   x" target="BR-on">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="501" y="137" curvePoint="false"/>
+<arcpath id="001" x="472" y="166" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Timer to RutscheVoll" source="Timer" target="RutscheVoll">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1096" y="732" curvePoint="false"/>
+<arcpath id="001" x="1182" y="732" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id=" to GZ" source="" target="GZ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="176" y="831" curvePoint="false"/>
+<arcpath id="001" x="176" y="431" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="waitingItemMoved to LS-End  x" source="waitingItemMoved" target="LS-End  x">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1031" y="252" curvePoint="false"/>
+<arcpath id="001" x="1031" y="151" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="wait to movingToEnd" source="wait" target="movingToEnd">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1287" y="402" curvePoint="false"/>
+<arcpath id="001" x="1287" y="281" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Weiche geschlossen to LS-R" source="Weiche geschlossen" target="LS-R">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="956" y="581" curvePoint="false"/>
+<arcpath id="001" x="956" y="636" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Werkstück in LS-R to LS-R x" source="Werkstück in LS-R" target="LS-R x">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="956" y="746" curvePoint="false"/>
+<arcpath id="001" x="956" y="816" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Werkstück in LS-R to Timer" source="Werkstück in LS-R" target="Timer">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="971" y="732" curvePoint="false"/>
+<arcpath id="001" x="1086" y="732" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Werkstück In Rutsche to " source="Werkstück In Rutsche" target="">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="942" y="897" curvePoint="false"/>
+<arcpath id="001" x="177" y="897" curvePoint="false"/>
+<arcpath id="002" x="176" y="841" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="x  flach to WeicheOffen" source="x  flach" target="WeicheOffen">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1066" y="417" curvePoint="false"/>
+<arcpath id="001" x="1152" y="417" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Yellow to AmpelGelb" source="Yellow" target="AmpelGelb">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="416" y="591" curvePoint="false"/>
+<arcpath id="001" x="452" y="548" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+</net>
+</pnml>
