@@ -1,53 +1,51 @@
 <?xml version="1.0" encoding="iso-8859-1"?><pnml>
 <net id="Net-One" type="P/T net">
 <token id="Default" enabled="true" red="0" green="0" blue="0"/>
-<labels x="213" y="482" width="112" height="22" border="true">
+<labels x="219" y="728" width="113" height="23" border="true">
 <text>conveyorContinue()</text>
 </labels>
-<labels x="985" y="142" width="91" height="21" border="true">
+<labels x="974" y="88" width="92" height="22" border="true">
 <text>conveyorStop()</text>
 </labels>
-<labels x="655" y="482" width="87" height="21" border="true">
+<labels x="766" y="733" width="88" height="22" border="true">
 <text>conveyorStop()</text>
 </labels>
-<labels x="799" y="810" width="43" height="21" border="true">
+<labels x="803" y="855" width="44" height="22" border="true">
 <text>ende()</text>
 </labels>
-<labels x="815" y="144" width="41" height="21" border="true">
+<labels x="700" y="64" width="42" height="22" border="true">
 <text>ende()</text>
 </labels>
-<labels x="430" y="483" width="88" height="22" border="true">
-<text>Laufband stop</text>
-</labels>
-<labels x="501" y="379" width="68" height="22" border="true">
+<labels x="511" y="551" width="69" height="23" border="true">
 <text>moveFast()</text>
 </labels>
-<labels x="943" y="492" width="61" height="22" border="true">
+<labels x="952" y="733" width="62" height="23" border="true">
 <text>MoveLeft()</text>
 </labels>
-<labels x="293" y="697" width="86" height="37" border="true">
+<labels x="1299" y="843" width="87" height="38" border="true">
 <text>moveRight()
 greenOn()</text>
 </labels>
-<labels x="324" y="393" width="70" height="24" border="true">
+<labels x="326" y="559" width="71" height="25" border="true">
 <text>moveSlow()</text>
 </labels>
-<labels x="678" y="610" width="92" height="37" border="true">
+<labels x="1421" y="672" width="93" height="38" border="true">
 <text>redflashingOn()
 conveyorStop()</text>
 </labels>
-<labels x="307" y="560" width="47" height="21" border="true">
+<labels x="307" y="84" width="104" height="36" border="true">
+<text>redflashingOn()
+conveyorStop()</text>
+</labels>
+<labels x="1565" y="817" width="48" height="21" border="true">
 <text>redOn()</text>
 </labels>
-<labels x="141" y="389" width="41" height="21" border="true">
+<labels x="146" y="474" width="42" height="22" border="true">
 <text>start()</text>
-</labels>
-<labels x="791" y="488" width="55" height="72" border="true">
-<text>timer 3-sec abgelaufen</text>
 </labels>
 <place id=" ">
 <graphics>
-<position x="705.0" y="570.0"/>
+<position x="1514.0" y="624.0"/>
 </graphics>
 <name>
 <value> </value>
@@ -65,9 +63,29 @@ conveyorStop()</text>
 <value>0</value>
 </capacity>
 </place>
+<place id="                    ">
+<graphics>
+<position x="952.0" y="509.0"/>
+</graphics>
+<name>
+<value>                    </value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
 <place id="AmpelGelb">
 <graphics>
-<position x="1376.0" y="36.0"/>
+<position x="1383.0" y="16.0"/>
 </graphics>
 <name>
 <value>AmpelGelb</value>
@@ -87,7 +105,7 @@ conveyorStop()</text>
 </place>
 <place id="AmpelGrün">
 <graphics>
-<position x="1369.0" y="139.0"/>
+<position x="1381.0" y="120.0"/>
 </graphics>
 <name>
 <value>AmpelGrün</value>
@@ -107,7 +125,7 @@ conveyorStop()</text>
 </place>
 <place id="AmpelRot">
 <graphics>
-<position x="1369.0" y="272.0"/>
+<position x="1381.0" y="255.0"/>
 </graphics>
 <name>
 <value>AmpelRot</value>
@@ -127,12 +145,12 @@ conveyorStop()</text>
 </place>
 <place id="AmpelRotBlinkt">
 <graphics>
-<position x="1605.0" y="165.0"/>
+<position x="1621.0" y="150.0"/>
 </graphics>
 <name>
 <value>AmpelRotBlinkt</value>
 <graphics>
-<offset x="113.83333333333331" y="18.333333333333332"/>
+<offset x="67.83333333333331" y="-23.666666666666668"/>
 </graphics>
 </name>
 <initialMarking>
@@ -147,12 +165,12 @@ conveyorStop()</text>
 </place>
 <place id="BL-on">
 <graphics>
-<position x="540.0" y="148.0"/>
+<position x="1627.0" y="434.0"/>
 </graphics>
 <name>
 <value>BL-on</value>
 <graphics>
-<offset x="66.42857142857142" y="14.999999999999996"/>
+<offset x="35.428571428571416" y="56.0"/>
 </graphics>
 </name>
 <initialMarking>
@@ -167,7 +185,7 @@ conveyorStop()</text>
 </place>
 <place id="BR-on">
 <graphics>
-<position x="345.0" y="148.0"/>
+<position x="1432.0" y="434.0"/>
 </graphics>
 <name>
 <value>BR-on</value>
@@ -187,7 +205,7 @@ conveyorStop()</text>
 </place>
 <place id=" B-slowed">
 <graphics>
-<position x="345.0" y="253.0"/>
+<position x="1432.0" y="539.0"/>
 </graphics>
 <name>
 <value> B-slowed</value>
@@ -207,7 +225,7 @@ conveyorStop()</text>
 </place>
 <place id="B-stop">
 <graphics>
-<position x="345.0" y="58.0"/>
+<position x="1432.0" y="344.0"/>
 </graphics>
 <name>
 <value>B-stop</value>
@@ -225,9 +243,49 @@ conveyorStop()</text>
 <value>0</value>
 </capacity>
 </place>
+<place id="error">
+<graphics>
+<position x="256.0" y="177.0"/>
+</graphics>
+<name>
+<value>error</value>
+<graphics>
+<offset x="2.0" y="-2.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Fehlerbehandlung">
+<graphics>
+<position x="169.0" y="73.0"/>
+</graphics>
+<name>
+<value>Fehlerbehandlung</value>
+<graphics>
+<offset x="51.0" y="-4.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
 <place id="GZ">
 <graphics>
-<position x="45.0" y="345.0"/>
+<position x="60.0" y="505.0"/>
 </graphics>
 <name>
 <value>GZ</value>
@@ -247,7 +305,7 @@ conveyorStop()</text>
 </place>
 <place id="GZ Ampel">
 <graphics>
-<position x="1185.0" y="135.0"/>
+<position x="1201.0" y="120.0"/>
 </graphics>
 <name>
 <value>GZ Ampel</value>
@@ -267,7 +325,7 @@ conveyorStop()</text>
 </place>
 <place id="GZ Band">
 <graphics>
-<position x="150.0" y="148.0"/>
+<position x="1237.0" y="434.0"/>
 </graphics>
 <name>
 <value>GZ Band</value>
@@ -287,7 +345,7 @@ conveyorStop()</text>
 </place>
 <place id="Höhenmessung">
 <graphics>
-<position x="435.0" y="345.0"/>
+<position x="442.0" y="505.0"/>
 </graphics>
 <name>
 <value>Höhenmessung</value>
@@ -305,34 +363,14 @@ conveyorStop()</text>
 <value>0</value>
 </capacity>
 </place>
-<place id="LS-R x">
-<graphics>
-<position x="180.0" y="1020.0"/>
-</graphics>
-<name>
-<value>LS-R x</value>
-<graphics>
-<offset x="197.85714285714255" y="-361.4285714285716"/>
-</graphics>
-</name>
-<initialMarking>
-<value>Default,0</value>
-<graphics>
-<offset x="0.0" y="0.0"/>
-</graphics>
-</initialMarking>
-<capacity>
-<value>0</value>
-</capacity>
-</place>
 <place id="MetallDetektor">
 <graphics>
-<position x="765.0" y="345.0"/>
+<position x="806.0" y="508.0"/>
 </graphics>
 <name>
 <value>MetallDetektor</value>
 <graphics>
-<offset x="56.42857142857142" y="-14.999999999999998"/>
+<offset x="54.42857142857142" y="39.0"/>
 </graphics>
 </name>
 <initialMarking>
@@ -347,12 +385,12 @@ conveyorStop()</text>
 </place>
 <place id=" movingLeft">
 <graphics>
-<position x="870.0" y="435.0"/>
+<position x="875.0" y="676.0"/>
 </graphics>
 <name>
 <value> movingLeft</value>
 <graphics>
-<offset x="47.857142857142854" y="39.285714285714285"/>
+<offset x="44.857142857142854" y="40.285714285714285"/>
 </graphics>
 </name>
 <initialMarking>
@@ -362,17 +400,17 @@ conveyorStop()</text>
 </graphics>
 </initialMarking>
 <capacity>
-<value>1</value>
+<value>0</value>
 </capacity>
 </place>
 <place id="movingToEnd">
 <graphics>
-<position x="1080.0" y="90.0"/>
+<position x="1064.0" y="171.0"/>
 </graphics>
 <name>
 <value>movingToEnd</value>
 <graphics>
-<offset x="37.857142857142854" y="-15.714285714285714"/>
+<offset x="110.85714285714286" y="13.285714285714286"/>
 </graphics>
 </name>
 <initialMarking>
@@ -387,7 +425,7 @@ conveyorStop()</text>
 </place>
 <place id="movingToH">
 <graphics>
-<position x="240.0" y="345.0"/>
+<position x="252.0" y="504.0"/>
 </graphics>
 <name>
 <value>movingToH</value>
@@ -407,32 +445,12 @@ conveyorStop()</text>
 </place>
 <place id="movingToW">
 <graphics>
-<position x="600.0" y="345.0"/>
+<position x="617.0" y="505.0"/>
 </graphics>
 <name>
 <value>movingToW</value>
 <graphics>
-<offset x="47.571428571428626" y="-15.000000000000359"/>
-</graphics>
-</name>
-<initialMarking>
-<value>Default,0</value>
-<graphics>
-<offset x="0.0" y="0.0"/>
-</graphics>
-</initialMarking>
-<capacity>
-<value>0</value>
-</capacity>
-</place>
-<place id="P0">
-<graphics>
-<position x="945.0" y="345.0"/>
-</graphics>
-<name>
-<value>P0</value>
-<graphics>
-<offset x="0.0" y="0.0"/>
+<offset x="49.571428571428626" y="49.999999999999645"/>
 </graphics>
 </name>
 <initialMarking>
@@ -447,7 +465,7 @@ conveyorStop()</text>
 </place>
 <place id="PukNeuEinlegen">
 <graphics>
-<position x="450.0" y="435.0"/>
+<position x="414.0" y="680.0"/>
 </graphics>
 <name>
 <value>PukNeuEinlegen</value>
@@ -462,17 +480,17 @@ conveyorStop()</text>
 </graphics>
 </initialMarking>
 <capacity>
-<value>1</value>
+<value>0</value>
 </capacity>
 </place>
 <place id="Rotes Dauerlicht">
 <graphics>
-<position x="315.0" y="570.0"/>
+<position x="1512.0" y="803.0"/>
 </graphics>
 <name>
 <value>Rotes Dauerlicht</value>
 <graphics>
-<offset x="1.0" y="23.571428571428577"/>
+<offset x="52.0" y="45.57142857142858"/>
 </graphics>
 </name>
 <initialMarking>
@@ -487,12 +505,12 @@ conveyorStop()</text>
 </place>
 <place id="waitingItemMoved">
 <graphics>
-<position x="900.0" y="105.0"/>
+<position x="1066.0" y="10.0"/>
 </graphics>
 <name>
 <value>waitingItemMoved</value>
 <graphics>
-<offset x="66.42857142857142" y="37.14285714285713"/>
+<offset x="130.42857142857142" y="14.142857142857139"/>
 </graphics>
 </name>
 <initialMarking>
@@ -507,7 +525,7 @@ conveyorStop()</text>
 </place>
 <place id="WartenBisPukWeg">
 <graphics>
-<position x="674.0" y="435.0"/>
+<position x="680.0" y="678.0"/>
 </graphics>
 <name>
 <value>WartenBisPukWeg</value>
@@ -522,12 +540,12 @@ conveyorStop()</text>
 </graphics>
 </initialMarking>
 <capacity>
-<value>1</value>
+<value>0</value>
 </capacity>
 </place>
 <place id="Weiche geschlossen">
 <graphics>
-<position x="1167.0" y="361.0"/>
+<position x="1125.0" y="508.0"/>
 </graphics>
 <name>
 <value>Weiche geschlossen</value>
@@ -547,12 +565,12 @@ conveyorStop()</text>
 </place>
 <place id="WeicheOffen">
 <graphics>
-<position x="975.0" y="240.0"/>
+<position x="1063.0" y="381.0"/>
 </graphics>
 <name>
 <value>WeicheOffen</value>
 <graphics>
-<offset x="56.42857142857143" y="-16.428571428571427"/>
+<offset x="86.42857142857143" y="-5.428571428571427"/>
 </graphics>
 </name>
 <initialMarking>
@@ -567,12 +585,12 @@ conveyorStop()</text>
 </place>
 <place id="WerkstückInLSR">
 <graphics>
-<position x="1169.0" y="482.0"/>
+<position x="1129.0" y="627.0"/>
 </graphics>
 <name>
 <value>WerkstückInLSR</value>
 <graphics>
-<offset x="119.28571428571429" y="18.428571428571427"/>
+<offset x="111.28571428571429" y="-5.571428571428569"/>
 </graphics>
 </name>
 <initialMarking>
@@ -587,12 +605,12 @@ conveyorStop()</text>
 </place>
 <place id="Werkstück in Rutsche">
 <graphics>
-<position x="1169.0" y="660.0"/>
+<position x="1129.0" y="806.0"/>
 </graphics>
 <name>
 <value>Werkstück in Rutsche</value>
 <graphics>
-<offset x="150.28571428571428" y="16.42857142857143"/>
+<offset x="70.28571428571428" y="42.42857142857143"/>
 </graphics>
 </name>
 <initialMarking>
@@ -605,12 +623,38 @@ conveyorStop()</text>
 <value>0</value>
 </capacity>
 </place>
-<transition id="">
+<transition id="                          ">
 <graphics>
-<position x="795.0" y="765.0"/>
+<position x="258.0" y="71.0"/>
 </graphics>
 <name>
-<value/>
+<value>                          </value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="                                                    ">
+<graphics>
+<position x="795.0" y="806.0"/>
+</graphics>
+<name>
+<value>                                                    </value>
 <graphics>
 <offset x="25.285714285714285" y="-9.857142857142849"/>
 </graphics>
@@ -633,7 +677,7 @@ conveyorStop()</text>
 </transition>
 <transition id="ende  ">
 <graphics>
-<position x="150.0" y="58.0"/>
+<position x="1237.0" y="344.0"/>
 </graphics>
 <name>
 <value>ende  </value>
@@ -659,7 +703,7 @@ conveyorStop()</text>
 </transition>
 <transition id="ende    ">
 <graphics>
-<position x="150.0" y="238.0"/>
+<position x="1237.0" y="524.0"/>
 </graphics>
 <name>
 <value>ende    </value>
@@ -685,7 +729,7 @@ conveyorStop()</text>
 </transition>
 <transition id="flashRed">
 <graphics>
-<position x="1516.0" y="129.0"/>
+<position x="1531.0" y="120.0"/>
 </graphics>
 <name>
 <value>flashRed</value>
@@ -711,7 +755,7 @@ conveyorStop()</text>
 </transition>
 <transition id="flashRed x">
 <graphics>
-<position x="1515.0" y="189.0"/>
+<position x="1531.0" y="180.0"/>
 </graphics>
 <name>
 <value>flashRed x</value>
@@ -737,7 +781,7 @@ conveyorStop()</text>
 </transition>
 <transition id="left">
 <graphics>
-<position x="465.0" y="133.0"/>
+<position x="1552.0" y="419.0"/>
 </graphics>
 <name>
 <value>left</value>
@@ -763,12 +807,12 @@ conveyorStop()</text>
 </transition>
 <transition id="LS BA">
 <graphics>
-<position x="135.0" y="345.0"/>
+<position x="149.0" y="505.0"/>
 </graphics>
 <name>
 <value>LS BA</value>
 <graphics>
-<offset x="31.714285714285715" y="-19.000000000000007"/>
+<offset x="29.714285714285715" y="47.99999999999999"/>
 </graphics>
 </name>
 <orientation>
@@ -789,7 +833,7 @@ conveyorStop()</text>
 </transition>
 <transition id="LS BA ">
 <graphics>
-<position x="780.0" y="435.0"/>
+<position x="785.0" y="676.0"/>
 </graphics>
 <name>
 <value>LS BA </value>
@@ -815,7 +859,7 @@ conveyorStop()</text>
 </transition>
 <transition id="LS BA   ">
 <graphics>
-<position x="240.0" y="435.0"/>
+<position x="249.0" y="678.0"/>
 </graphics>
 <name>
 <value>LS BA   </value>
@@ -841,7 +885,7 @@ conveyorStop()</text>
 </transition>
 <transition id="LS BA  x">
 <graphics>
-<position x="585.0" y="435.0"/>
+<position x="544.0" y="677.0"/>
 </graphics>
 <name>
 <value>LS BA  x</value>
@@ -867,12 +911,38 @@ conveyorStop()</text>
 </transition>
 <transition id="LS-End">
 <graphics>
-<position x="1005.0" y="90.0"/>
+<position x="799.0" y="157.0"/>
 </graphics>
 <name>
 <value>LS-End</value>
 <graphics>
-<offset x="72.14285714285714" y="26.428571428571434"/>
+<offset x="38.0" y="-12.0"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-End  t = 5s">
+<graphics>
+<position x="1066.0" y="105.0"/>
+</graphics>
+<name>
+<value>LS-End  t = 5s</value>
+<graphics>
+<offset x="-4.857142857142861" y="22.428571428571434"/>
 </graphics>
 </name>
 <orientation>
@@ -882,7 +952,7 @@ conveyorStop()</text>
 <value>1.0</value>
 </rate>
 <timed>
-<value>false</value>
+<value>true</value>
 </timed>
 <infiniteServer>
 <value>false</value>
@@ -893,12 +963,12 @@ conveyorStop()</text>
 </transition>
 <transition id="LS-End   x">
 <graphics>
-<position x="810.0" y="105.0"/>
+<position x="701.0" y="5.0"/>
 </graphics>
 <name>
 <value>LS-End   x</value>
 <graphics>
-<offset x="82.14285714285715" y="-0.7142857142857157"/>
+<offset x="88.14285714285717" y="34.285714285714285"/>
 </graphics>
 </name>
 <orientation>
@@ -917,24 +987,50 @@ conveyorStop()</text>
 <value>1</value>
 </priority>
 </transition>
-<transition id="LS-H">
+<transition id="LS-H   ">
 <graphics>
-<position x="330.0" y="345.0"/>
+<position x="263.0" y="289.0"/>
 </graphics>
 <name>
-<value>LS-H</value>
+<value>LS-H   </value>
 <graphics>
-<offset x="28.571428571428562" y="-19.99999999999999"/>
+<offset x="65.0" y="12.0"/>
 </graphics>
 </name>
 <orientation>
 <value>0</value>
 </orientation>
 <rate>
-<value>1.0</value>
+<value>4.0</value>
 </rate>
 <timed>
 <value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="LS-H   t =4s">
+<graphics>
+<position x="336.0" y="504.0"/>
+</graphics>
+<name>
+<value>LS-H   t =4s</value>
+<graphics>
+<offset x="53.57142857142856" y="-12.99999999999999"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>4.0</value>
+</rate>
+<timed>
+<value>true</value>
 </timed>
 <infiniteServer>
 <value>false</value>
@@ -945,12 +1041,12 @@ conveyorStop()</text>
 </transition>
 <transition id="LS-H  x">
 <graphics>
-<position x="510.0" y="345.0"/>
+<position x="526.0" y="504.0"/>
 </graphics>
 <name>
 <value>LS-H  x</value>
 <graphics>
-<offset x="35.0" y="-27.14285714285713"/>
+<offset x="38.0" y="-18.14285714285713"/>
 </graphics>
 </name>
 <orientation>
@@ -971,12 +1067,12 @@ conveyorStop()</text>
 </transition>
 <transition id="LS-R">
 <graphics>
-<position x="1170.0" y="420.0"/>
+<position x="1128.0" y="564.0"/>
 </graphics>
 <name>
 <value>LS-R</value>
 <graphics>
-<offset x="71.14285714285715" y="15.571428571428573"/>
+<offset x="-17.857142857142847" y="18.571428571428573"/>
 </graphics>
 </name>
 <orientation>
@@ -997,7 +1093,7 @@ conveyorStop()</text>
 </transition>
 <transition id="LS-R   x">
 <graphics>
-<position x="1170.0" y="585.0"/>
+<position x="1129.0" y="715.0"/>
 </graphics>
 <name>
 <value>LS-R   x</value>
@@ -1021,14 +1117,14 @@ conveyorStop()</text>
 <value>1</value>
 </priority>
 </transition>
-<transition id="LS-W">
+<transition id="LS-W   ">
 <graphics>
-<position x="675.0" y="345.0"/>
+<position x="444.0" y="327.0"/>
 </graphics>
 <name>
-<value>LS-W</value>
+<value>LS-W   </value>
 <graphics>
-<offset x="28.57142857142857" y="-13.57142857142856"/>
+<offset x="4.0" y="29.0"/>
 </graphics>
 </name>
 <orientation>
@@ -1047,9 +1143,35 @@ conveyorStop()</text>
 <value>1</value>
 </priority>
 </transition>
+<transition id="LS-W  t = 3s">
+<graphics>
+<position x="699.0" y="506.0"/>
+</graphics>
+<name>
+<value>LS-W  t = 3s</value>
+<graphics>
+<offset x="54.57142857142857" y="-16.571428571428562"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>4.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
 <transition id="Metall">
 <graphics>
-<position x="870.0" y="345.0"/>
+<position x="877.0" y="509.0"/>
 </graphics>
 <name>
 <value>Metall</value>
@@ -1075,7 +1197,7 @@ conveyorStop()</text>
 </transition>
 <transition id="Metall   x">
 <graphics>
-<position x="870.0" y="240.0"/>
+<position x="806.0" y="381.0"/>
 </graphics>
 <name>
 <value>Metall   x</value>
@@ -1101,7 +1223,7 @@ conveyorStop()</text>
 </transition>
 <transition id="n">
 <graphics>
-<position x="945.0" y="435.0"/>
+<position x="953.0" y="676.0"/>
 </graphics>
 <name>
 <value>n</value>
@@ -1127,12 +1249,12 @@ conveyorStop()</text>
 </transition>
 <transition id="n+1 ">
 <graphics>
-<position x="1050.0" y="345.0"/>
+<position x="1038.0" y="508.0"/>
 </graphics>
 <name>
 <value>n+1 </value>
 <graphics>
-<offset x="32.85714285714286" y="47.57142857142857"/>
+<offset x="30.85714285714286" y="47.57142857142857"/>
 </graphics>
 </name>
 <orientation>
@@ -1153,12 +1275,12 @@ conveyorStop()</text>
 </transition>
 <transition id="Q-Taste">
 <graphics>
-<position x="435.0" y="570.0"/>
+<position x="1513.0" y="708.0"/>
 </graphics>
 <name>
 <value>Q-Taste</value>
 <graphics>
-<offset x="37.285714285714235" y="-15.857142857142861"/>
+<offset x="72.28571428571423" y="7.142857142857139"/>
 </graphics>
 </name>
 <orientation>
@@ -1179,7 +1301,7 @@ conveyorStop()</text>
 </transition>
 <transition id="Red">
 <graphics>
-<position x="1407.0" y="210.0"/>
+<position x="1426.0" y="195.0"/>
 </graphics>
 <name>
 <value>Red</value>
@@ -1205,7 +1327,7 @@ conveyorStop()</text>
 </transition>
 <transition id="Red  ">
 <graphics>
-<position x="1518.0" y="266.0"/>
+<position x="1531.0" y="255.0"/>
 </graphics>
 <name>
 <value>Red  </value>
@@ -1231,7 +1353,7 @@ conveyorStop()</text>
 </transition>
 <transition id="Red x">
 <graphics>
-<position x="1332.0" y="207.0"/>
+<position x="1351.0" y="195.0"/>
 </graphics>
 <name>
 <value>Red x</value>
@@ -1257,7 +1379,7 @@ conveyorStop()</text>
 </transition>
 <transition id="right">
 <graphics>
-<position x="465.0" y="178.0"/>
+<position x="1552.0" y="464.0"/>
 </graphics>
 <name>
 <value>right</value>
@@ -1283,7 +1405,7 @@ conveyorStop()</text>
 </transition>
 <transition id="slow">
 <graphics>
-<position x="300.0" y="208.0"/>
+<position x="1387.0" y="494.0"/>
 </graphics>
 <name>
 <value>slow</value>
@@ -1309,7 +1431,7 @@ conveyorStop()</text>
 </transition>
 <transition id="start">
 <graphics>
-<position x="240.0" y="148.0"/>
+<position x="1327.0" y="434.0"/>
 </graphics>
 <name>
 <value>start</value>
@@ -1335,7 +1457,7 @@ conveyorStop()</text>
 </transition>
 <transition id="start   ">
 <graphics>
-<position x="1260.0" y="135.0"/>
+<position x="1276.0" y="120.0"/>
 </graphics>
 <name>
 <value>start   </value>
@@ -1359,40 +1481,14 @@ conveyorStop()</text>
 <value>1</value>
 </priority>
 </transition>
-<transition id="S-Taste">
+<transition id="start       ">
 <graphics>
-<position x="315.0" y="660.0"/>
+<position x="80.0" y="72.0"/>
 </graphics>
 <name>
-<value>S-Taste</value>
+<value>start       </value>
 <graphics>
-<offset x="5.999999999999774" y="-0.7142857142857295"/>
-</graphics>
-</name>
-<orientation>
-<value>90</value>
-</orientation>
-<rate>
-<value>1.0</value>
-</rate>
-<timed>
-<value>false</value>
-</timed>
-<infiniteServer>
-<value>false</value>
-</infiniteServer>
-<priority>
-<value>1</value>
-</priority>
-</transition>
-<transition id="stop">
-<graphics>
-<position x="300.0" y="103.0"/>
-</graphics>
-<name>
-<value>stop</value>
-<graphics>
-<offset x="-4.2857142857142865" y="16.85714285714284"/>
+<offset x="48.0" y="-15.0"/>
 </graphics>
 </name>
 <orientation>
@@ -1411,9 +1507,35 @@ conveyorStop()</text>
 <value>1</value>
 </priority>
 </transition>
+<transition id="S-Taste   LS-R x">
+<graphics>
+<position x="1316.0" y="803.0"/>
+</graphics>
+<name>
+<value>S-Taste   LS-R x</value>
+<graphics>
+<offset x="50.99999999999977" y="-6.7142857142857295"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
 <transition id="stop ">
 <graphics>
-<position x="540.0" y="58.0"/>
+<position x="1627.0" y="344.0"/>
 </graphics>
 <name>
 <value>stop </value>
@@ -1437,14 +1559,14 @@ conveyorStop()</text>
 <value>1</value>
 </priority>
 </transition>
-<transition id="stop x">
+<transition id="stop | Naus">
 <graphics>
-<position x="390.0" y="103.0"/>
+<position x="1387.0" y="389.0"/>
 </graphics>
 <name>
-<value>stop x</value>
+<value>stop | Naus</value>
 <graphics>
-<offset x="65.99999999999996" y="14.714285714285715"/>
+<offset x="2.7142857142857135" y="9.85714285714284"/>
 </graphics>
 </name>
 <orientation>
@@ -1463,12 +1585,38 @@ conveyorStop()</text>
 <value>1</value>
 </priority>
 </transition>
-<transition id="timer">
+<transition id="stop x | Naus x">
 <graphics>
-<position x="1020.0" y="570.0"/>
+<position x="1477.0" y="389.0"/>
 </graphics>
 <name>
-<value>timer</value>
+<value>stop x | Naus x</value>
+<graphics>
+<offset x="81.99999999999996" y="-12.285714285714285"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="t &gt; 3s">
+<graphics>
+<position x="1326.0" y="624.0"/>
+</graphics>
+<name>
+<value>t &gt; 3s</value>
 <graphics>
 <offset x="28.714285714285708" y="-15.857142857142854"/>
 </graphics>
@@ -1489,9 +1637,87 @@ conveyorStop()</text>
 <value>1</value>
 </priority>
 </transition>
+<transition id="t &gt; 3s  ">
+<graphics>
+<position x="444.0" y="288.0"/>
+</graphics>
+<name>
+<value>t &gt; 3s  </value>
+<graphics>
+<offset x="49.0" y="-12.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="t &gt; 4s">
+<graphics>
+<position x="240.0" y="291.0"/>
+</graphics>
+<name>
+<value>t &gt; 4s</value>
+<graphics>
+<offset x="-1.0" y="12.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>5.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="t &gt; 5s">
+<graphics>
+<position x="799.0" y="177.0"/>
+</graphics>
+<name>
+<value>t &gt; 5s</value>
+<graphics>
+<offset x="32.0" y="44.0"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
 <transition id="wait">
 <graphics>
-<position x="1080.0" y="240.0"/>
+<position x="1064.0" y="261.0"/>
 </graphics>
 <name>
 <value>wait</value>
@@ -1517,7 +1743,7 @@ conveyorStop()</text>
 </transition>
 <transition id="x    slow">
 <graphics>
-<position x="390.0" y="208.0"/>
+<position x="1477.0" y="494.0"/>
 </graphics>
 <name>
 <value>x    slow</value>
@@ -1543,7 +1769,7 @@ conveyorStop()</text>
 </transition>
 <transition id="yellow">
 <graphics>
-<position x="1333.0" y="83.0"/>
+<position x="1346.0" y="65.0"/>
 </graphics>
 <name>
 <value>yellow</value>
@@ -1569,7 +1795,7 @@ conveyorStop()</text>
 </transition>
 <transition id="yellow x">
 <graphics>
-<position x="1423.0" y="85.0"/>
+<position x="1420.0" y="70.0"/>
 </graphics>
 <name>
 <value>yellow x</value>
@@ -1602,8 +1828,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1398" y="58" curvePoint="false"/>
-<arcpath id="001" x="1434" y="91" curvePoint="false"/>
+<arcpath id="000" x="1404" y="39" curvePoint="false"/>
+<arcpath id="001" x="1431" y="76" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="AmpelGrün to flashRed" source="AmpelGrün" target="flashRed">
@@ -1615,8 +1841,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1395" y="149" curvePoint="false"/>
-<arcpath id="001" x="1523" y="140" curvePoint="false"/>
+<arcpath id="000" x="1407" y="131" curvePoint="false"/>
+<arcpath id="001" x="1538" y="131" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="AmpelGrün to Red" source="AmpelGrün" target="Red">
@@ -1628,8 +1854,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1388" y="164" curvePoint="false"/>
-<arcpath id="001" x="1418" y="216" curvePoint="false"/>
+<arcpath id="000" x="1401" y="144" curvePoint="false"/>
+<arcpath id="001" x="1437" y="201" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="AmpelGrün to yellow" source="AmpelGrün" target="yellow">
@@ -1641,8 +1867,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1372" y="138" curvePoint="false"/>
-<arcpath id="001" x="1344" y="99" curvePoint="false"/>
+<arcpath id="000" x="1384" y="119" curvePoint="false"/>
+<arcpath id="001" x="1357" y="81" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="AmpelRotBlinkt to flashRed x" source="AmpelRotBlinkt" target="flashRed x">
@@ -1654,8 +1880,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1602" y="180" curvePoint="false"/>
-<arcpath id="001" x="1532" y="200" curvePoint="false"/>
+<arcpath id="000" x="1618" y="166" curvePoint="false"/>
+<arcpath id="001" x="1548" y="191" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="AmpelRotBlinkt to Red  " source="AmpelRotBlinkt" target="Red  ">
@@ -1667,8 +1893,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1607" y="188" curvePoint="false"/>
-<arcpath id="001" x="1534" y="278" curvePoint="false"/>
+<arcpath id="000" x="1623" y="173" curvePoint="false"/>
+<arcpath id="001" x="1547" y="267" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="AmpelRot to Red x" source="AmpelRot" target="Red x">
@@ -1680,8 +1906,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1373" y="271" curvePoint="false"/>
-<arcpath id="001" x="1343" y="223" curvePoint="false"/>
+<arcpath id="000" x="1385" y="253" curvePoint="false"/>
+<arcpath id="001" x="1362" y="211" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="BL-on to right" source="BL-on" target="right">
@@ -1693,8 +1919,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="538" y="165" curvePoint="false"/>
-<arcpath id="001" x="481" y="190" curvePoint="false"/>
+<arcpath id="000" x="1625" y="451" curvePoint="false"/>
+<arcpath id="001" x="1568" y="476" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="BL-on to stop " source="BL-on" target="stop ">
@@ -1706,8 +1932,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="552" y="145" curvePoint="false"/>
-<arcpath id="001" x="552" y="85" curvePoint="false"/>
+<arcpath id="000" x="1639" y="431" curvePoint="false"/>
+<arcpath id="001" x="1639" y="371" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="BR-on to ende    " source="BR-on" target="ende    ">
@@ -1719,8 +1945,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="343" y="166" curvePoint="false"/>
-<arcpath id="001" x="176" y="250" curvePoint="false"/>
+<arcpath id="000" x="1430" y="452" curvePoint="false"/>
+<arcpath id="001" x="1263" y="536" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="BR-on to left" source="BR-on" target="left">
@@ -1732,11 +1958,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="371" y="158" curvePoint="false"/>
-<arcpath id="001" x="471" y="145" curvePoint="false"/>
+<arcpath id="000" x="1458" y="443" curvePoint="false"/>
+<arcpath id="001" x="1558" y="431" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="BR-on to stop" source="BR-on" target="stop">
+<arc id="BR-on to stop" source="BR-on" target="stop | Naus">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -1745,8 +1971,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="346" y="149" curvePoint="false"/>
-<arcpath id="001" x="316" y="120" curvePoint="false"/>
+<arcpath id="000" x="1433" y="435" curvePoint="false"/>
+<arcpath id="001" x="1403" y="406" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="BR-on to x    slow" source="BR-on" target="x    slow">
@@ -1758,8 +1984,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="365" y="172" curvePoint="false"/>
-<arcpath id="001" x="397" y="215" curvePoint="false"/>
+<arcpath id="000" x="1453" y="457" curvePoint="false"/>
+<arcpath id="001" x="1484" y="501" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="B-slowed to slow" source=" B-slowed" target="slow">
@@ -1771,8 +1997,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="346" y="254" curvePoint="false"/>
-<arcpath id="001" x="316" y="225" curvePoint="false"/>
+<arcpath id="000" x="1433" y="540" curvePoint="false"/>
+<arcpath id="001" x="1403" y="511" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="B-stop to ende  " source="B-stop" target="ende  ">
@@ -1784,11 +2010,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="342" y="70" curvePoint="false"/>
-<arcpath id="001" x="166" y="70" curvePoint="false"/>
+<arcpath id="000" x="1429" y="355" curvePoint="false"/>
+<arcpath id="001" x="1253" y="356" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="B-stop to stop x" source="B-stop" target="stop x">
+<arc id="B-stop to stop x" source="B-stop" target="stop x | Naus x">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -1797,8 +2023,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="367" y="80" curvePoint="false"/>
-<arcpath id="001" x="397" y="110" curvePoint="false"/>
+<arcpath id="000" x="1454" y="366" curvePoint="false"/>
+<arcpath id="001" x="1484" y="396" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="ende   to GZ Band" source="ende  " target="GZ Band">
@@ -1810,8 +2036,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="162" y="85" curvePoint="false"/>
-<arcpath id="001" x="162" y="145" curvePoint="false"/>
+<arcpath id="000" x="1249" y="371" curvePoint="false"/>
+<arcpath id="001" x="1249" y="431" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="ende     to GZ Band" source="ende    " target="GZ Band">
@@ -1823,8 +2049,34 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="161" y="244" curvePoint="false"/>
-<arcpath id="001" x="161" y="174" curvePoint="false"/>
+<arcpath id="000" x="1248" y="530" curvePoint="false"/>
+<arcpath id="001" x="1248" y="460" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="error to                           " source="error" target="                          ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="268" y="174" curvePoint="false"/>
+<arcpath id="001" x="270" y="98" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Fehlerbehandlung to start       " source="Fehlerbehandlung" target="start       ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="166" y="84" curvePoint="false"/>
+<arcpath id="001" x="96" y="84" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="flashRed to AmpelRotBlinkt" source="flashRed" target="AmpelRotBlinkt">
@@ -1836,8 +2088,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1533" y="140" curvePoint="false"/>
-<arcpath id="001" x="1603" y="170" curvePoint="false"/>
+<arcpath id="000" x="1548" y="131" curvePoint="false"/>
+<arcpath id="001" x="1618" y="156" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="flashRed x to AmpelGrün" source="flashRed x" target="AmpelGrün">
@@ -1849,8 +2101,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1522" y="200" curvePoint="false"/>
-<arcpath id="001" x="1395" y="155" curvePoint="false"/>
+<arcpath id="000" x="1538" y="191" curvePoint="false"/>
+<arcpath id="001" x="1406" y="137" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="GZ Ampel to start   " source="GZ Ampel" target="start   ">
@@ -1862,8 +2114,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1211" y="147" curvePoint="false"/>
-<arcpath id="001" x="1266" y="147" curvePoint="false"/>
+<arcpath id="000" x="1227" y="131" curvePoint="false"/>
+<arcpath id="001" x="1282" y="132" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="GZ Band to start" source="GZ Band" target="start">
@@ -1875,8 +2127,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="176" y="160" curvePoint="false"/>
-<arcpath id="001" x="246" y="160" curvePoint="false"/>
+<arcpath id="000" x="1263" y="445" curvePoint="false"/>
+<arcpath id="001" x="1333" y="446" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="GZ to LS BA" source="GZ" target="LS BA">
@@ -1888,8 +2140,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="71" y="357" curvePoint="false"/>
-<arcpath id="001" x="141" y="357" curvePoint="false"/>
+<arcpath id="000" x="86" y="517" curvePoint="false"/>
+<arcpath id="001" x="155" y="517" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="Höhenmessung to LS-H  x" source="Höhenmessung" target="LS-H  x">
@@ -1901,8 +2153,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="461" y="357" curvePoint="false"/>
-<arcpath id="001" x="516" y="357" curvePoint="false"/>
+<arcpath id="000" x="468" y="516" curvePoint="false"/>
+<arcpath id="001" x="532" y="516" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="left to BL-on" source="left" target="BL-on">
@@ -1914,8 +2166,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="481" y="145" curvePoint="false"/>
-<arcpath id="001" x="537" y="156" curvePoint="false"/>
+<arcpath id="000" x="1568" y="431" curvePoint="false"/>
+<arcpath id="001" x="1624" y="442" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="LS BA to movingToH" source="LS BA" target="movingToH">
@@ -1927,8 +2179,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="151" y="357" curvePoint="false"/>
-<arcpath id="001" x="237" y="357" curvePoint="false"/>
+<arcpath id="000" x="165" y="517" curvePoint="false"/>
+<arcpath id="001" x="249" y="516" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="LS BA    to movingToH" source="LS BA   " target="movingToH">
@@ -1940,8 +2192,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="252" y="432" curvePoint="false"/>
-<arcpath id="001" x="252" y="371" curvePoint="false"/>
+<arcpath id="000" x="261" y="675" curvePoint="false"/>
+<arcpath id="001" x="263" y="530" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="LS BA  to WartenBisPukWeg" source="LS BA " target="WartenBisPukWeg">
@@ -1953,8 +2205,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="786" y="447" curvePoint="false"/>
-<arcpath id="001" x="700" y="447" curvePoint="false"/>
+<arcpath id="000" x="791" y="688" curvePoint="false"/>
+<arcpath id="001" x="706" y="689" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="LS BA  x to PukNeuEinlegen" source="LS BA  x" target="PukNeuEinlegen">
@@ -1966,11 +2218,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="591" y="447" curvePoint="false"/>
-<arcpath id="001" x="476" y="447" curvePoint="false"/>
+<arcpath id="000" x="550" y="689" curvePoint="false"/>
+<arcpath id="001" x="440" y="691" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="LS-End to waitingItemMoved" source="LS-End" target="waitingItemMoved">
+<arc id="LS-End to error" source="LS-End" target="error">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -1979,8 +2231,21 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1011" y="102" curvePoint="false"/>
-<arcpath id="001" x="926" y="114" curvePoint="false"/>
+<arcpath id="000" x="795" y="169" curvePoint="false"/>
+<arcpath id="001" x="282" y="188" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-End to waitingItemMoved" source="LS-End  t = 5s" target="waitingItemMoved">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1078" y="102" curvePoint="false"/>
+<arcpath id="001" x="1078" y="36" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="LS-End   x to GZ" source="LS-End   x" target="GZ">
@@ -1992,13 +2257,12 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="822" y="102" curvePoint="false"/>
-<arcpath id="001" x="828" y="14" curvePoint="false"/>
-<arcpath id="002" x="56" y="18" curvePoint="false"/>
-<arcpath id="003" x="56" y="342" curvePoint="false"/>
+<arcpath id="000" x="707" y="17" curvePoint="false"/>
+<arcpath id="001" x="57" y="19" curvePoint="false"/>
+<arcpath id="002" x="71" y="502" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="LS-H to Höhenmessung" source="LS-H" target="Höhenmessung">
+<arc id="LS-H    to error" source="LS-H   " target="error">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2007,8 +2271,21 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="346" y="357" curvePoint="false"/>
-<arcpath id="001" x="432" y="357" curvePoint="false"/>
+<arcpath id="000" x="275" y="286" curvePoint="false"/>
+<arcpath id="001" x="269" y="203" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-H to Höhenmessung" source="LS-H   t =4s" target="Höhenmessung">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="352" y="516" curvePoint="false"/>
+<arcpath id="001" x="439" y="516" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="LS-H  x to movingToW" source="LS-H  x" target="movingToW">
@@ -2020,8 +2297,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="526" y="357" curvePoint="false"/>
-<arcpath id="001" x="597" y="357" curvePoint="false"/>
+<arcpath id="000" x="542" y="516" curvePoint="false"/>
+<arcpath id="001" x="614" y="516" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="LS-R to WerkstückInLSR" source="LS-R" target="WerkstückInLSR">
@@ -2033,8 +2310,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1181" y="436" curvePoint="false"/>
-<arcpath id="001" x="1181" y="479" curvePoint="false"/>
+<arcpath id="000" x="1139" y="580" curvePoint="false"/>
+<arcpath id="001" x="1140" y="624" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="LS-R   x to Werkstück in Rutsche" source="LS-R   x" target="Werkstück in Rutsche">
@@ -2046,11 +2323,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1181" y="601" curvePoint="false"/>
-<arcpath id="001" x="1181" y="657" curvePoint="false"/>
+<arcpath id="000" x="1140" y="731" curvePoint="false"/>
+<arcpath id="001" x="1140" y="803" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="LS-W to MetallDetektor" source="LS-W" target="MetallDetektor">
+<arc id="LS-W    to error" source="LS-W   " target="error">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2059,8 +2336,21 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="691" y="357" curvePoint="false"/>
-<arcpath id="001" x="762" y="357" curvePoint="false"/>
+<arcpath id="000" x="450" y="339" curvePoint="false"/>
+<arcpath id="001" x="279" y="198" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="LS-W to MetallDetektor" source="LS-W  t = 3s" target="MetallDetektor">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="715" y="518" curvePoint="false"/>
+<arcpath id="001" x="803" y="519" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="MetallDetektor to Metall" source="MetallDetektor" target="Metall">
@@ -2072,8 +2362,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="791" y="357" curvePoint="false"/>
-<arcpath id="001" x="876" y="357" curvePoint="false"/>
+<arcpath id="000" x="832" y="520" curvePoint="false"/>
+<arcpath id="001" x="883" y="521" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="MetallDetektor to Metall   x" source="MetallDetektor" target="Metall   x">
@@ -2085,11 +2375,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="787" y="346" curvePoint="false"/>
-<arcpath id="001" x="876" y="252" curvePoint="false"/>
+<arcpath id="000" x="818" y="505" curvePoint="false"/>
+<arcpath id="001" x="818" y="408" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="Metall to P0" source="Metall" target="P0">
+<arc id="Metall to P0" source="Metall" target="                    ">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2098,8 +2388,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="886" y="357" curvePoint="false"/>
-<arcpath id="001" x="942" y="357" curvePoint="false"/>
+<arcpath id="000" x="893" y="521" curvePoint="false"/>
+<arcpath id="001" x="949" y="521" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="Metall   x to WeicheOffen" source="Metall   x" target="WeicheOffen">
@@ -2111,8 +2401,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="886" y="252" curvePoint="false"/>
-<arcpath id="001" x="972" y="252" curvePoint="false"/>
+<arcpath id="000" x="822" y="393" curvePoint="false"/>
+<arcpath id="001" x="1060" y="393" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id=" movingLeft to LS BA " source=" movingLeft" target="LS BA ">
@@ -2124,8 +2414,21 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="867" y="447" curvePoint="false"/>
-<arcpath id="001" x="796" y="447" curvePoint="false"/>
+<arcpath id="000" x="872" y="688" curvePoint="false"/>
+<arcpath id="001" x="801" y="688" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="movingToEnd to LS-End" source="movingToEnd" target="LS-End  t = 5s">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1076" y="168" curvePoint="false"/>
+<arcpath id="001" x="1078" y="132" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="movingToEnd to LS-End" source="movingToEnd" target="LS-End">
@@ -2137,11 +2440,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1077" y="102" curvePoint="false"/>
-<arcpath id="001" x="1021" y="102" curvePoint="false"/>
+<arcpath id="000" x="1061" y="182" curvePoint="false"/>
+<arcpath id="001" x="825" y="169" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="movingToH to LS-H" source="movingToH" target="LS-H">
+<arc id="movingToEnd to t &gt; 5s" source="movingToEnd" target="t &gt; 5s">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2150,11 +2453,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="266" y="357" curvePoint="false"/>
-<arcpath id="001" x="336" y="357" curvePoint="false"/>
+<arcpath id="000" x="1061" y="183" curvePoint="false"/>
+<arcpath id="001" x="825" y="189" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="movingToW to LS-W" source="movingToW" target="LS-W">
+<arc id="movingToH to LS-H" source="movingToH" target="LS-H   t =4s">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2163,8 +2466,73 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="626" y="357" curvePoint="false"/>
-<arcpath id="001" x="681" y="357" curvePoint="false"/>
+<arcpath id="000" x="278" y="516" curvePoint="false"/>
+<arcpath id="001" x="342" y="516" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="movingToH to LS-H   " source="movingToH" target="LS-H   ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="264" y="501" curvePoint="false"/>
+<arcpath id="001" x="275" y="316" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="movingToH to t &gt; 4s" source="movingToH" target="t &gt; 4s">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="263" y="501" curvePoint="false"/>
+<arcpath id="001" x="252" y="318" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="movingToW to LS-W" source="movingToW" target="LS-W  t = 3s">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="643" y="517" curvePoint="false"/>
+<arcpath id="001" x="705" y="518" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="movingToW to LS-W   " source="movingToW" target="LS-W   ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="618" y="506" curvePoint="false"/>
+<arcpath id="001" x="460" y="339" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="movingToW to t &gt; 3s  " source="movingToW" target="t &gt; 3s  ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="619" y="505" curvePoint="false"/>
+<arcpath id="001" x="460" y="300" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="n+1  to Weiche geschlossen" source="n+1 " target="Weiche geschlossen">
@@ -2176,8 +2544,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1067" y="352" curvePoint="false"/>
-<arcpath id="001" x="1164" y="370" curvePoint="false"/>
+<arcpath id="000" x="1054" y="520" curvePoint="false"/>
+<arcpath id="001" x="1122" y="520" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="n to  movingLeft" source="n" target=" movingLeft">
@@ -2189,11 +2557,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="951" y="447" curvePoint="false"/>
-<arcpath id="001" x="896" y="447" curvePoint="false"/>
+<arcpath id="000" x="959" y="688" curvePoint="false"/>
+<arcpath id="001" x="901" y="688" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="P0 to n" source="P0" target="n">
+<arc id="P0 to n" source="                    " target="n">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2202,11 +2570,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="957" y="371" curvePoint="false"/>
-<arcpath id="001" x="957" y="432" curvePoint="false"/>
+<arcpath id="000" x="964" y="535" curvePoint="false"/>
+<arcpath id="001" x="965" y="673" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="P0 to n+1 " source="P0" target="n+1 ">
+<arc id="P0 to n+1 " source="                    " target="n+1 ">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2215,8 +2583,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="971" y="357" curvePoint="false"/>
-<arcpath id="001" x="1056" y="357" curvePoint="false"/>
+<arcpath id="000" x="978" y="520" curvePoint="false"/>
+<arcpath id="001" x="1044" y="520" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="PukNeuEinlegen to LS BA   " source="PukNeuEinlegen" target="LS BA   ">
@@ -2228,8 +2596,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="447" y="447" curvePoint="false"/>
-<arcpath id="001" x="256" y="447" curvePoint="false"/>
+<arcpath id="000" x="411" y="691" curvePoint="false"/>
+<arcpath id="001" x="265" y="690" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="Q-Taste to Rotes Dauerlicht" source="Q-Taste" target="Rotes Dauerlicht">
@@ -2241,8 +2609,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="441" y="582" curvePoint="false"/>
-<arcpath id="001" x="341" y="582" curvePoint="false"/>
+<arcpath id="000" x="1525" y="735" curvePoint="false"/>
+<arcpath id="001" x="1524" y="800" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="Red to AmpelRot" source="Red" target="AmpelRot">
@@ -2254,8 +2622,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1418" y="226" curvePoint="false"/>
-<arcpath id="001" x="1389" y="271" curvePoint="false"/>
+<arcpath id="000" x="1437" y="211" curvePoint="false"/>
+<arcpath id="001" x="1402" y="255" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="Red   to AmpelRot" source="Red  " target="AmpelRot">
@@ -2267,8 +2635,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1524" y="278" curvePoint="false"/>
-<arcpath id="001" x="1395" y="283" curvePoint="false"/>
+<arcpath id="000" x="1537" y="267" curvePoint="false"/>
+<arcpath id="001" x="1407" y="267" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="Red x to AmpelGrün" source="Red x" target="AmpelGrün">
@@ -2280,8 +2648,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1343" y="213" curvePoint="false"/>
-<arcpath id="001" x="1373" y="163" curvePoint="false"/>
+<arcpath id="000" x="1362" y="201" curvePoint="false"/>
+<arcpath id="001" x="1386" y="145" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="right to BR-on" source="right" target="BR-on">
@@ -2293,11 +2661,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="471" y="190" curvePoint="false"/>
-<arcpath id="001" x="371" y="163" curvePoint="false"/>
+<arcpath id="000" x="1558" y="476" curvePoint="false"/>
+<arcpath id="001" x="1458" y="449" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="Rotes Dauerlicht to S-Taste" source="Rotes Dauerlicht" target="S-Taste">
+<arc id="Rotes Dauerlicht to S-Taste" source="Rotes Dauerlicht" target="S-Taste   LS-R x">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2306,8 +2674,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="326" y="596" curvePoint="false"/>
-<arcpath id="001" x="326" y="666" curvePoint="false"/>
+<arcpath id="000" x="1509" y="814" curvePoint="false"/>
+<arcpath id="001" x="1342" y="815" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="slow to BR-on" source="slow" target="BR-on">
@@ -2319,8 +2687,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="317" y="215" curvePoint="false"/>
-<arcpath id="001" x="348" y="172" curvePoint="false"/>
+<arcpath id="000" x="1404" y="501" curvePoint="false"/>
+<arcpath id="001" x="1435" y="458" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="start    to AmpelGrün" source="start   " target="AmpelGrün">
@@ -2332,8 +2700,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1276" y="147" curvePoint="false"/>
-<arcpath id="001" x="1366" y="150" curvePoint="false"/>
+<arcpath id="000" x="1292" y="132" curvePoint="false"/>
+<arcpath id="001" x="1378" y="132" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="start to BR-on" source="start" target="BR-on">
@@ -2345,11 +2713,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="256" y="160" curvePoint="false"/>
-<arcpath id="001" x="342" y="160" curvePoint="false"/>
+<arcpath id="000" x="1343" y="446" curvePoint="false"/>
+<arcpath id="001" x="1429" y="446" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="S-Taste to Werkstück in Rutsche" source="S-Taste" target="Werkstück in Rutsche">
+<arc id="start        to GZ" source="start       " target="GZ">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2358,11 +2726,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="341" y="672" curvePoint="false"/>
-<arcpath id="001" x="1166" y="672" curvePoint="false"/>
+<arcpath id="000" x="92" y="99" curvePoint="false"/>
+<arcpath id="001" x="72" y="502" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="stop to B-stop" source="stop" target="B-stop">
+<arc id="S-Taste to Werkstück in Rutsche" source="S-Taste   LS-R x" target="Werkstück in Rutsche">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2371,8 +2739,21 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="317" y="110" curvePoint="false"/>
-<arcpath id="001" x="346" y="80" curvePoint="false"/>
+<arcpath id="000" x="1312" y="815" curvePoint="false"/>
+<arcpath id="001" x="1155" y="817" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="stop to B-stop" source="stop | Naus" target="B-stop">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1404" y="396" curvePoint="false"/>
+<arcpath id="001" x="1433" y="366" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="stop  to B-stop" source="stop " target="B-stop">
@@ -2384,11 +2765,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="546" y="70" curvePoint="false"/>
-<arcpath id="001" x="371" y="70" curvePoint="false"/>
+<arcpath id="000" x="1633" y="356" curvePoint="false"/>
+<arcpath id="001" x="1458" y="356" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="stop x to BR-on" source="stop x" target="BR-on">
+<arc id="stop x to BR-on" source="stop x | Naus x" target="BR-on">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2397,11 +2778,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="396" y="120" curvePoint="false"/>
-<arcpath id="001" x="367" y="149" curvePoint="false"/>
+<arcpath id="000" x="1483" y="406" curvePoint="false"/>
+<arcpath id="001" x="1454" y="435" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="timer to  " source="timer" target=" ">
+<arc id="t &gt; 3s   to error" source="t &gt; 3s  " target="error">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2410,11 +2791,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1026" y="582" curvePoint="false"/>
-<arcpath id="001" x="731" y="582" curvePoint="false"/>
+<arcpath id="000" x="450" y="300" curvePoint="false"/>
+<arcpath id="001" x="280" y="196" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id=" to GZ" source="" target="GZ">
+<arc id="t &gt; 4s to error" source="t &gt; 4s" target="error">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2423,9 +2804,61 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="801" y="777" curvePoint="false"/>
-<arcpath id="001" x="57" y="777" curvePoint="false"/>
-<arcpath id="002" x="57" y="372" curvePoint="false"/>
+<arcpath id="000" x="252" y="288" curvePoint="false"/>
+<arcpath id="001" x="265" y="203" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="t &gt; 5s to error" source="t &gt; 5s" target="error">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="795" y="189" curvePoint="false"/>
+<arcpath id="001" x="283" y="189" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="timer to  " source="t &gt; 3s" target=" ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1342" y="636" curvePoint="false"/>
+<arcpath id="001" x="1511" y="636" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="                           to Fehlerbehandlung" source="                          " target="Fehlerbehandlung">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="264" y="83" curvePoint="false"/>
+<arcpath id="001" x="195" y="84" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="                                                     to GZ" source="                                                    " target="GZ">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="801" y="818" curvePoint="false"/>
+<arcpath id="001" x="67" y="822" curvePoint="false"/>
+<arcpath id="002" x="71" y="531" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="  to Q-Taste" source=" " target="Q-Taste">
@@ -2437,8 +2870,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="702" y="582" curvePoint="false"/>
-<arcpath id="001" x="451" y="582" curvePoint="false"/>
+<arcpath id="000" x="1526" y="650" curvePoint="false"/>
+<arcpath id="001" x="1525" y="705" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="waitingItemMoved to LS-End   x" source="waitingItemMoved" target="LS-End   x">
@@ -2450,8 +2883,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="897" y="117" curvePoint="false"/>
-<arcpath id="001" x="826" y="117" curvePoint="false"/>
+<arcpath id="000" x="1063" y="21" curvePoint="false"/>
+<arcpath id="001" x="717" y="17" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="wait to movingToEnd" source="wait" target="movingToEnd">
@@ -2463,8 +2896,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1092" y="237" curvePoint="false"/>
-<arcpath id="001" x="1092" y="116" curvePoint="false"/>
+<arcpath id="000" x="1076" y="258" curvePoint="false"/>
+<arcpath id="001" x="1076" y="197" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="WartenBisPukWeg to LS BA  x" source="WartenBisPukWeg" target="LS BA  x">
@@ -2476,8 +2909,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="671" y="447" curvePoint="false"/>
-<arcpath id="001" x="601" y="447" curvePoint="false"/>
+<arcpath id="000" x="677" y="689" curvePoint="false"/>
+<arcpath id="001" x="560" y="689" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="Weiche geschlossen to LS-R" source="Weiche geschlossen" target="LS-R">
@@ -2489,8 +2922,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1179" y="387" curvePoint="false"/>
-<arcpath id="001" x="1181" y="426" curvePoint="false"/>
+<arcpath id="000" x="1137" y="534" curvePoint="false"/>
+<arcpath id="001" x="1139" y="570" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="WeicheOffen to wait" source="WeicheOffen" target="wait">
@@ -2502,8 +2935,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1001" y="252" curvePoint="false"/>
-<arcpath id="001" x="1086" y="252" curvePoint="false"/>
+<arcpath id="000" x="1075" y="378" curvePoint="false"/>
+<arcpath id="001" x="1076" y="288" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="WerkstückInLSR to LS-R   x" source="WerkstückInLSR" target="LS-R   x">
@@ -2515,11 +2948,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1181" y="508" curvePoint="false"/>
-<arcpath id="001" x="1181" y="591" curvePoint="false"/>
+<arcpath id="000" x="1140" y="653" curvePoint="false"/>
+<arcpath id="001" x="1140" y="721" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="WerkstückInLSR to timer" source="WerkstückInLSR" target="timer">
+<arc id="WerkstückInLSR to t &gt; 3s" source="WerkstückInLSR" target="t &gt; 3s">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2528,11 +2961,11 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1168" y="501" curvePoint="false"/>
-<arcpath id="001" x="1036" y="582" curvePoint="false"/>
+<arcpath id="000" x="1155" y="638" curvePoint="false"/>
+<arcpath id="001" x="1332" y="636" curvePoint="false"/>
 <type value="normal"/>
 </arc>
-<arc id="Werkstück in Rutsche to " source="Werkstück in Rutsche" target="">
+<arc id="Werkstück in Rutsche to                                                     " source="Werkstück in Rutsche" target="                                                    ">
 <graphics/>
 <inscription>
 <value>Default,1</value>
@@ -2541,9 +2974,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1181" y="686" curvePoint="false"/>
-<arcpath id="001" x="1182" y="777" curvePoint="false"/>
-<arcpath id="002" x="811" y="777" curvePoint="false"/>
+<arcpath id="000" x="1126" y="818" curvePoint="false"/>
+<arcpath id="001" x="811" y="818" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="x    slow to  B-slowed" source="x    slow" target=" B-slowed">
@@ -2555,8 +2987,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="396" y="225" curvePoint="false"/>
-<arcpath id="001" x="367" y="254" curvePoint="false"/>
+<arcpath id="000" x="1483" y="511" curvePoint="false"/>
+<arcpath id="001" x="1454" y="540" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="yellow to AmpelGelb" source="yellow" target="AmpelGelb">
@@ -2568,8 +3000,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1344" y="89" curvePoint="false"/>
-<arcpath id="001" x="1377" y="58" curvePoint="false"/>
+<arcpath id="000" x="1357" y="71" curvePoint="false"/>
+<arcpath id="001" x="1385" y="39" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="yellow x to AmpelGrün" source="yellow x" target="AmpelGrün">
@@ -2581,8 +3013,8 @@ conveyorStop()</text>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="1434" y="101" curvePoint="false"/>
-<arcpath id="001" x="1392" y="140" curvePoint="false"/>
+<arcpath id="000" x="1431" y="86" curvePoint="false"/>
+<arcpath id="001" x="1402" y="120" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 </net>
