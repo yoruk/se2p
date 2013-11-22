@@ -1,17 +1,10 @@
-/*
- * SensorikIntro.cpp
- */
-
 #include "Sensorik.h"
 #include "HWaccess.h"
 #include "Global.h"
 #include "hw.h"
 
 static int isr_coid;
-bool pB[8] = { false, false, false, false, false, false, false, false };
-bool pC[8] = { false, false, false, false };
 static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
-
 
 const struct sigevent* ISR(void* arg, int id) {
 	struct sigevent *event = (struct sigevent *) arg;
@@ -140,10 +133,6 @@ void hal::Sensorik::shutdown() {
 }
 
 void hal::Sensorik::execute(void *arg) {
-	//code: 8-bit beschreibung der pulse msg
-	//value: 32-bit daten
-	cout << "| code  |  " << "value |" << endl;
-	cout << "|----------------|" << endl;
 
 	struct _pulse pulse;
 	while (!isStopped()) {
@@ -154,110 +143,11 @@ void hal::Sensorik::execute(void *arg) {
 			perror("SensorCtrl: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-		print(pulse.code, pulse.value.sival_int);
+		MsgSendPulse(signalCoid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int);
 	}
 
 }
-void hal::Sensorik::print(int code, int value) {
 
-	switch (code) {
-	case 2:
-		if (((value & BIT_0) == 0) && !pB[0]) {
-			cout << "LS-Eingang unterbrochen" << endl;
-			pB[0] = true;
-		} else if ((value & BIT_0) && pB[0]) {
-			cout << "LS-Eingang frei" << endl;
-			pB[0] = false;
-		}
-
-		if (((value & BIT_1) == 0) && !pB[1]) {
-			cout << "LS-Hoehenmessung unterbrochen" << endl;
-			pB[1] = true;
-		} else if ((value & BIT_1) && pB[1]) {
-			cout << "LS-Hoehenmessung frei" << endl;
-			pB[1] = false;
-		}
-
-		if ((value & BIT_2) && !pB[2]) {
-			cout << "Werkstueck nicht flach" << endl;
-			pB[2] = true;
-		} else if (((value & BIT_2) == 0) && pB[2]) {
-			cout << "Werkstueck flach" << endl;
-			pB[2] = false;
-		}
-
-		if (((value & BIT_3) == 0) && !pB[3]) {
-			cout << "LS-Weiche unterbrochen" << endl;
-			pB[3] = true;
-		} else if ((value & BIT_3) && pB[3]) {
-			cout << "LS-Weiche frei" << endl;
-			pB[3] = false;
-		}
-
-		if ((value & BIT_4) && !pB[4]) {
-			cout << "Werkstueck Metall" << endl;
-			pB[4] = true;
-		} else if (((value & BIT_4) == 0) && pB[4]) {
-			cout << "Werkstueck kein Metall" << endl;
-			pB[4] = false;
-		}
-
-		if ((value & BIT_5) && !pB[5]) {
-			cout << "Weiche offen" << endl;
-			pB[5] = true;
-		} else if (((value & BIT_5) == 0) && pB[5]) {
-			cout << "Weiche geschlossen" << endl;
-			pB[5] = false;
-		}
-
-		if (((value & BIT_6) == 0) && !pB[6]) {
-			cout << "Rutsche ist voll" << endl;
-			pB[6] = true;
-		} else if ((value & BIT_6) && pB[6]) {
-			cout << "Rutsche nicht voll" << endl;
-			pB[6] = false;
-		}
-
-		if (((value & BIT_7) == 0) && !pB[7]) {
-			cout << "LS-Auslauf unterbrochen" << endl;
-			pB[7] = true;
-		} else if ((value & BIT_7) && pB[7]) {
-			cout << "LS-Auslauf frei" << endl;
-			pB[7] = false;
-		}
-		break;
-	case 8:
-		if ((value & BIT_4) && !pC[0]) {
-			cout << "Starttaste gedrueckt" << endl;
-			pC[0] = true;
-		} else if (((value & BIT_4) == 0) && pC[0]) {
-			cout << "Starttaste nicht gedrueckt" << endl;
-			pC[0] = false;
-		}
-
-		if (((value & BIT_5) == 0) && !pC[1]) {
-			cout << "Stoptaste gedrueckt" << endl;
-			pC[1] = true;
-		} else if ((value & BIT_5) && pC[1]) {
-			cout << "Stoptaste nicht gedrueckt" << endl;
-			pC[1] = false;
-		}
-
-		if ((value & BIT_6) && !pC[2]) {
-			cout << "Resettaste gedrueckt" << endl;
-			pC[2] = true;
-		} else if (((value & BIT_6) == 0) && pC[2]) {
-			cout << "Resettaste nicht gedrueckt" << endl;
-			pC[2] = false;
-		}
-
-		if (((value & BIT_7) == 0) && !pC[3]) {
-			cout << "E-stop gedrueckt" << endl;
-			pC[3] = true;
-		} else if ((value & BIT_7) && pC[3]) {
-			cout << "E-stop nicht gedrueckt" << endl;
-			pC[3] = false;
-		}
-		break;
-	}
+int hal::Sensorik::getSignalChid(){
+        return signalChid;
 }
