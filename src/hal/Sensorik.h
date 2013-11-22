@@ -31,14 +31,13 @@ namespace hal {
         static Sensorik* getInstance();
 
         void stop(); // HAWThread: stop -> virtual
-
+        int getSignalChid();
     protected:
         virtual void execute(void* arg);
         virtual void shutdown();
 
     private:
         void initInterrupts();
-        void print(int code, int value);
     };
 }
 
