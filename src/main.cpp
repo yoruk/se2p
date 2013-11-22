@@ -11,6 +11,7 @@
 #include "tests/Test_Led.h"
 #include "tests/Test_Serial.h"
 #include "tests/Test_Sensorik.h"
+#include "tests/Test_Dispatcher.h"
 
 #include "examples/msgSendReceiveReply.h"
 #include "examples/msgSendReceivePulse.h"
@@ -35,7 +36,8 @@ int main(int argc, char *argv[]) {
 	//test_Conveyor_start();
 	//test_Simple_Gate_start();
 	//test_Serial_start();
-	test_Sensorik();
+	//test_Sensorik();
+	test_Dispatcher();
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();
