@@ -31,6 +31,7 @@ Dispatcher* Dispatcher::getInstance() {
 
 void Dispatcher::execute(void* arg) {
 	struct _pulse pulse;
+	pet->init_places();
 	while (!isStopped()) {
 		if (-1 == MsgReceivePulse(signalChid, &pulse, sizeof(pulse), NULL)) {
 			if (isStopped()) {
@@ -40,12 +41,11 @@ void Dispatcher::execute(void* arg) {
 			exit(EXIT_FAILURE);
 		}
 
-//		pet->process_transitios();
-//		pet->calculate_outputs();
-//		pet->write_outputs();
-		//pet->read_inputs(pulse.code, pulse.value.sival_int);
-		pet->init_places();
-
+		pet->read_inputs(pulse.code, pulse.value.sival_int);
+		pet->process_transitios();
+		pet->calculate_outputs();
+		//pet->write_outputs();
+		pet->NotifyReactor();
 	}
 }
 

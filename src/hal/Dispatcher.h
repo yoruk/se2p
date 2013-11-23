@@ -9,7 +9,6 @@
 #include "Sensorik.h"
 #include "Petrib.h"
 
-
 class Dispatcher: public thread::HAWThread {
 
 public:
