@@ -7,8 +7,9 @@
 #include "hw.h"
 #include "Global.h"
 #include "Sensorik.h"
+#include "Petrib.h"
 
-namespace hal {
+
 class Dispatcher: public thread::HAWThread {
 
 public:
@@ -19,12 +20,12 @@ private:
 	int signalChid;
 	static Dispatcher* instance;
 	Dispatcher();
-	void setSensor(int code, int value);
+	Petrib* pet;
 
 protected:
     virtual void execute(void* arg);
     virtual void shutdown();
 
 	};
-}
+
 #endif /* DISPATCHER_H_ */

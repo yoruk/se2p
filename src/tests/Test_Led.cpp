@@ -1,10 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <stdbool.h>
-#include "../Mutex.h"
-#include "../hal/Led.h"
+#include "Test_Led.h"
 
 #define RUNTIME 30
 #define SLEEP 1

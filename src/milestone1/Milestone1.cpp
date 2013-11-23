@@ -1,9 +1,4 @@
-#include <cstdlib>
-#include <iostream>
-#include <unistd.h>
-#include "MyThread.h"
-#include "Global.h"
-#include "HWaccess.h"
+#include "Milestone1.h"
 
 using namespace thread;
 

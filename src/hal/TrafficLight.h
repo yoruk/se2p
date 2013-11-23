@@ -2,6 +2,8 @@
 #define TRAFFICLIGHT_H_
 
 #include "../Mutex.h"
+#include "hw.h"
+#include "Util.h"
 
 class TrafficLight {
 public:

@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "../hal/TrafficLight.h"
+#include "Test_TrafficLight.h"
 
 #define RUNTIME 10
 

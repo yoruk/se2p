@@ -1,12 +1,4 @@
 #include "Test_Dispatcher.h"
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <unistd.h>
-#include <Dispatcher.h>
-
-using namespace std;
-using namespace hal;
 
 void test_Dispatcher(){
     cout << "Dispatcher" << endl;

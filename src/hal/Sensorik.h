@@ -1,14 +1,11 @@
 #ifndef SENSORIK_H_
 #define SENSORIK_H_
 
-#include <stdint.h>
-
 #include "HAWThread.h"
 #include "../Mutex.h"
+#include "hw.h"
 
 const struct sigevent * ISR (void *arg, int id);
-
-namespace hal {
 
     class Sensorik: public thread::HAWThread {
     private:
@@ -39,6 +36,5 @@ namespace hal {
     private:
         void initInterrupts();
     };
-}
 
 #endif /* SENSORIK_H_ */

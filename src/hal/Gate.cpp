@@ -1,9 +1,5 @@
-#include <iostream>
-#include "../HWaccess.h"
-#include "../Global.h"
-#include "Util.h"
 #include "Gate.h"
-#include "hw.h"
+
 
 /// This class gives access to the gates
 /// can open/close the gate and also checks the status

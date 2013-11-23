@@ -1,11 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <errno.h>
-#include <unistd.h>
-#include "../HWaccess.h"
 #include "hw.h"
-#include "../Global.h"
 
 /// This module holds the function for
 /// getting the correct access right to the hardware

@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdbool.h>
-#include "../Global.h"
 #include "Util.h"
 
 /// This module contents some util functions

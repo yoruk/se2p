@@ -51,8 +51,8 @@
 // led
 #define LED_START_BUTTON BIT_0
 #define LED_RESET_BUTTON BIT_1
-#define LED_Q1 BIT_2
-#define LED_Q2 BIT_3
+#define LEDD_Q1 BIT_2
+#define LEDD_Q2 BIT_3
 
 // serial interface
 #define SERIAL_INTERFACE_1 "/dev/ser1"

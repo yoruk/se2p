@@ -1,7 +1,4 @@
 #include "Sensorik.h"
-#include "HWaccess.h"
-#include "Global.h"
-#include "hw.h"
 
 static int isr_coid;
 static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
@@ -35,9 +32,9 @@ const struct sigevent* ISR(void* arg, int id) {
 	return event;
 }
 
-hal::Sensorik* hal::Sensorik::instance = NULL;
+Sensorik* Sensorik::instance = NULL;
 
-hal::Sensorik::Sensorik() {
+Sensorik::Sensorik() {
 	initInterrupts();
 
 	// create channel for dispatcher
@@ -55,14 +52,14 @@ hal::Sensorik::Sensorik() {
 	}
 }
 
-hal::Sensorik::~Sensorik() {
+Sensorik::~Sensorik() {
 	if (instance != NULL) {
 		delete instance;
 		instance = NULL;
 	}
 }
 
-hal::Sensorik* hal::Sensorik::getInstance() {
+Sensorik* Sensorik::getInstance() {
 	mutex->lock();
 	if (!init_HW_Done()) {
 		init_HW();
@@ -76,7 +73,7 @@ hal::Sensorik* hal::Sensorik::getInstance() {
 	return instance;
 }
 
-void hal::Sensorik::initInterrupts() {
+void Sensorik::initInterrupts() {
 	// create channel to receive pulse messages from the ISR
 	isrChid = ChannelCreate(0);
 	if (isrChid == -1) {
@@ -114,7 +111,7 @@ void hal::Sensorik::initInterrupts() {
 	portCstatus = in8(DIO_B);
 }
 
-void hal::Sensorik::stop() {
+void Sensorik::stop() {
 	HAWThread::stop(); // super.stop();
 
 	if (-1 == ConnectDetach(isr_coid)) {
@@ -129,10 +126,10 @@ void hal::Sensorik::stop() {
 	//    }
 }
 
-void hal::Sensorik::shutdown() {
+void Sensorik::shutdown() {
 }
 
-void hal::Sensorik::execute(void *arg) {
+void Sensorik::execute(void *arg) {
 
 	struct _pulse pulse;
 	while (!isStopped()) {
@@ -148,6 +145,6 @@ void hal::Sensorik::execute(void *arg) {
 
 }
 
-int hal::Sensorik::getSignalChid(){
+int Sensorik::getSignalChid(){
         return signalChid;
 }

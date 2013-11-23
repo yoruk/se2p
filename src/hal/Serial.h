@@ -1,6 +1,10 @@
 #ifndef SERIAL_H_
 #define SERIAL_H_
 
+#include <stdio.h>
+#include <fcntl.h>
+#include <../Mutex.h>
+
 class Serial {
 public:
 	static Serial* getInstance();

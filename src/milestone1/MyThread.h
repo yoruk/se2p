@@ -2,6 +2,9 @@
 #define MYTHREAD_H_
 
 #include "HAWThread.h"
+#include <unistd.h>
+#include "HWaccess.h"
+#include "Global.h"
 
 namespace thread {
 	class MyThread: public HAWThread {

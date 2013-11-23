@@ -1,7 +1,5 @@
 #include "Mutex.h"
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
+
 
 /// mutex-constructor
 Mutex::Mutex() {

@@ -1,9 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <stdbool.h>
-#include "../hal/Gate.h"
+#include "Test_Simple_Gate.h"
 
 #define RUNTIME 200
 #define WAIT 1000000

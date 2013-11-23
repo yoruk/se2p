@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-#include "../Global.h"
-#include "../hal/Serial.h"
+#include "Test_Serial.h"
 
 #define WAIT 2
 

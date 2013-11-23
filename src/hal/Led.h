@@ -1,6 +1,10 @@
 #ifndef LED_H_
 #define LED_H_
 
+#include "../Mutex.h"
+#include "Util.h"
+#include "hw.h"
+
 class Led {
 public:
 	static Led* getInstance();

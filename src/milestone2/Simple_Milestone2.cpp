@@ -1,11 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "../Global.h"
-#include "../hal/Led.h"
-#include "../hal/TrafficLight.h"
-#include "../hal/Gate.h"
-#include "../hal/Conveyor.h"
+#include "Simple_Milestone2.h"
 
 #define WAIT 2
 #define LONG_WAIT 5

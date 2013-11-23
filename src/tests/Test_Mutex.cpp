@@ -1,11 +1,5 @@
 #include "Test_Mutex.h"
-#include "Mutex.h"
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
-#include <stdbool.h>
+
 
 #define WAIT 1
 #define RUNTIME 10

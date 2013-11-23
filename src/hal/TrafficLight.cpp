@@ -1,9 +1,4 @@
-#include <iostream>
-#include "../HWaccess.h"
-#include "../Global.h"
-#include "Util.h"
 #include "TrafficLight.h"
-#include "hw.h"
 
 /// This class gives access to the Trafficlight
 /// can light it green a/o yellow a/o red

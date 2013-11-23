@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "../hal/Conveyor.h"
+#include "Test_Conveyor.h"
 
 #define RUNTIME 10
 

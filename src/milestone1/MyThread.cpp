@@ -1,9 +1,4 @@
-#include <iostream>
-#include <unistd.h>
-#include <errno.h>
 #include "MyThread.h"
-#include "HWaccess.h"
-#include "Global.h"
 
 using namespace std;
 

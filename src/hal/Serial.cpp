@@ -1,14 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include <pthread.h>
-#include <stdbool.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <termios.h>
-#include <../Mutex.h>
-#include <../Global.h>
 #include "Serial.h"
 
 static Mutex* mutex = new Mutex();

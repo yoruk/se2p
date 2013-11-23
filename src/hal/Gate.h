@@ -2,6 +2,12 @@
 #define GATE_H_
 
 #include "../Mutex.h"
+#include "../HWaccess.h"
+#include "../Global.h"
+#include "Util.h"
+#include "hw.h"
+
+
 
 class Gate {
 public:

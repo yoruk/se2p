@@ -1,10 +1,4 @@
-#include <iostream>
-#include "../HWaccess.h"
-#include "../Global.h"
-#include "../Mutex.h"
-#include "Util.h"
 #include "Led.h"
-#include "hw.h"
 
 /// This class gives access to the writeable
 /// Leds on Port C
@@ -87,7 +81,7 @@ void Led::led_Q1_On() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_C);
-	setBit(&reg, LED_Q1);
+	setBit(&reg, LEDD_Q1);
 	out8(DIO_C, reg);
 
 	mutex->unlock();
@@ -98,7 +92,7 @@ void Led::led_Q1_Off() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_C);
-	unsetBit(&reg, LED_Q1);
+	unsetBit(&reg, LEDD_Q1);
 	out8(DIO_C, reg);
 
 	mutex->unlock();
@@ -109,7 +103,7 @@ void Led::led_Q2_On() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_C);
-	setBit(&reg, LED_Q2);
+	setBit(&reg, LEDD_Q2);
 	out8(DIO_C, reg);
 
 	mutex->unlock();
@@ -120,7 +114,7 @@ void Led::led_Q2_Off() {
 	mutex->lock();
 
 	unsigned char reg = in8(DIO_C);
-	unsetBit(&reg, LED_Q2);
+	unsetBit(&reg, LEDD_Q2);
 	out8(DIO_C, reg);
 
 	mutex->unlock();
