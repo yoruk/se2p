@@ -11,6 +11,8 @@
 #include "TrafficLight.h"
 
 
+
+
 class Petrib{
 public:
 	static Petrib* getInstance();
@@ -26,6 +28,10 @@ public:
 
 private:
 	Petrib();
+	Gate* gate;
+	TrafficLight* trafficlight;
+	Led* led;
+	Conveyor* conv;
 
 };
 
