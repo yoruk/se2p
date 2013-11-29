@@ -27,3 +27,9 @@ void init_HW() {
 bool init_HW_Done() {
 	return done;
 }
+
+void reset_HW(){
+	out8(DIO_A, 0);
+	out8(DIO_B, 0);
+	out8(DIO_C, 0);
+}

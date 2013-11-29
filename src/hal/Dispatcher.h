@@ -14,7 +14,6 @@ class Dispatcher: public thread::HAWThread {
 public:
 	virtual ~Dispatcher();
 	static Dispatcher* getInstance();
-
 private:
 	int signalChid;
 	static Dispatcher* instance;

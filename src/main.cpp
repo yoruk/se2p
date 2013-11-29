@@ -36,8 +36,8 @@ int main(int argc, char *argv[]) {
 	//test_Conveyor_start();
 	//test_Simple_Gate_start();
 	//test_Serial_start();
-	test_Sensorik();
-	//test_Dispatcher();
+	//test_Sensorik();
+	test_Dispatcher();
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();

@@ -1,5 +1,5 @@
 #include "Test_Dispatcher.h"
-
+#include "hw.h"
 void test_Dispatcher(){
     cout << "Dispatcher" << endl;
     cout << "=========================================================" << endl;
@@ -21,6 +21,6 @@ void test_Dispatcher(){
     disp->join();
     sens->stop();
     sens->join();
-
+    reset_HW();
     cout << " done." << endl;
 }

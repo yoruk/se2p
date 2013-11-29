@@ -181,7 +181,7 @@ void Petrib::process_transitios() {
 			places[4] = 0;
 			places[5] = 0;
 			puts("T1 WEICHE AUF.....................................................\n");
-			gate->open();
+			//gate->open();
 			outputs[WEICHE_AUF] = true;
 		}
 	}
@@ -238,7 +238,7 @@ void Petrib::process_transitios() {
 
 		outputs[MOTOR_LINKSLAUF] = false;
 		outputs[MOTOR_RECHTSLAUF] = true;
-		conv->moveLeft();
+		//conv->moveLeft();
 		puts("T5 MOTOR_LINKSLAUF.....................................................\n");
 		puts("T5 MOTOR_RECHTSLAUF.....................................................\n");
 
