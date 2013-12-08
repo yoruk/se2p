@@ -1,6 +1,10 @@
 #ifndef GLOBAL_H_
 #define GLOBAL_H_
 
+// bools
+#define FALSE 0
+#define TRUE 1
+
 // IO addresses for geme
 #define D_IOBASE 0x300 // Base address
 #define DIO_A (D_IOBASE + 0x00) // Port A
@@ -55,8 +59,8 @@
 #define LEDD_Q2 BIT_3
 
 // serial interface
-#define SERIAL_INTERFACE_1 "/dev/ser1"
-#define SERIAL_INTERFACE_2 "/dev/ser2"
+#define SERIAL_INTERFACE "/dev/ser1"
+#define SERIAL_SPEED B9600
 
 #define N_IN 12
 #define N_OUT 12

@@ -1,20 +1,24 @@
 #ifndef SERIAL_H_
 #define SERIAL_H_
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <../Mutex.h>
+#include <termios.h>
 
 class Serial {
-public:
-	static Serial* getInstance();
-	virtual ~Serial();
+	public:
+		~Serial();
+		static Serial* getInstance();
+		int close_serial();
+		int write_serial(unsigned char* buffer, int size);
+		int read_serial(unsigned char* buffer, int size);
 
-	int write_serial(char* buffer, int size, char interface[]);
-	int read_serial(char* buffer, int size, char interface[]);
+	private:
+		int init_done;
+		int fd;
+		struct termios new_port_settings;
+		struct termios old_port_settings;
 
-private:
-	Serial();
+		Serial();
+		int open_serial();
 };
 
 #endif /* SERIAL_H_ */
