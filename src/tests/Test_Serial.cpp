@@ -1,31 +1,44 @@
-#include "Test_Serial.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
+#include "../Global.h"
+#include "../hal/Serial.h"
 
 #define WAIT 2
+#define RUNTIME 30
 
 static pthread_t t1, t2;
+static int run = TRUE;
 static Serial* serial;
 static char send_buffer[] = "hello world!";
 static char receive_buffer[32];
 
 static void* sender(void* arg) {
-	printf("sender: is running\n");fflush(stdout);
+	printf("DEBUG:Test_Serial: sender: is running\n");fflush(stdout);
 
-	serial->write_serial(send_buffer, sizeof(send_buffer), SERIAL_INTERFACE_1);
+	while(run) {
+		serial->write_serial((unsigned char*)send_buffer, sizeof(send_buffer));
 
-	printf("sender: message: %s\n", send_buffer);fflush(stdout);
+		printf("DEBUG:Test_Serial: sender: message = %s\n", send_buffer);fflush(stdout);
+	}
 
-	printf("sender: ended\n");fflush(stdout);
+	printf("DEBUG:Test_Serial: sender: ended\n");fflush(stdout);
+
 	pthread_exit(NULL);
 }
 
 static void* receiver(void* arg) {
-	printf("receiver: is running\n");fflush(stdout);
+	printf("DEBUG:Test_Serial: receiver: is running\n");fflush(stdout);
 
-	serial->read_serial(receive_buffer, sizeof(send_buffer), SERIAL_INTERFACE_2);
+	while(run) {
+		serial->read_serial((unsigned char*)receive_buffer, sizeof(send_buffer));
 
-	printf("receiver: message: %s\n", receive_buffer);fflush(stdout);
+		printf("DEBUG:Test_Serial: receiver: message: %s\n", receive_buffer);fflush(stdout);
+	}
 
-	printf("receiver: ended\n");fflush(stdout);
+	printf("DEBUG:Test_Serial: receiver: ended\n");fflush(stdout);
+
 	pthread_exit(NULL);
 }
 
@@ -38,8 +51,11 @@ void test_Serial_start() {
 	sleep(WAIT);
 	pthread_create(&t2, NULL, &sender, NULL);
 
-//	sleep(10);
+	sleep(RUNTIME);
+	run = FALSE;
 
 	pthread_join(t1, NULL);
 	pthread_join(t2, NULL);
+
+	serial->close_serial();
 }
