@@ -35,7 +35,7 @@ EXTRA_INCVPATH+=$(PROJECT_ROOT)/src  \
 	$(PROJECT_ROOT)/src/milestone1
 
 #===== CCFLAGS - add the flags to the C compiler command line. 
-CCFLAGS+=-Wall
+CCFLAGS+=-Wall -DSIMULATION
 
 include $(MKFILES_ROOT)/qmacros.mk
 ifndef QNX_INTERNAL

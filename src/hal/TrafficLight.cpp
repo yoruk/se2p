@@ -3,11 +3,13 @@
 /// This class gives access to the Trafficlight
 /// can light it green a/o yellow a/o red
 
-static Mutex* mutex= new Mutex(); /// the mutex for controlling the access
+static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
 static TrafficLight* light; /// the Trafficlight object itself
+bool flashLightOn = false;
 
 /// TrafficLight-constructor
-TrafficLight::TrafficLight() {}
+TrafficLight::TrafficLight() {
+}
 
 /// TrafficLight-deconstructor
 TrafficLight::~TrafficLight() {
@@ -111,4 +113,36 @@ void TrafficLight::greenOff() {
 	out8(DIO_A, reg);
 
 	mutex->unlock();
+}
+
+void TrafficLight::flashRedOn() {
+	flashLightOn = true;
+	pthread_t dummy;
+	pthread_create(&dummy, NULL, runFlashRed, NULL);
+	pthread_detach(dummy);
+}
+
+void TrafficLight::flashRedOff() {
+	flashLightOn = false;
+}
+
+void* runFlashRed(void*) {
+	mutex->lock();
+	unsigned char reg = in8(DIO_A);
+	while (flashLightOn) {
+		setBit(&reg, TRAFFIC_LIGHT_RED);
+		out8(DIO_A, reg);
+		usleep(160000);
+		unsetBit(&reg, TRAFFIC_LIGHT_RED);
+		out8(DIO_A, reg);
+		usleep(160000);
+	}
+	mutex->unlock();
+	pthread_exit(NULL);
+}
+
+void TrafficLight::reset_trafficlight(){
+	greenOff();
+	yellowOff();
+	redOff();
 }

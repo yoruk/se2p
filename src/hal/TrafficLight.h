@@ -4,6 +4,9 @@
 #include "../Mutex.h"
 #include "hw.h"
 #include "Util.h"
+#include <pthread.h>
+#include <unistd.h>
+#include <iostream.h>
 
 class TrafficLight {
 public:
@@ -23,7 +26,13 @@ public:
 	void greenOn();
 	void greenOff();
 
+	void flashRedOn();
+	void flashRedOff();
+
+	void reset_trafficlight();
 private:
 	TrafficLight();
+
 };
+void* runFlashRed(void*);
 #endif /* TRAFFICLIGHT_H_ */
