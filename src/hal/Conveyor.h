@@ -23,6 +23,8 @@ public:
 	void conveyorStop();
 	void conveyorContinue();
 
+	void resetConveyorBits();
+
 private:
 	Conveyor();
 };

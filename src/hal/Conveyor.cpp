@@ -125,3 +125,16 @@ void Conveyor::conveyorContinue() {
 
 	mutex->unlock();
 }
+
+void Conveyor::resetConveyorBits(){
+	mutex->lock();
+
+	unsigned char reg = in8(DIO_A);
+	unsetBit(&reg, CONVEYOR_RIGHT);
+	unsetBit(&reg, CONVEYOR_LEFT);
+	unsetBit(&reg, CONVEYOR_SLOW);
+	unsetBit(&reg, CONVEYOR_STOP);
+	out8(DIO_A, reg);
+
+	mutex->unlock();
+}
