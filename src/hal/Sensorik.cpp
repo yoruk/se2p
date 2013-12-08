@@ -38,16 +38,16 @@ Sensorik::Sensorik() {
 	initInterrupts();
 
 	// create channel for dispatcher
-	signalChid = ChannelCreate(0);
-	if (signalChid == -1) {
-		perror("Dispatcher: ChannelCreate signalChid failed");
+	sensorik_Chid = ChannelCreate(0);
+	if (sensorik_Chid == -1) {
+		perror("Dispatcher: ChannelCreate sensorik_Chid failed");
 		exit(EXIT_FAILURE);
 	}
 
 	// attach to signal channel(stellt die verbindung zu dem channel des Prozesses PID)
-	signalCoid = ConnectAttach(0, 0, signalChid, _NTO_SIDE_CHANNEL, 0);
-	if (signalCoid == -1) {
-		perror("SensorCtrl: ConnectAttach signalCoid failed");
+	sensorik_Coid = ConnectAttach(0, 0, sensorik_Chid, _NTO_SIDE_CHANNEL, 0);
+	if (sensorik_Coid == -1) {
+		perror("SensorCtrl: ConnectAttach sensorik_Coid failed");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -75,12 +75,12 @@ Sensorik* Sensorik::getInstance() {
 
 void Sensorik::initInterrupts() {
 	// create channel to receive pulse messages from the ISR
-	isrChid = ChannelCreate(0);
-	if (isrChid == -1) {
+	isr_Chid = ChannelCreate(0);
+	if (isr_Chid == -1) {
 		perror("SensorikIntro: ChannelCreate isrChid failed");
 		exit(EXIT_FAILURE);
 	}
-	isr_coid = ConnectAttach(0, 0, isrChid, _NTO_SIDE_CHANNEL, 0);
+	isr_coid = ConnectAttach(0, 0, isr_Chid, _NTO_SIDE_CHANNEL, 0);
 	if (isr_coid == -1) {
 		perror("SensorikIntro: ConnectAttach isr_coid failed");
 		exit(EXIT_FAILURE);
@@ -117,7 +117,7 @@ void Sensorik::stop() {
 	if (-1 == ConnectDetach(isr_coid)) {
 		perror("SensorCtrl: ConnectDetach isr_coid failed");
 	}
-	if (-1 == ChannelDestroy(isrChid)) {
+	if (-1 == ChannelDestroy(isr_Chid)) {
 		perror("SensorCtrl: ChannelDestroy isr_chid failed");
 	}
 	// in Simulation: bleibt hier haengen
@@ -133,18 +133,19 @@ void Sensorik::execute(void *arg) {
 
 	struct _pulse pulse;
 	while (!isStopped()) {
-		if (-1 == MsgReceivePulse(isrChid, &pulse, sizeof(pulse), NULL)) {
+		if (-1 == MsgReceivePulse(isr_Chid, &pulse, sizeof(pulse), NULL)) {
 			if (isStopped()) {
 				break; // channel destroyed, Thread ending
 			}
 			perror("SensorCtrl: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-		MsgSendPulse(signalCoid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int);
+		printf("Sensorik:: BLAU: Coid %d\n",sensorik_Coid);fflush(stdout);
+		MsgSendPulse(sensorik_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int);
 	}
 
 }
 
 int Sensorik::getSignalChid(){
-        return signalChid;
+        return sensorik_Chid;
 }

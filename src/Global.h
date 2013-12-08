@@ -25,6 +25,10 @@
 #define OFFS_INT_STATUS 0x0F
 #define PB_STATUS       0x02
 #define PC_STATUS       0x08
+#define PA_TRAFFICLIGHT	70
+#define PA_CONVEYOR	80
+
+
 #define OFFS_INT_CTRL   0x0B
 #define PB_CTRL         0x02
 #define PC_CTRL         0x04
@@ -43,7 +47,7 @@
 // gate
 #define GATE BIT_4
 
-// traffic light
+//traffic light
 #define TRAFFIC_LIGHT_GREEN BIT_5
 #define TRAFFIC_LIGHT_YELLOW BIT_6
 #define TRAFFIC_LIGHT_RED BIT_7
@@ -59,8 +63,8 @@
 #define SERIAL_INTERFACE_2 "/dev/ser2"
 
 #define N_IN 12
-#define N_OUT 12
-#define N_PLACE 6
+#define N_OUT 13
+
 
 /*---------INPUTS----------*/
 #define EINLAUF_WERKSTUECK 0
@@ -89,5 +93,30 @@
 #define LED_RESETTASTE 9
 #define LED_Q1 10
 #define LED_Q2 11
+#define AMPEL_ROT_B 12
+
+/*---------Conveyor_INPUTS-----------*/
+#define CONVEYOR_N_IN 10
+
+#define P_CONVEYOR_START 0
+#define P_CONVEYOR_STOP 1
+#define P_CONVEYOR_STOP_X 2
+#define P_CONVEYOR_SLOW 3
+#define P_CONVEYOR_SLOW_X 4
+#define P_CONVEYOR_RIGHT 5
+#define P_CONVEYOR_LEFT 6
+#define P_CONVEYOR_NOTAUS 7
+#define P_CONVEYOR_NOTAUS_X 8
+#define P_CONVEYOR_END 9
+
+/*----------trafficlight_INPUTS----------*/
+#define TRAFFICLIGHT_N_IN 6
+
+#define TRAFFICLIGHT_START 0
+#define TRAFFICLIGHT_YELLOW 1
+#define TRAFFICLIGHT_GREEN 2
+#define TRAFFICLIGHT_RED 3
+#define TRAFFICLIGHT_RED_B 4
+#define TRAFFICLIGHT_END 5
 
 #endif /* GLOBAL_H_ */

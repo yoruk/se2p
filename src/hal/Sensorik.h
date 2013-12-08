@@ -12,12 +12,12 @@ const struct sigevent * ISR (void *arg, int id);
     private:
         static Sensorik* instance;
 
-        int isrChid;
+        int isr_Chid;
         int interruptId;
         struct sigevent event;
 
-        int signalChid;
-        int signalCoid;
+        int sensorik_Chid;
+        int sensorik_Coid;
 
         uint8_t portBstatus;
         uint8_t portCstatus;
