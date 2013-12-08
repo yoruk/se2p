@@ -66,7 +66,7 @@ static void* client(void* arg) {
 		number++;
 		printf("Client: sending pulse message #%d\n", number);fflush(stdout);
 
-		res = MsgSendPulse(connectionId, 1, 1, 0);
+		res = MsgSendPulse(connectionId, SIGEV_PULSE_PRIO_INHERIT, 1, 0);
 		if(res == -1) {
 			printf("msgSendReceivePulse: client: error sending pulse!\n");fflush(stdout);
 			exit(EXIT_FAILURE);
