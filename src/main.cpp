@@ -15,6 +15,7 @@
 
 #include "examples/msgSendReceiveReply.h"
 #include "examples/msgSendReceivePulse.h"
+#include "examples/msgSendReceivePulse_2x.h"
 #include "examples/msgDeliverEvent.h"
 
 #include "milestone1/Milestone1.h"
@@ -41,6 +42,7 @@ int main(int argc, char *argv[]) {
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();
+	//msgSendReceivePulse_2x_start();
 	//msgDeliverEvent_start();
 
 	//simple_milestone2_start();
