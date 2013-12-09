@@ -12,6 +12,7 @@
 #include "tests/Test_Serial.h"
 #include "tests/Test_Sensorik.h"
 #include "tests/Test_Dispatcher.h"
+#include "Test_Timer.h"
 
 #include "examples/msgSendReceiveReply.h"
 #include "examples/msgSendReceivePulse.h"
@@ -38,7 +39,8 @@ int main(int argc, char *argv[]) {
 	//test_Simple_Gate_start();
 	//test_Serial_start();
 	//test_Sensorik();
-	test_Dispatcher();
+	//test_Dispatcher();
+	test_Timer_start();
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();
