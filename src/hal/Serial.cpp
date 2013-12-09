@@ -18,10 +18,10 @@ Serial::Serial() {}
 
 /// Serial-deconstructor
 Serial::~Serial() {
+	close_serial();
+
 	delete serial;
 	serial = NULL;
-
-	init_done = FALSE;
 }
 
 /// returns the only running instance of Serial
@@ -60,7 +60,7 @@ int Serial::open_serial() {
 		}
 
 		// flush i/o-buffers
-		tcflush(fd, TCIOFLUSH);
+		//tcflush(fd, TCIOFLUSH);
 
 		// save old port settings
 		res = tcgetattr(fd, &old_port_settings);
@@ -143,6 +143,10 @@ int Serial::write_serial(unsigned char* buffer, int size) {
 	int n = 0;
 	int bytesLeft = size;
 
+	if(!init_done) {
+		open_serial();
+	}
+
 	//printf("DEBUG:Serial: writing to port\n");fflush(stdout);
 
 	while(bytesLeft != 0) {
@@ -168,6 +172,10 @@ int Serial::write_serial(unsigned char* buffer, int size) {
 int Serial::read_serial(unsigned char* buffer, int size) {
 	int n = 0;
 	int bytesLeft = size;
+
+	if(!init_done) {
+		open_serial();
+	}
 
 	//printf("DEBUG:Serial: reading from port\n");fflush(stdout);
 
