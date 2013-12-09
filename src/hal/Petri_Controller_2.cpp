@@ -409,6 +409,8 @@ void Petri_Controller_2::process_transitions() {
 			exit(EXIT_FAILURE);
 		}
 		puts("Petri_Controller_2:  T7\n");fflush(stdout);
+
+		first_chance = true;
 	}
 
 	/*_________T8_________*/
