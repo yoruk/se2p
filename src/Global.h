@@ -29,9 +29,6 @@
 #define OFFS_INT_STATUS 0x0F
 #define PB_STATUS       0x02
 #define PC_STATUS       0x08
-#define PA_TRAFFICLIGHT	70
-#define PA_CONVEYOR	80
-
 
 #define OFFS_INT_CTRL   0x0B
 #define PB_CTRL         0x02
@@ -122,5 +119,10 @@
 #define TRAFFICLIGHT_RED 3
 #define TRAFFICLIGHT_RED_B 4
 #define TRAFFICLIGHT_END 5
+
+// Pulse
+#define PULSE_FROM_TIMER 60
+#define PA_TRAFFICLIGHT	70
+#define PA_CONVEYOR	80
 
 #endif /* GLOBAL_H_ */

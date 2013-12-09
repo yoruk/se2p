@@ -5,8 +5,7 @@
 void test_TrafficLight_start(){
 
 	TrafficLight* light = TrafficLight::getInstance();
-	int i;
-
+//		int i;
 //		for (i = 0; i < RUNTIME; i++) {
 //		light->greenOn();
 //		sleep(1);
