@@ -233,7 +233,8 @@ void Petri_Conveyor::process_transitions() {
 			&& !conveyor_places[3] && !conveyor_places[4]
 			&& (conveyor_lokal_inputs[P_CONVEYOR_END] == true)) {
 
-		conveyor_places[1] = true;
+		conveyor_places[0] = true;
+		conveyor_places[1] = false;
 		conveyor_places[2] = false;
 		conveyor_places[3] = false;
 		conveyor_places[4] = false;
@@ -299,6 +300,7 @@ void Petri_Conveyor::NotifyReactor() {
 	}
 	if (conveyor_lokal_outputs[MOTOR_LANGSAM] == true) {
 		conveyor->resetConveyorBits();
+		conveyor->moveRight();
 		conveyor->moveSlow();
 	}
 	if (conveyor_lokal_outputs[MOTOR_STOP] == true) {
