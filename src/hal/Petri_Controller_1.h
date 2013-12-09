@@ -1,5 +1,5 @@
-#ifndef PETRI_CONTROLLER_2_H_
-#define PETRI_CONTROLLER_2_H_
+#ifndef PETRI_CONTROLLER_1_H_
+#define PETRI_CONTROLLER_1_H_
 
 #include "HAWThread.h"
 #include "HWaccess.h"
@@ -10,25 +10,25 @@
 #include "Led.h"
 #include "Dispatcher.h"
 
-#define N_PLACE_2 19
+#define N_PLACE 26
 
-class Petri_Controller_2: public thread::HAWThread {
+class Petri_Controller_1: public thread::HAWThread {
 public:
-	static Petri_Controller_2* getInstance();
+	static Petri_Controller_1* getInstance();
 
-	virtual ~Petri_Controller_2();
+	virtual ~Petri_Controller_1();
 
 private:
 
-	int petri_controller_2_dispatcher_Chid;
-	int petri_controller_2_dispatcher_Coid;
-	int petri_controller_2_sensorik_Chid;
+	int petri_controller_1_dispatcher_Chid;
+	int petri_controller_1_dispatcher_Coid;
+	int petri_controller_1_sensorik_Chid;
 
-	Petri_Controller_2();
+	Petri_Controller_1();
 
 	Gate* gate;
 	Led* led;
-	Dispatcher* disp_petri_controller_2;
+	Dispatcher* disp_petri_controller_1;
 
 
 	void init_places();
@@ -51,4 +51,4 @@ protected:
 
 };
 
-#endif /* PETRI_CONTROLLER_2_H_ */
+#endif /* PETRI_CONTROLLER_1_H_ */
