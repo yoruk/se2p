@@ -5,13 +5,13 @@
 #include "../Global.h"
 #include "../hal/Serial.h"
 
-#define WAIT 2
+#define WAIT 5
 #define RUNTIME 30
 
 static pthread_t t1, t2;
 static int run = TRUE;
 static Serial* serial;
-static char send_buffer[] = "hello world!";
+static char send_buffer[] = "hello world";
 static char receive_buffer[32];
 
 static void* sender(void* arg) {
@@ -21,6 +21,8 @@ static void* sender(void* arg) {
 		serial->write_serial((unsigned char*)send_buffer, sizeof(send_buffer));
 
 		printf("DEBUG:Test_Serial: sender: message = %s\n", send_buffer);fflush(stdout);
+
+		sleep(WAIT);
 	}
 
 	printf("DEBUG:Test_Serial: sender: ended\n");fflush(stdout);
@@ -47,14 +49,21 @@ void test_Serial_start() {
 
 	printf("serial test!\n");fflush(stdout);
 
-	pthread_create(&t1, NULL, &receiver, NULL);
+	if(serial->open_serial() != 0) {
+		perror("Test_Serial: ERROR, couldn't open port");fflush(stdout);
+	}
+
 	sleep(WAIT);
+
+//	pthread_create(&t1, NULL, &receiver, NULL);
+//	sleep(WAIT);
 	pthread_create(&t2, NULL, &sender, NULL);
 
 	sleep(RUNTIME);
 	run = FALSE;
+	pthread_cancel(t2);
 
-	pthread_join(t1, NULL);
+//	pthread_join(t1, NULL);
 	pthread_join(t2, NULL);
 
 	serial->close_serial();
