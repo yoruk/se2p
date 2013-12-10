@@ -62,26 +62,45 @@ int Serial::open_serial() {
 		// flush i/o-buffers
 		//tcflush(fd, TCIOFLUSH);
 
-		// save old port settings
-		res = tcgetattr(fd, &old_port_settings);
+		// load current port settings
+		res = tcgetattr(fd, &port_settings);
 		if(res == -1) {
-				perror("Serial: ERROR, couldn't save old port settings");fflush(stdout);
+				perror("Serial: ERROR, couldn't load current port settings");fflush(stdout);
 				close(fd);
 				mutex->unlock();
 				return(1);
 		}
 
-		// set new port settings
-		memset(&new_port_settings, 0, sizeof(new_port_settings));
+//		// set new port settings
+//		memset(&new_port_settings, 0, sizeof(new_port_settings));
+//
+//		new_port_settings.c_cflag = SERIAL_SPEED | CS8 | CLOCAL | CREAD;
+//		new_port_settings.c_iflag = IGNPAR;
+//		new_port_settings.c_oflag = 0;
+//		new_port_settings.c_lflag = 0;
+//		new_port_settings.c_cc[VMIN] = 1;	/* block until n bytes are received */
 
-		new_port_settings.c_cflag = SERIAL_SPEED | CS8 | CLOCAL | CREAD;
-		new_port_settings.c_iflag = IGNPAR;
-		new_port_settings.c_oflag = 0;
-		new_port_settings.c_lflag = 0;
-		new_port_settings.c_cc[VMIN] = 1;	/* block until n bytes are received */
+		// set baudrate
+		cfsetispeed(&port_settings, SERIAL_SPEED);
+		cfsetospeed(&port_settings, SERIAL_SPEED);
+
+		// 8 data, 1 stop, no parity
+		port_settings.c_cflag &= ~CSIZE;
+		port_settings.c_cflag &= ~CSTOPB;
+		port_settings.c_cflag &= ~PARENB;
+		port_settings.c_cflag |= CS8;
+
+		// raw input
+		port_settings.c_lflag &= ~(ICANON | ECHO | ISIG | ECHOE | ECHOK | ECHONL);
+
+		// raw output
+		port_settings.c_oflag &= ~(OPOST);
+
+		// enable receiver and set local mode
+		port_settings.c_cflag |= (CLOCAL | CREAD);
 
 		// write new port settings
-		res = tcsetattr(fd, TCSANOW, &new_port_settings);
+		res = tcsetattr(fd, TCSANOW, &port_settings);
 		if(res == -1) {
 			perror("Serial: ERROR, couldn't write new port settings");fflush(stdout);
 			close(fd);
@@ -102,29 +121,18 @@ int Serial::open_serial() {
 ///
 /// \return	0=successful, 1=failed
 int Serial::close_serial() {
-	int res = 0;
-
 	//printf("DEBUG:Serial: closing port\n");fflush(stdout);
 
 /***** start critical section *****/
 	mutex->lock();
 
-	// only if opened before
-	if(init_done) {
-
-		// restore old port settings
-		res = tcsetattr(fd, TCSANOW, &old_port_settings);
-		if(res == -1) {
-			perror("Serial: ERROR, couldn't restore old port settings");fflush(stdout);
-
-			return(1);
-		}
-
-		// close serial port
-		close(fd);
-
-		init_done = FALSE;
+	// close serial port
+	if(close(fd) != 0) {
+		perror("Serial: ERROR, couldn't close port");fflush(stdout);
+		return 1;
 	}
+
+	init_done = FALSE;
 
 /***** end critical section *****/
 	mutex->unlock();

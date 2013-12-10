@@ -15,8 +15,7 @@ class Serial {
 	private:
 		int init_done;
 		int fd;
-		struct termios new_port_settings;
-		struct termios old_port_settings;
+		struct termios port_settings;
 
 		Serial();
 };
