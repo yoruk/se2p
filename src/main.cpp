@@ -10,6 +10,7 @@
 #include "tests/Test_Conveyor.h"
 #include "tests/Test_Led.h"
 #include "tests/Test_Serial.h"
+#include "tests/Test_Simple_Serial.h"
 #include "tests/Test_Sensorik.h"
 #include "tests/Test_Dispatcher.h"
 #include "Test_Timer.h"
@@ -38,9 +39,10 @@ int main(int argc, char *argv[]) {
 	//test_Conveyor_start();
 	//test_Simple_Gate_start();
 	//test_Serial_start();
+	test_Simple_Serial_start();
 	//test_Sensorik();
 	//test_Dispatcher();
-	test_Timer_start();
+	//test_Timer_start();
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();
