@@ -113,7 +113,7 @@ int Serial::close_serial() {
 	if(init_done) {
 
 		// restore old port settings
-		res = tcsetattr(fd, TCSANOW, &new_port_settings);
+		res = tcsetattr(fd, TCSANOW, &old_port_settings);
 		if(res == -1) {
 			perror("Serial: ERROR, couldn't restore old port settings");fflush(stdout);
 
@@ -143,9 +143,9 @@ int Serial::write_serial(unsigned char* buffer, int size) {
 	int n = 0;
 	int bytesLeft = size;
 
-	if(!init_done) {
-		open_serial();
-	}
+//	if(!init_done) {
+//		open_serial();
+//	}
 
 	//printf("DEBUG:Serial: writing to port\n");fflush(stdout);
 
@@ -173,9 +173,9 @@ int Serial::read_serial(unsigned char* buffer, int size) {
 	int n = 0;
 	int bytesLeft = size;
 
-	if(!init_done) {
-		open_serial();
-	}
+//	if(!init_done) {
+//		open_serial();
+//	}
 
 	//printf("DEBUG:Serial: reading from port\n");fflush(stdout);
 

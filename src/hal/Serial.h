@@ -7,6 +7,7 @@ class Serial {
 	public:
 		~Serial();
 		static Serial* getInstance();
+		int open_serial();
 		int close_serial();
 		int write_serial(unsigned char* buffer, int size);
 		int read_serial(unsigned char* buffer, int size);
@@ -18,7 +19,6 @@ class Serial {
 		struct termios old_port_settings;
 
 		Serial();
-		int open_serial();
 };
 
 #endif /* SERIAL_H_ */
