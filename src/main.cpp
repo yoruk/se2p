@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
 	//test_TrafficLight_start();
 	//test_Conveyor_start();
 	//test_Simple_Gate_start();
-	//test_Serial_start();
-	test_Simple_Serial_start();
+	test_Serial_start();
+	//test_Simple_Serial_start();
 	//test_Sensorik();
 	//test_Dispatcher();
 	//test_Timer_start();

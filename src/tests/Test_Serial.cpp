@@ -5,7 +5,7 @@
 #include "../Global.h"
 #include "../hal/Serial.h"
 
-#define WAIT 5
+#define WAIT 2
 #define RUNTIME 30
 
 static pthread_t t1, t2;
@@ -55,15 +55,15 @@ void test_Serial_start() {
 
 	sleep(WAIT);
 
-//	pthread_create(&t1, NULL, &receiver, NULL);
-//	sleep(WAIT);
+	pthread_create(&t1, NULL, &receiver, NULL);
+	sleep(WAIT);
 	pthread_create(&t2, NULL, &sender, NULL);
 
 	sleep(RUNTIME);
 	run = FALSE;
 	pthread_cancel(t2);
 
-//	pthread_join(t1, NULL);
+	pthread_join(t1, NULL);
 	pthread_join(t2, NULL);
 
 	serial->close_serial();
