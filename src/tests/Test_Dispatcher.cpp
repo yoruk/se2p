@@ -5,8 +5,8 @@ void test_Dispatcher(){
     cout << "=========================================================" << endl;
     cout << endl;
 
-
-    Petri_Controller_2* petri_controller_2 = Petri_Controller_2::getInstance();
+    Petri_Controller_1* petri_controller_1 = Petri_Controller_1::getInstance();
+    //Petri_Controller_2* petri_controller_2 = Petri_Controller_2::getInstance();
     Petri_Conveyor* petri_conveyor = Petri_Conveyor::getInstance();
     Petri_TrafficLight* petri_trafficlight = Petri_TrafficLight::getInstance();
     Dispatcher* disp = Dispatcher::getInstance();
@@ -16,7 +16,8 @@ void test_Dispatcher(){
 
     petri_conveyor->start(NULL);
     petri_trafficlight->start(NULL);
-    petri_controller_2->start(NULL);
+    petri_controller_1->start(NULL);
+    //petri_controller_2->start(NULL);
     disp->start(NULL);
     sens->start(NULL);
 
@@ -33,8 +34,10 @@ void test_Dispatcher(){
     petri_conveyor->join();
     petri_trafficlight->stop();
     petri_trafficlight->join();
-    petri_controller_2->stop();
-    petri_controller_2->join();
+    petri_controller_1->stop();
+    petri_controller_1->join();
+    //petri_controller_2->stop();
+    //petri_controller_2->join();
     disp->stop();
     disp->join();
     sens->stop();

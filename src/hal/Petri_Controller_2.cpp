@@ -1,12 +1,12 @@
 #include "Petri_Controller_2.h"
 
 static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
-static Petri_Controller_2* petri; /// the Petri_Bsp object itself
+static Petri_Controller_2* petri; /// the Petri_Controller_2 object itself
 
 void init_places();
 bool first_chance = true;
 bool* tmpArr;
-bool places[N_PLACE];
+bool places[N_PLACE_2];
 bool petri_controller_2_inputs[N_IN];
 bool petri_controller_2_outputs[N_OUT];
 
