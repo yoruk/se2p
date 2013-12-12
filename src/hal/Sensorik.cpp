@@ -140,12 +140,42 @@ void Sensorik::execute(void *arg) {
 			perror("SensorCtrl: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-		printf("Sensorik:: BLAU: Coid %d\n",sensorik_Coid);fflush(stdout);
-		MsgSendPulse(sensorik_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int);
+		printf("Sensorik:: BLAU: Coid %d\n", sensorik_Coid);
+		fflush(stdout);
+		MsgSendPulse(sensorik_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code,
+				pulse.value.sival_int);
 	}
 
 }
 
-int Sensorik::getSignalChid(){
-        return sensorik_Chid;
+int Sensorik::getSignalChid() {
+	return sensorik_Chid;
+}
+
+int Sensorik::getHeight() {
+	int heigth = -1;
+	int i;
+	out8(IO_PORT_A, IO_GET_VAL);
+	for (i = 0; 1 < 50; i++) {
+		if (in8(IO_BASE) & 1 << 7) {
+			heigth = in16(IO_PORT_A);
+			break;
+		}
+	}
+	return heigth;
+}
+
+int Sensorik::getHeightPuckType() {
+	int height = getHeight();
+
+	int type = -1;
+
+	if ((height < 2900) && (height > 2600)) {
+		type = PUK_FLACH;
+	} else if ((height < 2600)) {
+		type = PUK_LOCH;
+	} else {}
+		type = PUK_GROSS;
+
+	return type;
 }

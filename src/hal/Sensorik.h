@@ -6,36 +6,38 @@
 #include "hw.h"
 #include <stdint.h>
 
-const struct sigevent * ISR (void *arg, int id);
+const struct sigevent * ISR(void *arg, int id);
 
-    class Sensorik: public thread::HAWThread {
-    private:
-        static Sensorik* instance;
+class Sensorik: public thread::HAWThread {
+private:
+	static Sensorik* instance;
 
-        int isr_Chid;
-        int interruptId;
-        struct sigevent event;
+	int isr_Chid;
+	int interruptId;
+	struct sigevent event;
 
-        int sensorik_Chid;
-        int sensorik_Coid;
+	int sensorik_Chid;
+	int sensorik_Coid;
 
-        uint8_t portBstatus;
-        uint8_t portCstatus;
+	uint8_t portBstatus;
+	uint8_t portCstatus;
 
-        Sensorik();
+	Sensorik();
 
-    public:
-        ~Sensorik();
-        static Sensorik* getInstance();
+public:
+	~Sensorik();
+	static Sensorik* getInstance();
 
-        void stop(); // HAWThread: stop -> virtual
-        int getSignalChid();
-    protected:
-        virtual void execute(void* arg);
-        virtual void shutdown();
+	void stop();
+	int getSignalChid();
+	int getHeight();
+	int getHeightPuckType();
+protected:
+	virtual void execute(void* arg);
+	virtual void shutdown();
 
-    private:
-        void initInterrupts();
-    };
+private:
+	void initInterrupts();
+};
 
 #endif /* SENSORIK_H_ */
