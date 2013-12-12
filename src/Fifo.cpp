@@ -14,7 +14,7 @@ int head = 0;
 int tail = 0;
 
 Fifo::Fifo() {
-	sem_init(&freefields, 1, LENGHT);
+	sem_init(&freefields, 1, BUFFER_LENGHT);
 	sem_init(&busyfields, 1, 0);
 	pthread_mutex_init(&m, NULL);
 }
@@ -31,7 +31,7 @@ void Fifo::put(Puk element) {
 
 	buffer[head] = element;
 	head++;
-	if (head == LENGHT) {
+	if (head == BUFFER_LENGHT) {
 		head = 0;
 	}
 
@@ -49,7 +49,7 @@ Puk Fifo::remove() {
 	pthread_mutex_lock(&m);
 	ret_element = buffer[tail];
 	tail++;
-	if (tail == LENGHT) {
+	if (tail == BUFFER_LENGHT) {
 		tail = 0;
 	}
 	//leave critical section
@@ -65,10 +65,6 @@ Puk* Fifo::get() {
 	//enter critical section
 	pthread_mutex_lock(&m);
 	ret_element = &buffer[tail];
-//	tail++;
-//	if (tail == LENGHT) {
-//		tail = 0;
-//	}
 	//leave critical section
 	pthread_mutex_unlock(&m);
 	//verringere anzahl elemenete im buffer

@@ -2,8 +2,8 @@
 #define FIFO_H_
 
 #include "Puk.h"
+#include "Global.h"
 
-#define LENGHT 4
 #define FIRSTFIELD 0
 #define LASTFIELD 3
 
@@ -17,7 +17,7 @@ public:
 	Puk remove();
 	Puk* get();
 private:
-	Puk buffer[LENGHT];
+	Puk buffer[BUFFER_LENGHT];
 };
 #endif /* FIFO_H_ */
 
