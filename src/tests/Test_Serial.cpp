@@ -53,7 +53,7 @@ void test_Serial_start() {
 		perror("Test_Serial: ERROR, couldn't open port");fflush(stdout);
 	}
 
-	sleep(WAIT);
+	sleep(10);
 
 	pthread_create(&t1, NULL, &receiver, NULL);
 	sleep(WAIT);
@@ -61,7 +61,7 @@ void test_Serial_start() {
 
 	sleep(RUNTIME);
 	run = FALSE;
-	pthread_cancel(t2);
+	pthread_cancel(t1);
 
 	pthread_join(t1, NULL);
 	pthread_join(t2, NULL);
