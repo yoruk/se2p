@@ -12,7 +12,6 @@ class Fifo {
 public:
 	Fifo();
 	virtual ~Fifo();
-	void init_fifo();
 	void put(Puk element);
 	Puk remove();
 	Puk* get();
