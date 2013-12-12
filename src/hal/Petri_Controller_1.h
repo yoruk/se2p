@@ -26,7 +26,7 @@ private:
 
 	Petri_Controller_1();
 
-	Gate* gate;
+	Gate* gate1;
 	Led* led;
 	Dispatcher* disp_petri_controller_1;
 

@@ -14,6 +14,7 @@
 #include "tests/Test_Sensorik.h"
 #include "tests/Test_Dispatcher.h"
 #include "Test_Timer.h"
+#include "Test_Fifo.h"
 
 #include "examples/msgSendReceiveReply.h"
 #include "examples/msgSendReceivePulse.h"
@@ -38,23 +39,17 @@ int main(int argc, char *argv[]) {
 	//test_TrafficLight_start();
 	//test_Conveyor_start();
 	//test_Simple_Gate_start();
-	test_Serial_start();
+	//test_Serial_start();
 	//test_Simple_Serial_start();
 	//test_Sensorik();
 	//test_Dispatcher();
 	//test_Timer_start();
+	test_Fifo_start();
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();
 	//msgSendReceivePulse_2x_start();
 	//msgDeliverEvent_start();
-
 	//simple_milestone2_start();
-
-
-#ifdef SIMULATION
-	IOaccess_close(); // Open connection to simulation
-	printf("Simulation is running\n");fflush(stdout);
-#endif
 	return EXIT_SUCCESS;
 }
