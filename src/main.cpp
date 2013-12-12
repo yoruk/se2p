@@ -42,9 +42,9 @@ int main(int argc, char *argv[]) {
 	//test_Serial_start();
 	//test_Simple_Serial_start();
 	//test_Sensorik();
-	//test_Dispatcher();
+	test_Dispatcher();
 	//test_Timer_start();
-	test_Fifo_start();
+	//test_Fifo_start();
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();
