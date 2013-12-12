@@ -152,18 +152,18 @@ void test_Simple_Serial_start() {
 		perror("test_Simple_Serial_start: ERROR, sender port can't be opened");fflush(stdout);
 	}
 
-	if(openSerial(&fd_receiver, (char*)SERIAL_INTERFACE_RECEIVER) != 0) {
-		perror("test_Simple_Serial_start: ERROR, receiver port can't be opened");fflush(stdout);
-	}
+//	if(openSerial(&fd_receiver, (char*)SERIAL_INTERFACE_RECEIVER) != 0) {
+//		perror("test_Simple_Serial_start: ERROR, receiver port can't be opened");fflush(stdout);
+//	}
 
-	pthread_create(&rcv, NULL, &receiver, NULL);
-	sleep(WAIT);
+//	pthread_create(&rcv, NULL, &receiver, NULL);
+//	sleep(WAIT);
 	pthread_create(&snd, NULL, &sender, NULL);
 
 	sleep(RUNTIME);
 
-	pthread_cancel(rcv);
-	pthread_join(rcv, NULL);
+//	pthread_cancel(rcv);
+//	pthread_join(rcv, NULL);
 	pthread_cancel(snd);
 	pthread_join(snd, NULL);
 
@@ -171,7 +171,7 @@ void test_Simple_Serial_start() {
 		perror("test_Simple_Serial_start: ERROR, sender port can't be closed");fflush(stdout);
 	}
 
-	if(closeSerial(&fd_receiver, (char*)SERIAL_INTERFACE_RECEIVER) != 0) {
-		perror("test_Simple_Serial_start: ERROR, receiver port can't be closed");fflush(stdout);
-	}
+//	if(closeSerial(&fd_receiver, (char*)SERIAL_INTERFACE_RECEIVER) != 0) {
+//		perror("test_Simple_Serial_start: ERROR, receiver port can't be closed");fflush(stdout);
+//	}
 }
