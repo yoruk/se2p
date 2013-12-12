@@ -9,6 +9,9 @@
 #include "Gate.h"
 #include "Led.h"
 #include "Dispatcher.h"
+#include "Timer.h"
+#include "TimerHandler.h"
+#include "Puk.h"
 
 #define N_PLACE_2 19
 
@@ -20,16 +23,21 @@ public:
 
 private:
 
+	Sensorik* petri_controller_2_sen;
 	int petri_controller_2_dispatcher_Chid;
 	int petri_controller_2_dispatcher_Coid;
 	int petri_controller_2_sensorik_Chid;
+	Puk puk_c2;
 
 	Petri_Controller_2();
 
 	Gate* gate;
 	Led* led;
 	Dispatcher* disp_petri_controller_2;
-
+	TimerHandler* timer;
+	Timer* timer_C2_GateClose;
+	Timer* timer_C2_SlideFull;
+	Timer* timer3_C2;
 
 	void init_places();
 	void process_transitions();
