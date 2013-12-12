@@ -60,7 +60,7 @@ int Serial::open_serial() {
 		}
 
 		// flush i/o-buffers
-		//tcflush(fd, TCIOFLUSH);
+		tcflush(fd, TCIOFLUSH);
 
 		// load current port settings
 		res = tcgetattr(fd, &port_settings);
