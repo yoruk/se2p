@@ -10,10 +10,12 @@ int p[N_PLACE];
 bool werkstueckGross;
 bool petri_controller_1_inputs[N_IN];
 bool petri_controller_1_outputs[N_OUT];
+bool gate_close_c1_timeout;
+
 
 Petri_Controller_1::Petri_Controller_1() {
 
-	Sensorik* petri_controller_1_sen = Sensorik::getInstance();
+	petri_controller_1_sen = Sensorik::getInstance();
 	petri_controller_1_sensorik_Chid = petri_controller_1_sen->getSignalChid();
 	printf("petri_controller_1_:: BLAU: Coid %d\n",
 			petri_controller_1_dispatcher_Coid);
@@ -21,6 +23,9 @@ Petri_Controller_1::Petri_Controller_1() {
 	printf("petri_controller_1_:: BLAU: Chid %d\n",
 			petri_controller_1_sensorik_Chid);
 	fflush(stdout);
+
+	TimerHandler* timer = TimerHandler::getInstance();
+	timer1 = timer->createTimer(petri_controller_1_sensorik_Chid, 4, 0, TIMER_GATE);
 
 	// attach to signal channel
 	petri_controller_1_dispatcher_Coid = ConnectAttach(0, 0,
@@ -37,6 +42,8 @@ Petri_Controller_1::Petri_Controller_1() {
 	disp_petri_controller_1 = Dispatcher::getInstance();
 	petri_controller_1_dispatcher_Chid
 			= disp_petri_controller_1->get_disp_Chid();
+
+
 
 }
 
@@ -84,6 +91,9 @@ void Petri_Controller_1::execute(void* arg) {
 
 		//printf("petri_controller_2::MesgRecievePulse\n");fflush(stdout);
 
+		if (pulse.code == PULSE_FROM_TIMER && pulse.value.sival_int == TIMER_GATE) {
+					gate_close_c1_timeout = true;
+		}
 
 		tmpArr_1 = disp_petri_controller_1->get_disp_Inputs();
 		setInputs();
@@ -128,14 +138,11 @@ void Petri_Controller_1::init_places() {
 
 void Petri_Controller_1::process_transitions() {
 	/*_________T0_________*/
-	if (p[0] != 0 && p[1] == 0
-			&& (petri_controller_1_inputs[EINLAUF_WERKSTUECK] == true)) {
+	if (p[0] != 0 && p[1] == 0 && (petri_controller_1_inputs[EINLAUF_WERKSTUECK] == true)) {
 		p[0]--;
-		printf(
-				"Anzahl Pucks %d---------------------------------------------------------  \n",
-				p[0]);
-		fflush(stdout);
 		p[1] = 1;
+
+		fifo1.put(puk);
 
 		if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid,
 				SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_START)) {
@@ -148,9 +155,7 @@ void Petri_Controller_1::process_transitions() {
 			exit(EXIT_FAILURE);
 		}
 
-		puts("Petri_Controller_1:  T0		moving to H (1)\n");
-		fflush(stdout);
-
+		puts("Petri_Controller_1:  T0		moving to H (1)\n"); fflush(stdout);
 	}
 
 	/*_________T1_________*/
@@ -204,6 +209,9 @@ void Petri_Controller_1::process_transitions() {
 			perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
 			exit(EXIT_FAILURE);
 		}
+		fifo1.get()->set_hoehenmessung1(petri_controller_1_sen->getHeight());
+		fifo1.get()->set_typ(petri_controller_1_sen->getHeightPuckType());
+		fifo2.put(fifo1.remove());
 
 		puts("Petri_Controller_1:  T5	\n");
 		fflush(stdout);
@@ -269,61 +277,80 @@ void Petri_Controller_1::process_transitions() {
 	}
 
 	/*_________T11_________*/
+	if (p[10] == 1 && p[11] == 0
+			&& (petri_controller_1_inputs[WERKSTUECK_METALL] == true)) {
+
+
+		fifo2.get()->set_typ(PUK_METALL);
+		fifo3.put(fifo2.remove());
+
+		puts("Petri_Controller_1:  T11		\n");
+		fflush(stdout);
+
+	}
+
+	/*_________T12_________*/
 	if (p[10] == 1 && p[11] == 0 && werkstueckGross == true) {
 
 		p[10] = 0;
 		p[11] = 1;
-		//gate1->open();
+
+		gate1->open();
 		petri_controller_1_outputs[WEICHE_AUF] = true;
+
+		fifo3.put(fifo2.remove());
+
+		timer1->start();
 		werkstueckGross=false;
-		puts("Petri_Controller_1:  T11	 (4)\n");
-		fflush(stdout);
-	}
-
-	/*_________T12_________*/
-	if (p[11] == 1 && p[12] == 0
-			&& (petri_controller_1_inputs[WERKSTUECK_IN_WEICHE] == false)) {
-
-		p[11] = 0;
-		p[12] = 1;
-
-		petri_controller_1_outputs[WEICHE_AUF] = true;
-		petri_controller_1_outputs[WEICHE_AUF] = false;
-		puts("Petri_Controller_1:  T12		 (4)\n");
+		puts("Petri_Controller_1:  T12	 (4)\n");
 		fflush(stdout);
 	}
 
 	/*_________T13_________*/
+	if (p[11] == 1 && p[12] == 0 && gate_close_c1_timeout == true) {
+
+		gate_close_c1_timeout = false;
+
+		p[11] = 0;
+		p[12] = 1;
+
+		petri_controller_1_outputs[WEICHE_AUF] = false;
+		timer1->reset();
+		puts("Petri_Controller_1:  T13		 (4)\n");
+		fflush(stdout);
+	}
+
+	/*_________T14_________*/
 	if (p[12] == 1 && p[13] == 0) {
 
 		p[12] = 0;
 		p[13] = 1;
 
-		puts("Petri_Controller_1:  T8		moving to W (4)\n");
+		puts("Petri_Controller_1:  T14		moving to W (4)\n");
 		fflush(stdout);
 	}
 
-	/*_________T14_________*/
+	/*_________T15_________*/
 	if (p[13] == 1 && p[14] == 0) {
 
 		p[13] = 0;
 		p[14] = 1;
 
-		puts("Petri_Controller_1:  T8		moving to W (4)\n");
+		puts("Petri_Controller_1:  T15		moving to W (4)\n");
 		fflush(stdout);
 	}
 
-	/*_________T15_________*/
+	/*_________T16_________*/
 	if (p[14] == 1 && p[15] == 0) {
 
 		p[14] = 0;
 		p[15] = 1;
 
-		puts("Petri_Controller_1:  T8		moving to W (4)\n");
+		puts("Petri_Controller_1:  T16		moving to W (4)\n");
 		fflush(stdout);
 	}
 
-	/*_________T16_________*/
+	/*_________T17_________*/
 	if (p[15] == 1 && p[16] == 0
 			&& (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == true)) {
 
@@ -341,16 +368,18 @@ void Petri_Controller_1::process_transitions() {
 			exit(EXIT_FAILURE);
 		}
 
-		puts("Petri_Controller_1:  T16		 \n");
+		puts("Petri_Controller_1:  T17		 \n");
 		fflush(stdout);
 	}
 
-	/*_________T17_________*/
-	if (p[16] == 1 && p[17] == 0
-			&& (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == false)) {
+	/*_________T18_________*/
+	if (p[16] == 1 && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == false)) {
 
 		p[16] = 0;
+
 		p[0]++;
+
+		//HIER ÜBERGABE PUK AN STRUCT -----> STRUCT VIA SERIELLESCHNITTSTELLE AN BAND 2
 
 		if (p[0] == 4) {
 			if (-1== MsgSendPulse(petri_controller_1_dispatcher_Coid,
@@ -378,15 +407,15 @@ void Petri_Controller_1::process_transitions() {
 				exit(EXIT_FAILURE);
 			}
 		}
-		puts("Petri_Controller_1:  T16		 \n");
+		puts("Petri_Controller_1:  T18		 \n");
 		fflush(stdout);
 	}
 
 	/*_________T18_________*/
-	if (p[10] == 1 && p[18] == 0 && werkstueckGross == false) {
+	if (p[10] == 1 && p[17] == 0 && werkstueckGross == false) {
 
 		p[10] = 0;
-		p[18] = 1;
+		p[17] = 1;
 
 
 		puts("Petri_Controller_1:  T18	 \n");
@@ -394,10 +423,10 @@ void Petri_Controller_1::process_transitions() {
 	}
 
 	/*_________T19_________*/
-	if (p[18] == 1 && p[19] == 0 && (petri_controller_1_inputs[RUTSCHE_VOLL] == true) ) {
+	if (p[17] == 1 && p[18] == 0 && (petri_controller_1_inputs[RUTSCHE_VOLL] == true) ) {
 
-		p[18] = 0;
-		p[19] = 1;
+		p[17] = 0;
+		p[18] = 1;
 
 
 		puts("Petri_Controller_1:  T19	 \n");
@@ -405,10 +434,10 @@ void Petri_Controller_1::process_transitions() {
 	}
 
 	/*_________T20_________*/
-	if (p[19] == 1 && p[20] == 0 && (petri_controller_1_inputs[RUTSCHE_VOLL] == false) ) {
+	if (p[18] == 1 && p[19] == 0 && (petri_controller_1_inputs[RUTSCHE_VOLL] == false) ) {
 
-		p[19] = 0;
-		p[20] = 1;
+		p[18] = 0;
+		p[19] = 1;
 
 
 		puts("Petri_Controller_1:  T20	 \n");
@@ -416,32 +445,46 @@ void Petri_Controller_1::process_transitions() {
 	}
 
 	/*_________T21_________*/
+	if (p[19] == 1 && p[20] == 0) {
+
+		p[19] = 0;
+		p[20] = 1;
+
+		puts("Petri_Controller_1:  T21		moving from Slide to GZ  (1)\n");
+		fflush(stdout);
+	}
+
+	/*_________T22_________*/
 	if (p[20] == 1 && p[21] == 0) {
 
 		p[20] = 0;
 		p[21] = 1;
 
-		puts("Petri_Controller_1:  T21		moving to W (4)\n");
-		fflush(stdout);
-	}
-
-	/*_________T22_________*/
-	if (p[21] == 1 && p[22] == 0) {
-
-		p[21] = 0;
-		p[22] = 1;
-
-		puts("Petri_Controller_1:  T22		moving to W (4)\n");
+		puts("Petri_Controller_1:  T22		moving from Slide to GZ  (2)\n");
 		fflush(stdout);
 	}
 
 	/*_________T23_________*/
-	if (p[22] == 1 && p[23] == 0) {
+	if (p[21] == 1 && p[22] == 0) {
 		printf("ANZAHL:   %d",p[0]);fflush(stdout);
+
+		p[21] = 0;
+		p[22] = 1;
+
+		printf("ANZAHL:   %d",p[0]);fflush(stdout);
+		puts("Petri_Controller_1:  T23		moving from Slide to GZ  (3)\n");
+		fflush(stdout);
+	}
+
+	/*_________T24_________*/
+	if (p[22] == 1) {
+		printf("ANZAHL:   %d",p[0]);fflush(stdout);
+
 		p[22] = 0;
 		p[0]++;
+
 		printf("ANZAHL:   %d",p[0]);fflush(stdout);
-		puts("Petri_Controller_1:  T23		moving to W (4)\n");
+		puts("Petri_Controller_1:  T24		moving from Slide to GZ (4)\n");
 		fflush(stdout);
 	}
 }

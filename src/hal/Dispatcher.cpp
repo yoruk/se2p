@@ -116,7 +116,15 @@ void Dispatcher::execute(void* arg) {
 							perror("Dispatcher: MsgSendPulse an conveyor failed\n");
 							exit(EXIT_FAILURE);
 						}
-		}else{
+		}else if(pulse.code == PULSE_FROM_TIMER){
+			printf("------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");fflush(stdout);
+						printf("Dispatcher:: BLAU Coid: %d\n",dispatcher_Coid);fflush(stdout);
+						if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
+								pulse.code, pulse.value.sival_int)) {
+							perror("Dispatcher: MsgSendPulse an conveyor failed\n");
+							exit(EXIT_FAILURE);
+						}
+		}else {
 			printf("Dispatcher:: GELB Coid: %d\n",dispatcher_Coid);fflush(stdout);
 			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
 					pulse.code, pulse.value.sival_int)) {
@@ -361,7 +369,7 @@ void Dispatcher::read_inputs(int code, int value) {
 		}
 
 			break;
-		}
+	}
 }
 
 void Dispatcher::set_disp_Outputs(bool tmpArr[]) {

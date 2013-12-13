@@ -12,6 +12,11 @@
 #define DIO_C (D_IOBASE + 0x02) // Port C
 #define DIGITAL_CARD_CONTROL (D_IOBASE + 0x03) // Control register
 
+#define IO_BASE         0x320
+#define IO_OFFS_A         0x02
+#define IO_GET_VAL 0x10
+#define IO_PORT_A         (IO_BASE + IO_OFFS_A)
+
 // bitmasks for single bits
 #define BIT_0 0x01
 #define BIT_1 0x02
@@ -120,6 +125,18 @@
 #define TRAFFICLIGHT_RED_B 4
 #define TRAFFICLIGHT_END 5
 
+/*-------Timer values--------*/
+#define TIMER_FULL 0
+#define TIMER_GATE 1
+
+/*--------Times-----------*/
+#define CLOSE_GATE_TIME 4
+#define SLIDE_FULL_TIME 2
+#define C1_PUK_LOST_TIME 4
+#define C1_MANY_PUKS_TIME 4
+#define C2_PUK_LOST_TIME 3
+#define C2_MANY_PUKS_TIME 3
+
 // Pulse
 #define PULSE_FROM_TIMER 60
 #define PA_TRAFFICLIGHT	70
@@ -127,7 +144,13 @@
 #define PULSE_PUK_INFORMATION 10
 #define PULSE_MSG_FROM_CONVEYOR 20
 
-// PUK_BUFFER
+/*--------PUK_BUFFER-----------*/
 #define BUFFER_LENGHT 4
+
+/*--------PUK_TYPE-----------*/
+#define PUK_LOCH 1
+#define PUK_METALL 2
+#define PUK_GROSS 3
+#define PUK_FLACH 4
 
 #endif /* GLOBAL_H_ */
