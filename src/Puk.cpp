@@ -10,6 +10,13 @@ Puk::Puk() {
 	hoehenmessung2 = 0;
 }
 
+Puk::Puk(int i) {
+	id = i;
+	typ = 0;
+	hoehenmessung1 = 0;
+	hoehenmessung2 = 0;
+}
+
 Puk::~Puk() {
 	// TODO Auto-generated destructor stub
 }
@@ -37,4 +44,43 @@ void Puk::set_hoehenmessung1(int par){
 
 void Puk::set_hoehenmessung2(int par){
 	hoehenmessung2 = par;
+}
+
+// puk_id = 14bit
+// puk_type =  2bit
+// puk_height = 16bit
+
+/// stuffs all the values of a Puk object from first conveyor
+/// into a single int.
+///
+/// \param p a pointer to the input puk
+///
+/// \return the in that has the Puk values
+unsigned int Puk::pukToInt(Puk* p) {
+	unsigned int val = 0;
+
+	val |= p->get_id();
+	val <<= PUK_TYPE_LENGTH;
+
+	val |= p->get_typ();
+	val <<= PUK_HEIGHT_LENGTH;
+
+	val |= p->get_hoehenmessung1();
+
+	return val;
+}
+
+/// reads all the values of a Puk from an int
+/// and generates a new Puk.
+///
+/// \param i the int that holds the Puk values
+///
+/// \return a new Puk
+Puk* Puk::intToPuk(unsigned int i) {
+	Puk* p = new Puk(i >> (PUK_TYPE_LENGTH + PUK_HEIGHT_LENGTH));
+
+	p->set_typ((i >> PUK_HEIGHT_LENGTH) & PUK_TYPE_MASK);
+	p->set_hoehenmessung1(i & PUK_HEIGHT_MASK);
+
+	return p;
 }

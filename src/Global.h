@@ -153,4 +153,12 @@
 #define PUK_GROSS 3
 #define PUK_FLACH 4
 
+/*--------PUK value bitlengths and masks-----------*/
+#define PUK_ID_LENGTH 14
+#define PUK_TYPE_LENGTH 2
+#define PUK_HEIGHT_LENGTH 16
+#define PUK_ID_MASK 0x3FFF // lowest 12 bit
+#define PUK_TYPE_MASK 0x3 // lowest 2 bit
+#define PUK_HEIGHT_MASK 0xFFFF // lowest 16 bit
+
 #endif /* GLOBAL_H_ */

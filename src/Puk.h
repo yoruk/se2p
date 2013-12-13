@@ -6,6 +6,7 @@
 class Puk {
 public:
 	Puk();
+	Puk(int i);
 	virtual ~Puk();
 	//Getter
 	int get_id();
@@ -17,6 +18,10 @@ public:
 	void set_typ(char par);
 	void set_hoehenmessung1(int par);
 	void set_hoehenmessung2(int par);
+
+	//Util
+	static unsigned int pukToInt(Puk* p);
+	static Puk* intToPuk(unsigned int i);
 
 private:
 	static int count;
