@@ -11,10 +11,12 @@
 #include "tests/Test_Led.h"
 #include "tests/Test_Serial.h"
 #include "tests/Test_Simple_Serial.h"
+#include "tests/Test_SerialCom.h"
 #include "tests/Test_Sensorik.h"
 #include "tests/Test_Dispatcher.h"
-#include "Test_Timer.h"
-#include "Test_Fifo.h"
+#include "tests/Test_Timer.h"
+#include "tests/Test_Puk.h"
+#include "tests/Test_Fifo.h"
 
 #include "examples/msgSendReceiveReply.h"
 #include "examples/msgSendReceivePulse.h"
@@ -41,9 +43,12 @@ int main(int argc, char *argv[]) {
 	//test_Simple_Gate_start();
 	//test_Serial_start();
 	//test_Simple_Serial_start();
+	//test_SerialCom_start();
 	//test_Sensorik();
-	test_Dispatcher();
+	//test_Dispatcher();
 	//test_Timer_start();
+	test_Puk_start();
+
 	//test_Fifo_start();
 
 	//msgSendReceiveReply_start();
