@@ -2,21 +2,23 @@
 #define FIFO_H_
 
 #include "Puk.h"
+#include "Mutex.h"
 #include "Global.h"
 
-#define FIRSTFIELD 0
-#define LASTFIELD 3
-
 class Fifo {
-
-public:
-	Fifo();
-	virtual ~Fifo();
-	void put(Puk element);
-	Puk remove();
-	Puk* get();
-private:
-	Puk buffer[BUFFER_LENGHT];
+	public:
+		Fifo();
+		virtual ~Fifo();
+		int put(Puk* p);
+		Puk* remove();
+		Puk* get();
+	private:
+		int read_idx;
+		int write_idx;
+		int count;
+		Puk* buffer[BUFFER_LENGTH];
+		Mutex* mutex;
+		void clear();
 };
-#endif /* FIFO_H_ */
 
+#endif /* FIFO_H_ */

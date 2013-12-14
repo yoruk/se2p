@@ -1,72 +1,76 @@
-#include "Fifo.h"
+#include <stdlib.h>
 #include <stdio.h>
-#include <pthread.h>
-#include <semaphore.h>
-#include <stdbool.h>
-
-pthread_mutex_t m;
-sem_t freefields;
-sem_t busyfields;
-
-//first free field
-int head = 0;
-//last busy field
-int tail = 0;
+#include "Fifo.h"
 
 Fifo::Fifo() {
-	sem_init(&freefields, 1, BUFFER_LENGHT);
-	sem_init(&busyfields, 1, 0);
-	pthread_mutex_init(&m, NULL);
+	Fifo::mutex = new Mutex();
+	clear();
 }
 
 Fifo::~Fifo() {
-	// TODO Auto-generated destructor stub
+
 }
 
-void Fifo::put(Puk element) {
-	//warte auf freefield
-	sem_wait(&freefields);
-	//enter critical section
-	pthread_mutex_lock(&m);
+void Fifo::clear() {
+	int i;
 
-	buffer[head] = element;
-	head++;
-	if (head == BUFFER_LENGHT) {
-		head = 0;
+	Fifo::read_idx = 0;
+	Fifo::write_idx = 0;
+	Fifo::count = 0;
+
+	for(i=0; i<BUFFER_LENGTH; i++) {
+		buffer[i] = NULL;
 	}
-
-	//leave critical section
-	pthread_mutex_unlock(&m);
-	//erhöhe anzahl elemente im puffer
-	sem_post(&busyfields);
 }
 
-Puk Fifo::remove() {
-	Puk ret_element;
-	//warte auf busyfield
-	sem_wait(&busyfields);
-	//enter critical section
-	pthread_mutex_lock(&m);
-	ret_element = buffer[tail];
-	tail++;
-	if (tail == BUFFER_LENGHT) {
-		tail = 0;
+int Fifo::put(Puk* p) {
+	if(count < BUFFER_LENGTH) {
+
+		// still space in buffer
+		buffer[write_idx] = p;
+
+		write_idx = (write_idx + 1) % BUFFER_LENGTH;
+		count++;
+
+		return 0;
+
+	} else {
+
+		// buffer is already full
+		return 1;
 	}
-	//leave critical section
-	pthread_mutex_unlock(&m);
-	//verringere anzahl elemenete im buffer
-	sem_post(&freefields);
-	return ret_element;
 }
 
+Puk* Fifo::remove() {
+	Puk* tmp = new Puk(0);
+
+	if(count == 0) {
+
+		// buffer is empty
+		return NULL;
+
+	} else {
+
+		// buffer has at least one puk
+		*tmp = *buffer[read_idx];
+		buffer[read_idx] = NULL;
+
+		read_idx = (read_idx + 1) % BUFFER_LENGTH;
+		count--;
+
+		return tmp;
+	}
+}
 
 Puk* Fifo::get() {
-	Puk* ret_element;
-	//enter critical section
-	pthread_mutex_lock(&m);
-	ret_element = &buffer[tail];
-	//leave critical section
-	pthread_mutex_unlock(&m);
-	//verringere anzahl elemenete im buffer
-	return ret_element;
+	if(count == 0) {
+
+		// buffer is empty
+		return NULL;
+
+	} else {
+
+		// buffer has at least one puk
+		return buffer[read_idx];
+	}
 }
