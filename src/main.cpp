@@ -47,14 +47,14 @@ int main(int argc, char *argv[]) {
 	//test_Sensorik();
 	//test_Dispatcher();
 	//test_Timer_start();
-	test_Puk_start();
-
-	//test_Fifo_start();
+	//test_Puk_start();
+	test_Fifo_start();
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();
 	//msgSendReceivePulse_2x_start();
 	//msgDeliverEvent_start();
 	//simple_milestone2_start();
+
 	return EXIT_SUCCESS;
 }

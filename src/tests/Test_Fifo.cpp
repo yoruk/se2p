@@ -1,43 +1,53 @@
-#include "Test_Fifo.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "Fifo.h"
+#include "Puk.h"
+#include "Global.h"
+
+#define COUNT (BUFFER_LENGTH + 1)
 
 void test_Fifo_start() {
+	Fifo* fifo;
+	Puk* puk;
+	int i;
 
-	Fifo* fifo = new Fifo();
+	printf("fifo test!\n\n");fflush(stdout);
 
-	Puk* puk1 = new Puk();
-	puk1->set_hoehenmessung1(8);
-	puk1->set_typ(1);
+	fifo = new Fifo();
 
-	Puk* puk2 = new Puk();
-	puk2->set_hoehenmessung1(4);
-	puk2->set_typ(3);
+	printf("trying to get from empty buffer = ");fflush(stdout);
+	if(fifo->get() == NULL) {
+		printf("failed\n");fflush(stdout);
+	} else {
+		printf("success\n");fflush(stdout);
+	}
 
-	Puk* puk3 = new Puk();
-	puk3->set_hoehenmessung1(12);
-	puk3->set_typ(2);
+	printf("trying to remove from empty buffer = ");fflush(stdout);
+	if(fifo->remove() == NULL) {
+		printf("failed\n");fflush(stdout);
+	} else {
+		printf("success\n");fflush(stdout);
+	}
 
-	Puk* puk4 = new Puk();
-	puk4->set_hoehenmessung1(16);
-	puk4->set_typ(3);
+	printf("\nbuffer length = %d\n", BUFFER_LENGTH);fflush(stdout);
 
-	fifo->put(*puk1);
-	fifo->put(*puk2);
-	fifo->put(*puk3);
-	fifo->put(*puk4);
+	printf("putting %d puks into buffer\n", COUNT);fflush(stdout);
+	for(i=0; i<COUNT; i++) {
+		if(fifo->put(new Puk(i)) != 0) {
+			printf("failed\n");fflush(stdout);
+		} else {
+			printf("puk id = %d\n", i);
+		}
+	}
 
-	//printf("Pukid %d \n",fifo->remove().get_id());fflush(stdout);
+	printf("removing %d puks from buffer\n", COUNT);fflush(stdout);
+	for(i=0; i<COUNT; i++) {
+		puk = fifo->remove();
 
-	printf("Puk1 Hoehe BEFORE %d \n",puk1->get_hoehenmessung1());fflush(stdout);
-	printf("Puk2 Hoehe BEFORE %d \n",puk2->get_hoehenmessung1());fflush(stdout);
-	printf("Puk1 Hoehe BEFORE %d \n",puk3->get_hoehenmessung1());fflush(stdout);
-	printf("Puk2 Hoehe BEFORE %d \n",puk4->get_hoehenmessung1());fflush(stdout);
-
-	//fifo->remove();
-
-	printf("Puk2 Hoehe BEFORE %d \n",fifo->get()->get_hoehenmessung1());fflush(stdout);
-
-	Puk* tmp2 = fifo->get();
-	tmp2->set_hoehenmessung1(10);
-
-	printf("Puk2 Hoehe BEFORE %d \n",fifo->get()->get_hoehenmessung1());fflush(stdout);
+		if(puk == NULL) {
+			printf("failed\n");fflush(stdout);
+		} else {
+			printf("puk id = %d\n", puk->get_id());
+		}
+	}
 }
