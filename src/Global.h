@@ -145,7 +145,7 @@
 #define PULSE_MSG_FROM_CONVEYOR 20
 
 /*--------PUK_BUFFER-----------*/
-#define BUFFER_LENGHT 4
+#define BUFFER_LENGTH 4
 
 /*--------PUK_TYPE-----------*/
 #define PUK_LOCH 1
