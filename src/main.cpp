@@ -43,12 +43,12 @@ int main(int argc, char *argv[]) {
 	//test_Simple_Gate_start();
 	//test_Serial_start();
 	//test_Simple_Serial_start();
-	//test_SerialCom_start();
+	test_SerialCom_start();
 	//test_Sensorik();
 	//test_Dispatcher();
 	//test_Timer_start();
 	//test_Puk_start();
-	test_Fifo_start();
+	//test_Fifo_start();
 
 	//msgSendReceiveReply_start();
 	//msgSendReceivePulse_start();
