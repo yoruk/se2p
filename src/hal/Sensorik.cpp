@@ -165,7 +165,7 @@ int Sensorik::getHeight() {
 	return heigth;
 }
 
-int Sensorik::getHeightPuckType() {
+int Sensorik::getHeightPukType() {
 	int height = getHeight();
 
 	int type = -1;

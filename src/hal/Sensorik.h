@@ -31,7 +31,7 @@ public:
 	void stop();
 	int getSignalChid();
 	int getHeight();
-	int getHeightPuckType();
+	int getHeightPukType();
 protected:
 	virtual void execute(void* arg);
 	virtual void shutdown();
