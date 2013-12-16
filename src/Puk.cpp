@@ -1,6 +1,6 @@
 #include "Puk.h"
 
-int Puk::count = -BUFFER_LENGHT;
+int Puk::count = 0;
 
 Puk::Puk() {
 	count++;
@@ -21,33 +21,33 @@ Puk::~Puk() {
 	// TODO Auto-generated destructor stub
 }
 
-int Puk::get_id(){
+int Puk::get_id() {
 	return id;
 }
-char Puk::get_typ(){
+char Puk::get_typ() {
 	return typ;
 }
-int Puk::get_hoehenmessung1 (){
+int Puk::get_hoehenmessung1() {
 	return hoehenmessung1;
 }
 
-int Puk::get_hoehenmessung2 (){
+int Puk::get_hoehenmessung2() {
 	return hoehenmessung2;
 }
 
-void Puk::set_typ(char par){
+void Puk::set_typ(char par) {
 	typ = par;
 }
-void Puk::set_hoehenmessung1(int par){
+void Puk::set_hoehenmessung1(int par) {
 	hoehenmessung1 = par;
 }
 
-void Puk::set_hoehenmessung2(int par){
+void Puk::set_hoehenmessung2(int par) {
 	hoehenmessung2 = par;
 }
 
 // puk_id = 14bit
-// puk_type =  2bit
+// puk_type = 2bit
 // puk_height = 16bit
 
 /// stuffs all the values of a Puk object from first conveyor

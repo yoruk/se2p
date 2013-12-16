@@ -11,8 +11,8 @@ public:
 	//Getter
 	int get_id();
 	char get_typ();
-	int get_hoehenmessung1 ();
-	int get_hoehenmessung2 ();
+	int get_hoehenmessung1();
+	int get_hoehenmessung2();
 
 	//Setter
 	void set_typ(char par);
