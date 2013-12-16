@@ -12,9 +12,9 @@
 #include "Timer.h"
 #include "TimerHandler.h"
 #include "Fifo.h"
+#include "Puk.h"
 
-
-#define N_PLACE 26
+#define N_PLACE 33
 
 class Petri_Controller_1: public thread::HAWThread {
 public:
@@ -28,11 +28,10 @@ private:
 	int petri_controller_1_dispatcher_Coid;
 	int petri_controller_1_sensorik_Chid;
 	Sensorik* petri_controller_1_sen;
-	Fifo fifo1;
-	Fifo fifo2;
-	Fifo fifo3;
-	Puk puk;
-
+	Fifo* fifo1;
+	Fifo* fifo2;
+	Fifo* fifo3;
+	Fifo* fifo4;
 
 	Petri_Controller_1();
 
@@ -40,7 +39,9 @@ private:
 	Led* led;
 	Dispatcher* disp_petri_controller_1;
 	TimerHandler* timer;
-	Timer* timer1;
+	Timer* timer_Gate;
+	Timer* kick_time;
+	Timer* timer_C1_SlideFull;
 
 	void init_places();
 	void process_transitions();
