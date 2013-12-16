@@ -148,7 +148,7 @@ void SerialCom::execute(void *arg) {
 			if(p.is_msg) {
 
 				// package holds a message
-				res = MsgSendPulse(connectionId, SIGEV_PULSE_PRIO_INHERIT, PULSE_MSG_FROM_CONVEYOR, p.msg_content);
+				res = MsgSendPulse(connectionId, SIGEV_PULSE_PRIO_INHERIT, PULSE_OTHER_MACHINE_STATUS, p.msg_content);
 				if(res == -1) {
 					perror("SerialCom: ERROR, couldn't send pulse message with puk information");fflush(stdout);
 					exit(EXIT_FAILURE);

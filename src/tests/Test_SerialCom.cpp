@@ -32,7 +32,7 @@ static void* dispatcher(void* arg) {
 			exit(EXIT_FAILURE);
 		}
 
-		if(pulse.code == PULSE_MSG_FROM_CONVEYOR) {
+		if(pulse.code == PULSE_OTHER_MACHINE_STATUS) {
 
 			// status message from conveyor
 			printf("DEBUG:Test_SerialCom: dispatcher: message from conveyor arrived, ");fflush(stdout);
