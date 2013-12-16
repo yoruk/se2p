@@ -1,4 +1,5 @@
 #include "Petri_Controller_2.h"
+#include "Puk.h"
 
 static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
 static Petri_Controller_2* petri; /// the Petri_Controller_2 object itself
@@ -42,7 +43,7 @@ Petri_Controller_2::Petri_Controller_2() {
 	disp_petri_controller_2 = Dispatcher::getInstance();
 	petri_controller_2_dispatcher_Chid = disp_petri_controller_2->get_disp_Chid();
 
-	puk_c2.set_typ(PUK_GROSS);
+//	puk_c2.set_typ(PUK_GROSS);
 }
 
 Petri_Controller_2::~Petri_Controller_2() {
@@ -69,7 +70,6 @@ Petri_Controller_2* Petri_Controller_2::getInstance() {
 }
 
 void Petri_Controller_2::execute(void* arg) {
-
 	struct _pulse pulse;
 
 	//	printf("Petri_Controller_2:: GLEB: Chid %d\n",
@@ -94,6 +94,10 @@ void Petri_Controller_2::execute(void* arg) {
 
 		if (pulse.code == PULSE_FROM_TIMER && pulse.value.sival_int == TIMER_FULL) {
 			rutsche_voll_c2_timeout = true;
+		}
+
+		if (pulse.code == PULSE_PUK_INFORMATION) {
+			puk_c2 = *(Puk::intToPuk(pulse.value.sival_int));
 		}
 
 		tmpArr = disp_petri_controller_2->get_disp_Inputs();
@@ -166,18 +170,17 @@ void Petri_Controller_2::process_transitions() {
 			exit(EXIT_FAILURE);
 		}
 
-		//		if (puk_c2.get_typ() == PUK_LOCH) {
-		//			puk_c2.set_hoehenmessung2(puk_c2.get_hoehenmessung1());
-		//		}
-		//
-		//		if (puk_c2.get_typ() == PUK_METALL) {
-		//			puk_c2.set_hoehenmessung2(puk_c2.get_hoehenmessung1());
-		//		}
+		if (puk_c2.get_typ() == (PUK_LOCH || PUK_METALL)) {
+			puk_c2.set_hoehenmessung2(puk_c2.get_hoehenmessung1());
+		}
 
 		puk_tmp_type = petri_controller_2_sen->getHeightPukType();
 
 		if (puk_c2.get_typ() == PUK_GROSS && puk_tmp_type == PUK_GROSS) {
 			aussortieren = true;
+		} else {
+			puk_c2.set_hoehenmessung2(petri_controller_2_sen->getHeight());
+			puk_c2.set_typ(petri_controller_2_sen->getHeightPukType());
 		}
 
 		puts("Petri_Controller_2:  T1\n");

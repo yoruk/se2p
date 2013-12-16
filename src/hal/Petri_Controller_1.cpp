@@ -16,18 +16,20 @@ static Petri_Controller_1* petri; /// the Petri_Controller_1 object itself
  * wenn: puk = Puk::intToPuk(value)
  */
 
-void init_places();
-bool* tmpArr_1;
-Puk* p[N_PLACE];
+static void init_places();
+static bool* tmpArr_1;
+static Puk* p[N_PLACE];
 
-bool petri_controller_1_inputs[N_IN];
-bool petri_controller_1_outputs[N_OUT];
+static bool petri_controller_1_inputs[N_IN];
+static bool petri_controller_1_outputs[N_OUT];
 
-int gz;
-bool gate_close_c1_timeout;
-bool rutsche_voll_c1_timeout;
-bool newPuk = true;
-bool test;
+static int gz;
+static bool gate_close_c1_timeout;
+static bool rutsche_voll_c1_timeout;
+static bool newPuk = true;
+static bool test;
+
+static SerialCom* sc;
 
 Petri_Controller_1::Petri_Controller_1() {
 
@@ -59,11 +61,15 @@ Petri_Controller_1::Petri_Controller_1() {
 	disp_petri_controller_1 = Dispatcher::getInstance();
 	petri_controller_1_dispatcher_Chid = disp_petri_controller_1->get_disp_Chid();
 
+	sc = SerialCom::getInstance();
 }
 
 Petri_Controller_1::~Petri_Controller_1() {
 	delete petri;
 	petri = NULL;
+
+	delete sc;
+	sc = NULL;
 }
 
 // returns the only running instance of Petri_Bsp
@@ -447,6 +453,7 @@ void Petri_Controller_1::process_transitions() {
 		gz++;
 
 		//TO DO hier puk weiter geben an BAND 2!!!
+		sc->send_puk_data_pkg(p[19]->get_id(), p[19]->get_typ(), p[19]->get_hoehenmessung1());
 
 		p[19] = NULL;
 
@@ -486,7 +493,7 @@ void Petri_Controller_1::process_transitions() {
 		usleep(75000);
 		gate1->close();
 
-		puts("Petri_Controller_1:  T22		WERKSTÜCK IST FLACH\n");
+		puts("Petri_Controller_1:  T22		WERKSTï¿½CK IST FLACH\n");
 		fflush(stdout);
 	}
 

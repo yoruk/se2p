@@ -116,7 +116,7 @@ void Dispatcher::execute(void* arg) {
 							perror("Dispatcher: MsgSendPulse an conveyor failed\n");
 							exit(EXIT_FAILURE);
 						}
-		}else if(pulse.code == PULSE_FROM_TIMER){
+		} else if(pulse.code == PULSE_FROM_TIMER){
 			printf("------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");fflush(stdout);
 						printf("Dispatcher:: BLAU Coid: %d\n",dispatcher_Coid);fflush(stdout);
 						if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
@@ -124,7 +124,17 @@ void Dispatcher::execute(void* arg) {
 							perror("Dispatcher: MsgSendPulse an conveyor failed\n");
 							exit(EXIT_FAILURE);
 						}
-		}else {
+		} else if(pulse.code == PULSE_PUK_INFORMATION) {
+			printf("DEBUG:Dispatcher: package with puk information arrived, sending it further to controller\n");fflush(stdout);
+
+			// pulsenachricht an controller weiterleiten
+			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
+					pulse.code, pulse.value.sival_int)) {
+				perror("Dispatcher: MsgSendPulse\n");
+				exit(EXIT_FAILURE);
+			}
+
+		} else {
 			printf("Dispatcher:: GELB Coid: %d\n",dispatcher_Coid);fflush(stdout);
 			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
 					pulse.code, pulse.value.sival_int)) {
