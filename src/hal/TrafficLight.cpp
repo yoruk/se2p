@@ -115,32 +115,6 @@ void TrafficLight::greenOff() {
 	mutex->unlock();
 }
 
-void TrafficLight::flashRedOn() {
-	flashLightOn = true;
-	pthread_t dummy;
-	pthread_create(&dummy, NULL, runFlashRed, NULL);
-	pthread_detach(dummy);
-}
-
-void TrafficLight::flashRedOff() {
-	flashLightOn = false;
-}
-
-void* runFlashRed(void*) {
-	mutex->lock();
-	unsigned char reg = in8(DIO_A);
-	while (flashLightOn) {
-		setBit(&reg, TRAFFIC_LIGHT_RED);
-		out8(DIO_A, reg);
-		usleep(160000);
-		unsetBit(&reg, TRAFFIC_LIGHT_RED);
-		out8(DIO_A, reg);
-		usleep(160000);
-	}
-	mutex->unlock();
-	pthread_exit(NULL);
-}
-
 void TrafficLight::reset_trafficlight(){
 	greenOff();
 	yellowOff();

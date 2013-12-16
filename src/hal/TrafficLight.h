@@ -26,13 +26,9 @@ public:
 	void greenOn();
 	void greenOff();
 
-	void flashRedOn();
-	void flashRedOff();
-
 	void reset_trafficlight();
 private:
 	TrafficLight();
 
 };
-void* runFlashRed(void*);
 #endif /* TRAFFICLIGHT_H_ */

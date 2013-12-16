@@ -8,6 +8,7 @@
 #include "Mutex.h"
 #include "TrafficLight.h"
 #include "Dispatcher.h"
+#include "TrafficLightBlinken.h"
 
 #define TRAFFICLIGHT_N_PLACE 5
 class Petri_TrafficLight: public thread::HAWThread {
@@ -23,6 +24,7 @@ private:
 	int trafficlight_dispatcher_Chid;
 	Petri_TrafficLight();
 	TrafficLight* trafficlight;
+	TrafficLightBlinken* trafficlightblinken;
 	Dispatcher* trafficlight_dispatcher;
 
 

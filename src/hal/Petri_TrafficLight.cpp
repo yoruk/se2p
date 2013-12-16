@@ -14,6 +14,7 @@ bool* trafficlight_tmpArr;
 Petri_TrafficLight::Petri_TrafficLight() {
 
 	trafficlight = TrafficLight::getInstance();
+	trafficlightblinken = TrafficLightBlinken::getInstance();
 
 	trafficlight_dispatcher = Dispatcher::getInstance();
 	trafficlight_dispatcher_Chid
@@ -48,9 +49,9 @@ void Petri_TrafficLight::execute(void* arg) {
 
 	struct _pulse pulse;
 
-	printf("Petri_TrafficLight:: trafficlight_dispatcher_Chid: %d\n",
-			trafficlight_dispatcher_Chid);
-	fflush(stdout);
+//	printf("Petri_TrafficLight:: trafficlight_dispatcher_Chid: %d\n",
+//			trafficlight_dispatcher_Chid);
+//	fflush(stdout);
 
 	init_places();
 	while (!isStopped()) {
@@ -63,10 +64,10 @@ void Petri_TrafficLight::execute(void* arg) {
 			exit(EXIT_FAILURE);
 		}
 
-		printf("Petri_TrafficLight:: MesgRecievePulse angekommen! \n");
-		fflush(stdout);
-		printf("Petri_TrafficLight::    code:%d,  value:%d \n", pulse.code,
-				pulse.value.sival_int);
+//		printf("Petri_TrafficLight:: MesgRecievePulse angekommen! \n");
+//		fflush(stdout);
+//		printf("Petri_TrafficLight::    code:%d,  value:%d \n", pulse.code,
+//				pulse.value.sival_int);
 
 		trafficlight_tmpArr
 				= trafficlight_dispatcher->get_trafficlight_inputs();
@@ -309,14 +310,14 @@ void Petri_TrafficLight::NotifyReactor() {
 		trafficlight->yellowOn();
 	}
 	if (trafficlight_lokal_outputs[AMPEL_ROT] == true) {
-
+		trafficlightblinken->stop();
+		trafficlightblinken->join();
 		trafficlight->reset_trafficlight();
 		trafficlight->redOn();
 	}
 	if (trafficlight_lokal_outputs[AMPEL_ROT_B] == true) {
-
 		trafficlight->reset_trafficlight();
-		trafficlight->flashRedOn();
+		trafficlightblinken->start(NULL);
 	}
 }
 void Petri_TrafficLight::print_places() {
