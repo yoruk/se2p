@@ -16,7 +16,6 @@ static Petri_Controller_1* petri; /// the Petri_Controller_1 object itself
  * wenn: puk = Puk::intToPuk(value)
  */
 
-static void init_places();
 static bool* tmpArr_1;
 static Puk* p[N_PLACE];
 
@@ -27,7 +26,6 @@ static int gz;
 static bool gate_close_c1_timeout;
 static bool rutsche_voll_c1_timeout;
 static bool newPuk = true;
-static bool test;
 
 static SerialCom* sc;
 
@@ -493,7 +491,7 @@ void Petri_Controller_1::process_transitions() {
 		usleep(75000);
 		gate1->close();
 
-		puts("Petri_Controller_1:  T22		WERKST�CK IST FLACH\n");
+		puts("Petri_Controller_1:  T22		WERKSTUECK IST FLACH\n");
 		fflush(stdout);
 	}
 
@@ -563,12 +561,89 @@ void Petri_Controller_1::process_transitions() {
 		fflush(stdout);
 	}
 
+	/*_________T29_________*/
+	if (p[21] != NULL && p[26] == NULL && rutsche_voll_c1_timeout == true) {
+
+		rutsche_voll_c1_timeout = false;
+		p[26] = p[21];
+		p[21] = NULL;
+
+		if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_CONVEYOR, P_CONVEYOR_STOP)) {
+			perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+			exit(EXIT_FAILURE);
+		}
+
+		if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_RED_B)) {
+			perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+			exit(EXIT_FAILURE);
+		}
+
+		timer_C1_SlideFull->reset();
+		puts("Petri_Controller_1:  T29 TIMEOUT SLIDEFULL \n");
+		fflush(stdout);
+	}
+
+	/*_________T30_________*/
+	if (p[26] != NULL && p[27] == NULL && (petri_controller_1_inputs[TASTE_RESET] == false)) {
+
+		p[27] = p[26];
+		p[26] = NULL;
+
+		if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_RED)) {
+			perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+			exit(EXIT_FAILURE);
+		}
+
+		puts("Petri_Controller_1:  T30	Q-TASTE GEDRUECKT \n");
+		fflush(stdout);
+	}
+
+	/*_________T31_________*/
+	if (p[27] != NULL && p[28] == NULL && (petri_controller_1_inputs[RUTSCHE_VOLL] == false)) {
+
+		p[28] = p[27];
+		p[27] = NULL;
+
+		puts("Petri_Controller_1:  T31 LSRX	 \n");
+		fflush(stdout);
+	}
+
+	/*_________T32_________*/
+	if (p[28] != NULL && p[25] == NULL && (petri_controller_1_inputs[TASTE_START] == true)) {
+
+		p[25] = p[28];
+		p[28] = NULL;
+
+		if (gz == 3) {
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_CONVEYOR, P_CONVEYOR_END)) {
+				perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+				exit(EXIT_FAILURE);
+			}
+
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_END)) {
+				perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+				exit(EXIT_FAILURE);
+			}
+		} else {
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_CONVEYOR, P_CONVEYOR_STOP_X)) {
+				perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+				exit(EXIT_FAILURE);
+			}
+
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_GREEN)) {
+				perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		puts("Petri_Controller_1:  T32	S-TASTE GEDRUECKT \n");
+		fflush(stdout);
+	}
+
 	/*_________T28_________*/
 	if (p[25] != NULL) {
 
 		gz++;
-
-		//TO DO hier puk weiter geben an BAND 2!!!
 
 		p[25] = NULL;
 
