@@ -28,6 +28,7 @@ private:
 	int petri_controller_2_dispatcher_Coid;
 	int petri_controller_2_sensorik_Chid;
 	Puk puk_c2;
+	int puk_tmp_type;
 
 	Petri_Controller_2();
 
