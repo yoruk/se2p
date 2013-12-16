@@ -128,14 +128,18 @@
 /*-------Timer values--------*/
 #define TIMER_FULL 0
 #define TIMER_GATE 1
+#define TIMER_KICK 2
 
 /*--------Times-----------*/
-#define CLOSE_GATE_TIME 4
-#define SLIDE_FULL_TIME 2
+
+#define C1_CLOSE_GATE_TIME 1
+#define C1_KICK_TIME 50
+#define SLIDE_FULL_TIME 3
 #define C1_PUK_LOST_TIME 4
 #define C1_MANY_PUKS_TIME 4
 #define C2_PUK_LOST_TIME 3
 #define C2_MANY_PUKS_TIME 3
+#define C2_CLOSE_GATE_TIME 1
 
 // Pulse
 #define PULSE_FROM_TIMER 60
@@ -143,6 +147,8 @@
 #define PA_CONVEYOR	80
 #define PULSE_PUK_INFORMATION 10
 #define PULSE_MSG_FROM_CONVEYOR 20
+//------PULSE_MSG_FROM_CONVEYOR values---//
+
 
 /*--------PUK_BUFFER-----------*/
 #define BUFFER_LENGTH 4
