@@ -12,12 +12,8 @@ class TrafficLightBlinken: public thread::HAWThread {
 public:
 	TrafficLightBlinken();
 	virtual ~TrafficLightBlinken();
-	static TrafficLightBlinken* getInstance();
-
 	void flashRedOn();
 
-private:
-	static TrafficLightBlinken* instance;
 protected:
 	virtual void execute(void* arg);
 	virtual void shutdown();

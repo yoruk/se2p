@@ -15,6 +15,7 @@ Petri_TrafficLight::Petri_TrafficLight() {
 
 	trafficlight = TrafficLight::getInstance();
 	trafficlightblinken = new TrafficLightBlinken();
+	trafficlightgelb = new TrafficLightGelbBlinken();
 
 	trafficlight_dispatcher = Dispatcher::getInstance();
 	trafficlight_dispatcher_Chid

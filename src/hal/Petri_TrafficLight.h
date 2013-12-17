@@ -9,6 +9,7 @@
 #include "TrafficLight.h"
 #include "Dispatcher.h"
 #include "TrafficLightBlinken.h"
+#include "TrafficLightGelbBlinken.h"
 
 #define TRAFFICLIGHT_N_PLACE 5
 class Petri_TrafficLight: public thread::HAWThread {
@@ -25,6 +26,7 @@ private:
 	Petri_TrafficLight();
 	TrafficLight* trafficlight;
 	TrafficLightBlinken* trafficlightblinken;
+	TrafficLightGelbBlinken* trafficlightgelb;
 	Dispatcher* trafficlight_dispatcher;
 
 

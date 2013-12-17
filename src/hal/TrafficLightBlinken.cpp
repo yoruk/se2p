@@ -1,6 +1,5 @@
 #include "TrafficLightBlinken.h"
 
-TrafficLightBlinken* TrafficLightBlinken::instance = NULL;
 static Mutex* mutex = new Mutex();
 
 TrafficLightBlinken::TrafficLightBlinken() {

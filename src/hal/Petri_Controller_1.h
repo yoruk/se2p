@@ -11,7 +11,6 @@
 #include "Dispatcher.h"
 #include "Timer.h"
 #include "TimerHandler.h"
-#include "Fifo.h"
 #include "Puk.h"
 
 #define N_PLACE 33
@@ -28,10 +27,6 @@ private:
 	int petri_controller_1_dispatcher_Coid;
 	int petri_controller_1_sensorik_Chid;
 	Sensorik* petri_controller_1_sen;
-	Fifo* fifo1;
-	Fifo* fifo2;
-	Fifo* fifo3;
-	Fifo* fifo4;
 
 	Petri_Controller_1();
 
