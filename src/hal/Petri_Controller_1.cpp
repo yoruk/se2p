@@ -30,7 +30,7 @@ bool newPuk = true;
 bool test;
 bool fehler = false;
 static SerialCom* sc;
-bool band2Frei = true;
+bool controller_2_free = true;
 
 Petri_Controller_1::Petri_Controller_1() {
 
@@ -118,6 +118,15 @@ void Petri_Controller_1::execute(void* arg) {
 			rutsche_voll_c1_timeout = true;
 		}
 
+		if (pulse.code == PULSE_FROM_CONTROLLER_2 && pulse.value.sival_int == CONTROLLER_2_BUSY) {
+			controller_2_free = false;
+		}
+
+		if (pulse.code == PULSE_FROM_CONTROLLER_2 && pulse.value.sival_int == CONTROLLER_2_FREE) {
+			controller_2_free = true;
+		}
+
+
 		tmpArr_1 = disp_petri_controller_1->get_disp_Inputs();
 		setInputs();
 		tmpArr_1 = disp_petri_controller_1->get_disp_Outputs();
@@ -167,11 +176,17 @@ void Petri_Controller_1::init_places() {
 	p[30] = NULL;
 	p[31] = NULL;
 	p[32] = NULL;
+	p[33] = NULL;
+	p[34] = NULL;
+	p[35] = NULL;
+	p[36] = NULL;
+	p[37] = NULL;
+	p[38] = NULL;
 
 }
 
 void Petri_Controller_1::process_transitions() {
-
+//TODO BEGINN
 	/*_________T0_________*/
 	if ((gz > 0) && p[0] == NULL && (petri_controller_1_inputs[EINLAUF_WERKSTUECK] == true) && newPuk == true) {
 
@@ -434,7 +449,7 @@ void Petri_Controller_1::process_transitions() {
 		//			timer_Gate->pause();
 		//		}
 
-		printf("<<<<<<<<PUK TYP : %d,,,,,,", p[18]->get_typ() );
+		printf("<<<<<<<<PUK TYP : %d,,,,,,", p[18]->get_typ());
 		puts("Petri_Controller_1:  T19		moving to END (4)\n");
 		fflush(stdout);
 	}
@@ -472,7 +487,7 @@ void Petri_Controller_1::process_transitions() {
 	}
 
 	/*_________T30_________*/
-	if (p[29] != NULL && p[30] == NULL && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == true) && (fehler == false) && band2Frei == true) {
+	if (p[29] != NULL && p[30] == NULL && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == true) && (fehler == false) && controller_2_free == true) {
 
 		p[30] = p[29];
 		p[29] = NULL;
@@ -491,8 +506,8 @@ void Petri_Controller_1::process_transitions() {
 		fflush(stdout);
 	}
 
-	/*_________T31_________*/
-	if (p[30] != NULL && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == false) && (fehler == false) && band2Frei == true) {
+	/*_________T31+++++_________*/
+	if (p[30] != NULL && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == false) && (fehler == false) && controller_2_free == true) {
 
 		sc->send_puk_data_pkg(p[30]->get_id(), p[30]->get_typ(), p[30]->get_hoehenmessung1());
 
@@ -513,6 +528,52 @@ void Petri_Controller_1::process_transitions() {
 		puts("Petri_Controller_1:  T31		 (4)\n");
 		fflush(stdout);
 	}
+
+	/*_________T32_________*/
+	if (p[18] != NULL && p[31] == NULL && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == true) && (fehler == false) && p[18]->get_typ() == PUK_LOCH) {
+
+		p[31] = p[18];
+		p[18] = NULL;
+
+		puts("Petri_Controller_1:  T32		 (4)\n");
+		fflush(stdout);
+	}
+
+	/*_________T33_________*/
+	if (p[31] != NULL && p[32] == NULL && controller_2_free == true) {
+
+		p[32] = p[31];
+		p[31] = NULL;
+
+
+		puts("Petri_Controller_1:  T33		 (4)\n");
+		fflush(stdout);
+	}
+
+	/*_________T34_________*/
+	if (p[32] != NULL && p[30] == NULL && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == false) && (fehler == false)) {
+
+		p[30] = p[32];
+		p[32] = NULL;
+
+		if (gz == 3) {
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_CONVEYOR, P_CONVEYOR_END)) {
+				perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+				exit(EXIT_FAILURE);
+			}
+
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_END)) {
+				perror("Petri_Controller_1:: MsgSendPulse an trafficLight\n");
+				exit(EXIT_FAILURE);
+			}
+
+		}
+
+		puts("Petri_Controller_1:  T34		 (4)\n");
+		fflush(stdout);
+	}
+
+//TODO RUTSCHE
 
 	/*_________T22_________*/
 	if (p[11] != NULL && p[20] == NULL && p[11]->get_typ() == PUK_FLACH && (fehler == false)) {

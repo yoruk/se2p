@@ -128,7 +128,10 @@
 /*-------Timer values--------*/
 #define TIMER_FULL 0
 #define TIMER_GATE 1
-#define TIMER_KICK 2
+
+/*-------STATUS CONTROLLER 2 values--------*/
+#define CONTROLLER_2_FREE 0
+#define CONTROLLER_2_BUSY 1
 
 /*--------Times-----------*/
 
@@ -148,6 +151,7 @@
 #define PULSE_PUK_INFORMATION 10
 #define PULSE_MSG_FROM_CONVEYOR 20
 #define PULSE_OTHER_MACHINE_STATUS PA_CONVEYOR
+#define PULSE_FROM_CONTROLLER_2 90
 //#define PULSE_CONVEYOR_OK 30
 //#define PULSE_CONVEYOR_ESTOP 40
 

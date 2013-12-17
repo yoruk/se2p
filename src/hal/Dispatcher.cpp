@@ -16,10 +16,10 @@ Dispatcher::Dispatcher() {
 		perror("Dispatcher: ChannelCreate signalChid failed");
 		exit(EXIT_FAILURE);
 	}
-	printf("Dispatcher::  GELBE Chid: %d\n",dispatcher_Chid);fflush(stdout);
+	printf("Dispatcher::  GELBE Chid: %d\n", dispatcher_Chid);
+	fflush(stdout);
 	// attach to signal channel(stellt die verbindung zu dem channel des Prozesses PID)
-	dispatcher_Coid
-			= ConnectAttach(0, 0, dispatcher_Chid, _NTO_SIDE_CHANNEL, 0);
+	dispatcher_Coid = ConnectAttach(0, 0, dispatcher_Chid, _NTO_SIDE_CHANNEL, 0);
 	if (dispatcher_Coid == -1) {
 		perror("Dispatcher: ConnectAttach signalCoid failed");
 		exit(EXIT_FAILURE);
@@ -31,35 +31,38 @@ Dispatcher::Dispatcher() {
 		perror("Dispatcher: Channel Create TrafficLight failed");
 		exit(EXIT_FAILURE);
 	}
-	printf("Dispatcher:: GRUEN: Chid %d\n",trafficlight_Chid);fflush(stdout);
+	printf("Dispatcher:: GRUEN: Chid %d\n", trafficlight_Chid);
+	fflush(stdout);
 	// attach to signal channel(stellt die verbindung zu dem channel des Prozesses PID)
-	trafficlight_Coid = ConnectAttach(0, 0, trafficlight_Chid,
-			_NTO_SIDE_CHANNEL, 0);
+	trafficlight_Coid = ConnectAttach(0, 0, trafficlight_Chid, _NTO_SIDE_CHANNEL, 0);
 	if (trafficlight_Coid == -1) {
 		perror("Dispatcher: ConnectAttach trafficlight failed");
 		exit(EXIT_FAILURE);
 	}
-	printf("Dispatcher:: GRUEN: Coid %d\n",trafficlight_Coid);fflush(stdout);
+	printf("Dispatcher:: GRUEN: Coid %d\n", trafficlight_Coid);
+	fflush(stdout);
 
 	// create channel for conveyor
 	conveyor_Chid = ChannelCreate(0);
-		if (conveyor_Chid == -1) {
-			perror("Dispatcher: Channel Create TrafficLight failed");
-			exit(EXIT_FAILURE);
-		}
-		printf("Dispatcher:: ORANGE: Chid %d\n",conveyor_Chid);fflush(stdout);
-		// attach to signal channel(stellt die verbindung zu dem channel des Prozesses PID)
-		conveyor_Coid = ConnectAttach(0, 0, conveyor_Chid,
-				_NTO_SIDE_CHANNEL, 0);
-		if (conveyor_Coid == -1) {
-			perror("Dispatcher: ConnectAttach trafficlight failed");
-			exit(EXIT_FAILURE);
-		}
-		printf("Dispatcher:: ORANGE Coid %d\n",conveyor_Coid);fflush(stdout);
+	if (conveyor_Chid == -1) {
+		perror("Dispatcher: Channel Create TrafficLight failed");
+		exit(EXIT_FAILURE);
+	}
+	printf("Dispatcher:: ORANGE: Chid %d\n", conveyor_Chid);
+	fflush(stdout);
+	// attach to signal channel(stellt die verbindung zu dem channel des Prozesses PID)
+	conveyor_Coid = ConnectAttach(0, 0, conveyor_Chid, _NTO_SIDE_CHANNEL, 0);
+	if (conveyor_Coid == -1) {
+		perror("Dispatcher: ConnectAttach trafficlight failed");
+		exit(EXIT_FAILURE);
+	}
+	printf("Dispatcher:: ORANGE Coid %d\n", conveyor_Coid);
+	fflush(stdout);
 
 	Sensorik* sen = Sensorik::getInstance();
 	sensorik_Chid = sen->getSignalChid();
-	printf("Dispatcher:: BLAU: Chid %d\n",sensorik_Chid);fflush(stdout);
+	printf("Dispatcher:: BLAU: Chid %d\n", sensorik_Chid);
+	fflush(stdout);
 }
 
 Dispatcher::~Dispatcher() {
@@ -84,7 +87,6 @@ Dispatcher* Dispatcher::getInstance() {
 void Dispatcher::execute(void* arg) {
 	struct _pulse pulse;
 
-
 	while (!isStopped()) {
 		if (-1 == MsgReceivePulse(sensorik_Chid, &pulse, sizeof(pulse), NULL)) {
 			if (isStopped()) {
@@ -94,50 +96,58 @@ void Dispatcher::execute(void* arg) {
 			exit(EXIT_FAILURE);
 		}
 
-			printf("Dispatcher::    code:%d,  value:%d \n", pulse.code, pulse.value.sival_int);
+		printf("Dispatcher::    code:%d,  value:%d \n", pulse.code, pulse.value.sival_int);
 		//		printf("Dispatcher::MesgRecievePulse\n");fflush(stdout);
 
 		read_inputs(pulse.code, pulse.value.sival_int);
 
-
 		if (pulse.code == PA_TRAFFICLIGHT) {
-			printf("----------------------------------------TRAFFICLIGHT----------------------------------------------------------\n");fflush(stdout);
-			printf("Dispatcher::GRUEN Coid: %d\n",trafficlight_Coid);fflush(stdout);
-			if (-1 == MsgSendPulse(trafficlight_Coid, SIGEV_PULSE_PRIO_INHERIT,
-					pulse.code, pulse.value.sival_int)) {
+			printf("----------------------------------------TRAFFICLIGHT----------------------------------------------------------\n");
+			fflush(stdout);
+			printf("Dispatcher::GRUEN Coid: %d\n", trafficlight_Coid);
+			fflush(stdout);
+			if (-1 == MsgSendPulse(trafficlight_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
 				perror("Dispatcher: MsgSendPulse an trafficlight failed\n");
 				exit(EXIT_FAILURE);
 			}
-		} else if(pulse.code == PA_CONVEYOR){
-			printf("------------------------------------------CONVEYOR--------------------------------------------------------\n");fflush(stdout);
-						printf("Dispatcher:: ORANGE Coid: %d\n",conveyor_Coid);fflush(stdout);
-						if (-1 == MsgSendPulse(conveyor_Coid, SIGEV_PULSE_PRIO_INHERIT,
-								pulse.code, pulse.value.sival_int)) {
-							perror("Dispatcher: MsgSendPulse an conveyor failed\n");
-							exit(EXIT_FAILURE);
-						}
-		} else if(pulse.code == PULSE_FROM_TIMER){
-			printf("------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");fflush(stdout);
-						printf("Dispatcher:: BLAU Coid: %d\n",dispatcher_Coid);fflush(stdout);
-						if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
-								pulse.code, pulse.value.sival_int)) {
-							perror("Dispatcher: MsgSendPulse an conveyor failed\n");
-							exit(EXIT_FAILURE);
-						}
-		} else if(pulse.code == PULSE_PUK_INFORMATION) {
-			printf("DEBUG:Dispatcher: package with puk information arrived, sending it further to controller\n");fflush(stdout);
+		} else if (pulse.code == PA_CONVEYOR) {
+			printf("------------------------------------------CONVEYOR--------------------------------------------------------\n");
+			fflush(stdout);
+			printf("Dispatcher:: ORANGE Coid: %d\n", conveyor_Coid);
+			fflush(stdout);
+			if (-1 == MsgSendPulse(conveyor_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+				perror("Dispatcher: MsgSendPulse an conveyor failed\n");
+				exit(EXIT_FAILURE);
+			}
+		} else if (pulse.code == PULSE_FROM_TIMER) {
+			printf("------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");
+			fflush(stdout);
+			printf("Dispatcher:: BLAU Coid: %d\n", dispatcher_Coid);
+			fflush(stdout);
+			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+				perror("Dispatcher: MsgSendPulse an conveyor failed\n");
+				exit(EXIT_FAILURE);
+			}
+		} else if (pulse.code == PULSE_PUK_INFORMATION) {
+			printf("DEBUG:Dispatcher: package with puk information arrived, sending it further to controller\n");
+			fflush(stdout);
 
 			// pulsenachricht an controller weiterleiten
-			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
-					pulse.code, pulse.value.sival_int)) {
+			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
 				perror("Dispatcher: MsgSendPulse\n");
 				exit(EXIT_FAILURE);
 			}
 
+		} else if (pulse.code == PULSE_FROM_CONTROLLER_2) {
+			// pulsenachricht an controller 1
+			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+				perror("Dispatcher: MsgSendPulse\n");
+				exit(EXIT_FAILURE);
+			}
 		} else {
-			printf("Dispatcher:: GELB Coid: %d\n",dispatcher_Coid);fflush(stdout);
-			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
-					pulse.code, pulse.value.sival_int)) {
+			printf("Dispatcher:: GELB Coid: %d\n", dispatcher_Coid);
+			fflush(stdout);
+			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
 				perror("Dispatcher: MsgSendPulse\n");
 				exit(EXIT_FAILURE);
 			}
@@ -155,230 +165,221 @@ void Dispatcher::execute(void* arg) {
 	}
 }
 
-
-
 void Dispatcher::read_inputs(int code, int value) {
 	switch (code) {
-		case PB_STATUS:
-			if (((value & BIT_0) == 0) && !inputs[EINLAUF_WERKSTUECK]) {
-				std::cout << "LS-Eingang unterbrochen" << std::endl;
-				inputs[EINLAUF_WERKSTUECK] = true;
-			} else if ((value & BIT_0) && inputs[EINLAUF_WERKSTUECK]) {
-				std::cout << "LS-Eingang frei" << std::endl;
-				inputs[EINLAUF_WERKSTUECK] = false;
-			}
+	case PB_STATUS:
+		if (((value & BIT_0) == 0) && !inputs[EINLAUF_WERKSTUECK]) {
+			std::cout << "LS-Eingang unterbrochen" << std::endl;
+			inputs[EINLAUF_WERKSTUECK] = true;
+		} else if ((value & BIT_0) && inputs[EINLAUF_WERKSTUECK]) {
+			std::cout << "LS-Eingang frei" << std::endl;
+			inputs[EINLAUF_WERKSTUECK] = false;
+		}
 
-			if (((value & BIT_1) == 0) && !inputs[WERKSTUECK_IN_HOEHENMESSUNG]) {
-				std::cout << "LS-Hoehenmessung unterbrochen" << std::endl;
-				inputs[WERKSTUECK_IN_HOEHENMESSUNG] = true;
-			} else if ((value & BIT_1) && inputs[WERKSTUECK_IN_HOEHENMESSUNG]) {
-				std::cout << "LS-Hoehenmessung frei" << std::endl;
-				inputs[WERKSTUECK_IN_HOEHENMESSUNG] = false;
-			}
+		if (((value & BIT_1) == 0) && !inputs[WERKSTUECK_IN_HOEHENMESSUNG]) {
+			std::cout << "LS-Hoehenmessung unterbrochen" << std::endl;
+			inputs[WERKSTUECK_IN_HOEHENMESSUNG] = true;
+		} else if ((value & BIT_1) && inputs[WERKSTUECK_IN_HOEHENMESSUNG]) {
+			std::cout << "LS-Hoehenmessung frei" << std::endl;
+			inputs[WERKSTUECK_IN_HOEHENMESSUNG] = false;
+		}
 
-			if ((value & BIT_2) && !inputs[HOENMESSUNG]) {
-				std::cout << "Werkstueck nicht flach" << std::endl;
-				inputs[HOENMESSUNG] = true;
-			} else if (((value & BIT_2) == 0) && inputs[HOENMESSUNG]) {
-				std::cout << "Werkstueck flach" << std::endl;
-				inputs[HOENMESSUNG] = false;
-			}
+		if ((value & BIT_2) && !inputs[HOENMESSUNG]) {
+			std::cout << "Werkstueck nicht flach" << std::endl;
+			inputs[HOENMESSUNG] = true;
+		} else if (((value & BIT_2) == 0) && inputs[HOENMESSUNG]) {
+			std::cout << "Werkstueck flach" << std::endl;
+			inputs[HOENMESSUNG] = false;
+		}
 
-			if (((value & BIT_3) == 0) && !inputs[WERKSTUECK_IN_WEICHE]) {
-				std::cout << "LS-Weiche unterbrochen" << std::endl;
-				inputs[WERKSTUECK_IN_WEICHE] = true;
-			} else if ((value & BIT_3) && inputs[WERKSTUECK_IN_WEICHE]) {
-				std::cout << "LS-Weiche frei" << std::endl;
-				inputs[WERKSTUECK_IN_WEICHE] = false;
-			}
+		if (((value & BIT_3) == 0) && !inputs[WERKSTUECK_IN_WEICHE]) {
+			std::cout << "LS-Weiche unterbrochen" << std::endl;
+			inputs[WERKSTUECK_IN_WEICHE] = true;
+		} else if ((value & BIT_3) && inputs[WERKSTUECK_IN_WEICHE]) {
+			std::cout << "LS-Weiche frei" << std::endl;
+			inputs[WERKSTUECK_IN_WEICHE] = false;
+		}
 
-			if ((value & BIT_4) && !inputs[WERKSTUECK_METALL]) {
-				std::cout << "Werkstueck Metall" << std::endl;
-				inputs[WERKSTUECK_METALL] = true;
-			} else if (((value & BIT_4) == 0) && inputs[WERKSTUECK_METALL]) {
-				std::cout << "Werkstueck kein Metall" << std::endl;
-				inputs[WERKSTUECK_METALL] = false;
-			}
+		if ((value & BIT_4) && !inputs[WERKSTUECK_METALL]) {
+			std::cout << "Werkstueck Metall" << std::endl;
+			inputs[WERKSTUECK_METALL] = true;
+		} else if (((value & BIT_4) == 0) && inputs[WERKSTUECK_METALL]) {
+			std::cout << "Werkstueck kein Metall" << std::endl;
+			inputs[WERKSTUECK_METALL] = false;
+		}
 
-			if ((value & BIT_5) && !inputs[WEICHE_OFFEN]) {
-				std::cout << "Weiche offen" << std::endl;
-				inputs[WEICHE_OFFEN] = true;
-			} else if (((value & BIT_5) == 0) && inputs[WEICHE_OFFEN]) {
-				std::cout << "Weiche geschlossen" << std::endl;
-				inputs[WEICHE_OFFEN] = false;
-			}
+		if ((value & BIT_5) && !inputs[WEICHE_OFFEN]) {
+			std::cout << "Weiche offen" << std::endl;
+			inputs[WEICHE_OFFEN] = true;
+		} else if (((value & BIT_5) == 0) && inputs[WEICHE_OFFEN]) {
+			std::cout << "Weiche geschlossen" << std::endl;
+			inputs[WEICHE_OFFEN] = false;
+		}
 
-			if (((value & BIT_6) == 0) && !inputs[RUTSCHE_VOLL]) {
-				std::cout << "Rutsche ist voll" << std::endl;
-				inputs[RUTSCHE_VOLL] = true;
-			} else if ((value & BIT_6) && inputs[RUTSCHE_VOLL]) {
-				std::cout << "Rutsche nicht voll" << std::endl;
-				inputs[RUTSCHE_VOLL] = false;
-			}
+		if (((value & BIT_6) == 0) && !inputs[RUTSCHE_VOLL]) {
+			std::cout << "Rutsche ist voll" << std::endl;
+			inputs[RUTSCHE_VOLL] = true;
+		} else if ((value & BIT_6) && inputs[RUTSCHE_VOLL]) {
+			std::cout << "Rutsche nicht voll" << std::endl;
+			inputs[RUTSCHE_VOLL] = false;
+		}
 
-			if (((value & BIT_7) == 0) && !inputs[AUSLAUF_WERKSTUECK]) {
-				std::cout << "LS-Auslauf unterbrochen" << std::endl;
-				inputs[AUSLAUF_WERKSTUECK] = true;
-			} else if ((value & BIT_7) && inputs[AUSLAUF_WERKSTUECK]) {
-				std::cout << "LS-Auslauf frei" << std::endl;
-				inputs[AUSLAUF_WERKSTUECK] = false;
-			}
-			break;
-		case PC_STATUS:
-			if ((value & BIT_4) && !inputs[TASTE_START]) {
-				std::cout << "Starttaste gedrueckt" << std::endl;
-				inputs[TASTE_START] = true;
-			} else if (((value & BIT_4) == 0) && inputs[TASTE_START]) {
-				std::cout << "Starttaste nicht gedrueckt" << std::endl;
-				inputs[TASTE_START] = false;
-			}
+		if (((value & BIT_7) == 0) && !inputs[AUSLAUF_WERKSTUECK]) {
+			std::cout << "LS-Auslauf unterbrochen" << std::endl;
+			inputs[AUSLAUF_WERKSTUECK] = true;
+		} else if ((value & BIT_7) && inputs[AUSLAUF_WERKSTUECK]) {
+			std::cout << "LS-Auslauf frei" << std::endl;
+			inputs[AUSLAUF_WERKSTUECK] = false;
+		}
+		break;
+	case PC_STATUS:
+		if ((value & BIT_4) && !inputs[TASTE_START]) {
+			std::cout << "Starttaste gedrueckt" << std::endl;
+			inputs[TASTE_START] = true;
+		} else if (((value & BIT_4) == 0) && inputs[TASTE_START]) {
+			std::cout << "Starttaste nicht gedrueckt" << std::endl;
+			inputs[TASTE_START] = false;
+		}
 
-			if (((value & BIT_5) == 0) && !inputs[TASTE_STOP]) {
-				std::cout << "Stoptaste gedrueckt" << std::endl;
-				inputs[TASTE_STOP] = true;
-			} else if ((value & BIT_5) && inputs[TASTE_STOP]) {
-				std::cout << "Stoptaste nicht gedrueckt" << std::endl;
-				inputs[TASTE_STOP] = false;
-			}
+		if (((value & BIT_5) == 0) && !inputs[TASTE_STOP]) {
+			std::cout << "Stoptaste gedrueckt" << std::endl;
+			inputs[TASTE_STOP] = true;
+		} else if ((value & BIT_5) && inputs[TASTE_STOP]) {
+			std::cout << "Stoptaste nicht gedrueckt" << std::endl;
+			inputs[TASTE_STOP] = false;
+		}
 
-			if ((value & BIT_6) && !inputs[TASTE_RESET]) {
-				std::cout << "Resettaste gedrueckt" << std::endl;
-				inputs[TASTE_RESET] = true;
-			} else if (((value & BIT_6) == 0) && inputs[TASTE_RESET]) {
-				std::cout << "Resettaste nicht gedrueckt" << std::endl;
-				inputs[TASTE_RESET] = false;
-			}
+		if ((value & BIT_6) && !inputs[TASTE_RESET]) {
+			std::cout << "Resettaste gedrueckt" << std::endl;
+			inputs[TASTE_RESET] = true;
+		} else if (((value & BIT_6) == 0) && inputs[TASTE_RESET]) {
+			std::cout << "Resettaste nicht gedrueckt" << std::endl;
+			inputs[TASTE_RESET] = false;
+		}
 
-			if (((value & BIT_7) == 0) && !inputs[TASTE_E_STOP]) {
-				std::cout << "E-stop gedrueckt" << std::endl;
-				inputs[TASTE_E_STOP] = true;
-			} else if ((value & BIT_7) && inputs[TASTE_E_STOP]) {
-				std::cout << "E-stop nicht gedrueckt" << std::endl;
-				inputs[TASTE_E_STOP] = false;
-			}
-			break;
+		if (((value & BIT_7) == 0) && !inputs[TASTE_E_STOP]) {
+			std::cout << "E-stop gedrueckt" << std::endl;
+			inputs[TASTE_E_STOP] = true;
+		} else if ((value & BIT_7) && inputs[TASTE_E_STOP]) {
+			std::cout << "E-stop nicht gedrueckt" << std::endl;
+			inputs[TASTE_E_STOP] = false;
+		}
+		break;
 	case PA_TRAFFICLIGHT:
-			if (value == TRAFFICLIGHT_START) {
-				std::cout << "Dispatcher: trafficlight_start_signal" << std::endl;
-				trafficlight_inputs[TRAFFICLIGHT_START] = true;
-			}else{
-				trafficlight_inputs[TRAFFICLIGHT_START] = false;
-			}
+		if (value == TRAFFICLIGHT_START) {
+			std::cout << "Dispatcher: trafficlight_start_signal" << std::endl;
+			trafficlight_inputs[TRAFFICLIGHT_START] = true;
+		} else {
+			trafficlight_inputs[TRAFFICLIGHT_START] = false;
+		}
 
-			if (value == TRAFFICLIGHT_YELLOW) {
-				std::cout << "Dispatcher: yellow_signal" << std::endl;
-				trafficlight_inputs[TRAFFICLIGHT_YELLOW] = true;
-			}else{
-				trafficlight_inputs[TRAFFICLIGHT_YELLOW] = false;
-			}
+		if (value == TRAFFICLIGHT_YELLOW) {
+			std::cout << "Dispatcher: yellow_signal" << std::endl;
+			trafficlight_inputs[TRAFFICLIGHT_YELLOW] = true;
+		} else {
+			trafficlight_inputs[TRAFFICLIGHT_YELLOW] = false;
+		}
 
-			if (value == TRAFFICLIGHT_GREEN) {
-				std::cout << "Dispatcher: green_signal" << std::endl;
-				trafficlight_inputs[TRAFFICLIGHT_GREEN] = true;
-			}else{
-				trafficlight_inputs[TRAFFICLIGHT_GREEN] = false;
-			}
+		if (value == TRAFFICLIGHT_GREEN) {
+			std::cout << "Dispatcher: green_signal" << std::endl;
+			trafficlight_inputs[TRAFFICLIGHT_GREEN] = true;
+		} else {
+			trafficlight_inputs[TRAFFICLIGHT_GREEN] = false;
+		}
 
-			if (value == TRAFFICLIGHT_RED) {
-				std::cout << "Dispatcher: red_signal" << std::endl;
-				trafficlight_inputs[TRAFFICLIGHT_RED] = true;
-			}else{
-				trafficlight_inputs[TRAFFICLIGHT_RED] = false;
-			}
+		if (value == TRAFFICLIGHT_RED) {
+			std::cout << "Dispatcher: red_signal" << std::endl;
+			trafficlight_inputs[TRAFFICLIGHT_RED] = true;
+		} else {
+			trafficlight_inputs[TRAFFICLIGHT_RED] = false;
+		}
 
-			if (value == TRAFFICLIGHT_RED_B) {
-				std::cout << "Dispatcher: red_blinkend_signal" << std::endl;
-				trafficlight_inputs[TRAFFICLIGHT_RED_B] = true;
-			}else{
-				trafficlight_inputs[TRAFFICLIGHT_RED_B] = false;
-			}
-			if (value == TRAFFICLIGHT_END) {
-				std::cout << "Dispatcher: END_signal" << std::endl;
-				trafficlight_inputs[TRAFFICLIGHT_END] = true;
-			}else{
-				trafficlight_inputs[TRAFFICLIGHT_END] = false;
-			}
-			break;
+		if (value == TRAFFICLIGHT_RED_B) {
+			std::cout << "Dispatcher: red_blinkend_signal" << std::endl;
+			trafficlight_inputs[TRAFFICLIGHT_RED_B] = true;
+		} else {
+			trafficlight_inputs[TRAFFICLIGHT_RED_B] = false;
+		}
+		if (value == TRAFFICLIGHT_END) {
+			std::cout << "Dispatcher: END_signal" << std::endl;
+			trafficlight_inputs[TRAFFICLIGHT_END] = true;
+		} else {
+			trafficlight_inputs[TRAFFICLIGHT_END] = false;
+		}
+		break;
 
 	case PA_CONVEYOR:
 
 		if (value == P_CONVEYOR_START) {
-				std::cout << "Dispatcher: conveyor_start_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_START] = true;
-		}else{
+			std::cout << "Dispatcher: conveyor_start_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_START] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_START] = false;
 		}
 
 		if (value == P_CONVEYOR_STOP) {
-				std::cout << "Dispatcher: stop_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_STOP] = true;
-		}else{
+			std::cout << "Dispatcher: stop_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_STOP] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_STOP] = false;
 		}
 
-
 		if (value == P_CONVEYOR_STOP_X) {
-				std::cout << "Dispatcher: stop_x_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_STOP_X] = true;
-		}else{
+			std::cout << "Dispatcher: stop_x_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_STOP_X] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_STOP_X] = false;
 		}
 
-
 		if (value == P_CONVEYOR_SLOW) {
-				std::cout << "Dispatcher: slow_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_SLOW] = true;
-		}else{
+			std::cout << "Dispatcher: slow_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_SLOW] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_SLOW] = false;
 		}
 
-
 		if (value == P_CONVEYOR_SLOW_X) {
-				std::cout << "Dispatcher: slow_x_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_SLOW_X] = true;
-		}else{
+			std::cout << "Dispatcher: slow_x_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_SLOW_X] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_SLOW_X] = false;
 		}
 
-
 		if (value == P_CONVEYOR_RIGHT) {
-				std::cout << "Dispatcher: right_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_RIGHT] = true;
-		}else{
+			std::cout << "Dispatcher: right_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_RIGHT] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_RIGHT] = false;
 		}
 
-
 		if (value == P_CONVEYOR_LEFT) {
-				std::cout << "Dispatcher: left_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_LEFT] = true;
-		}else{
+			std::cout << "Dispatcher: left_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_LEFT] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_LEFT] = false;
 		}
 
-
 		if (value == P_CONVEYOR_NOTAUS) {
-				std::cout << "Dispatcher: notaus_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_NOTAUS] = true;
-		}else{
+			std::cout << "Dispatcher: notaus_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_NOTAUS] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_NOTAUS] = false;
 		}
 
-
 		if (value == P_CONVEYOR_NOTAUS_X) {
-				std::cout << "Dispatcher:  notaus_x_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_NOTAUS_X] = true;
-		}else{
+			std::cout << "Dispatcher:  notaus_x_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_NOTAUS_X] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_NOTAUS_X] = false;
 		}
 		if (value == P_CONVEYOR_END) {
-				std::cout << "Dispatcher:  END_signal" << std::endl;
-				conveyor_inputs[P_CONVEYOR_END] = true;
-		}else{
+			std::cout << "Dispatcher:  END_signal" << std::endl;
+			conveyor_inputs[P_CONVEYOR_END] = true;
+		} else {
 			conveyor_inputs[P_CONVEYOR_END] = false;
 		}
 
-			break;
+		break;
 	}
 }
 
@@ -426,7 +427,7 @@ bool* Dispatcher::get_trafficlight_inputs() {
 	return trafficlight_inputs;
 }
 
-bool* Dispatcher::get_conveyor_inputs(){
+bool* Dispatcher::get_conveyor_inputs() {
 	return conveyor_inputs;
 }
 
@@ -440,10 +441,10 @@ int Dispatcher::get_disp_Chid() {
 int Dispatcher::get_disp_Coid() {
 	return dispatcher_Coid;
 }
-int Dispatcher::get_trafficLight_Chid(){
+int Dispatcher::get_trafficLight_Chid() {
 	return trafficlight_Chid;
 }
-int Dispatcher::get_conveyor_Chid(){
+int Dispatcher::get_conveyor_Chid() {
 	return conveyor_Chid;
 }
 

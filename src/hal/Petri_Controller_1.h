@@ -13,7 +13,7 @@
 #include "TimerHandler.h"
 #include "Puk.h"
 
-#define N_PLACE 33
+#define N_PLACE 38
 
 class Petri_Controller_1: public thread::HAWThread {
 public:

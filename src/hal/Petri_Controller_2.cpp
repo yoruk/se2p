@@ -155,6 +155,12 @@ void Petri_Controller_2::process_transitions() {
 		places[1] = true;
 
 		if (-1 == MsgSendPulse(petri_controller_2_dispatcher_Coid,
+				SIGEV_PULSE_PRIO_INHERIT, PULSE_FROM_CONTROLLER_2, CONTROLLER_2_BUSY)) {
+			perror("Petri_Controller_2:: MsgSendPulse an trafficLight\n");
+			exit(EXIT_FAILURE);
+		}
+
+		if (-1 == MsgSendPulse(petri_controller_2_dispatcher_Coid,
 				SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_START)) {
 			perror("Petri_Controller_2:: MsgSendPulse an trafficLight\n");
 			exit(EXIT_FAILURE);
@@ -293,6 +299,13 @@ void Petri_Controller_2::process_transitions() {
 			perror("Petri_Controller_2:: MsgSendPulse an trafficLight\n");
 			exit(EXIT_FAILURE);
 		}
+
+		if (-1 == MsgSendPulse(petri_controller_2_dispatcher_Coid,
+				SIGEV_PULSE_PRIO_INHERIT, PULSE_FROM_CONTROLLER_2, CONTROLLER_2_FREE)) {
+			perror("Petri_Controller_2:: MsgSendPulse an trafficLight\n");
+			exit(EXIT_FAILURE);
+		}
+
 		puts("Petri_Controller_2:  T7\n");
 		fflush(stdout);
 
@@ -511,6 +524,13 @@ void Petri_Controller_2::process_transitions() {
 			perror("Petri_Controller_2:: MsgSendPulse an trafficLight\n");
 			exit(EXIT_FAILURE);
 		}
+
+		if (-1 == MsgSendPulse(petri_controller_2_dispatcher_Coid,
+				SIGEV_PULSE_PRIO_INHERIT, PULSE_FROM_CONTROLLER_2, CONTROLLER_2_FREE)) {
+			perror("Petri_Controller_2:: MsgSendPulse an trafficLight\n");
+			exit(EXIT_FAILURE);
+		}
+
 		puts("Petri_Controller_2:  T16\n");
 		fflush(stdout);
 	}
