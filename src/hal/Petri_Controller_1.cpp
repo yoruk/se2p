@@ -118,11 +118,11 @@ void Petri_Controller_1::execute(void* arg) {
 			rutsche_voll_c1_timeout = true;
 		}
 
-		if (pulse.code == PULSE_FROM_CONTROLLER_2 && pulse.value.sival_int == CONTROLLER_2_BUSY) {
+		if (pulse.code == PULSE_TO_CONTROLLER1 && pulse.value.sival_int == CONTROLLER_2_BUSY) {
 			controller_2_free = false;
 		}
 
-		if (pulse.code == PULSE_FROM_CONTROLLER_2 && pulse.value.sival_int == CONTROLLER_2_FREE) {
+		if (pulse.code == PULSE_TO_CONTROLLER1 && pulse.value.sival_int == CONTROLLER_2_FREE) {
 			controller_2_free = true;
 		}
 
