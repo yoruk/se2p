@@ -14,7 +14,7 @@ bool* trafficlight_tmpArr;
 Petri_TrafficLight::Petri_TrafficLight() {
 
 	trafficlight = TrafficLight::getInstance();
-	trafficlightblinken = TrafficLightBlinken::getInstance();
+	trafficlightblinken = new TrafficLightBlinken();
 
 	trafficlight_dispatcher = Dispatcher::getInstance();
 	trafficlight_dispatcher_Chid
@@ -238,7 +238,7 @@ void Petri_TrafficLight::process_transitions() {
 
 		trafficlight_lokal_inputs[TRAFFICLIGHT_END] = false;
 		trafficlight->reset_trafficlight();
-		puts("Trafficlight: T7\n");
+		puts("Trafficlight: T8\n");
 		fflush(stdout);
 
 	}
@@ -257,7 +257,26 @@ void Petri_TrafficLight::process_transitions() {
 
 		trafficlight_lokal_inputs[TRAFFICLIGHT_END] = false;
 		trafficlight->reset_trafficlight();
-		puts("Trafficlight: T7\n");
+		puts("Trafficlight: T9\n");
+		fflush(stdout);
+
+	}
+
+	/*_________T10_________*/
+	if (!trafficlight_places[0] && !trafficlight_places[1]
+			&& !trafficlight_places[2] && trafficlight_places[3]
+			&& !trafficlight_places[4]
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_END] == true)) {
+
+		trafficlight_places[0] = true;
+		trafficlight_places[1] = false;
+		trafficlight_places[2] = false;
+		trafficlight_places[3] = false;
+		trafficlight_places[4] = false;
+
+		trafficlight_lokal_inputs[TRAFFICLIGHT_END] = false;
+		trafficlight->reset_trafficlight();
+		puts("Trafficlight: T10\n");
 		fflush(stdout);
 
 	}
@@ -312,7 +331,7 @@ void Petri_TrafficLight::NotifyReactor() {
 	if (trafficlight_lokal_outputs[AMPEL_ROT] == true) {
 		trafficlightblinken->stop();
 		trafficlightblinken->join();
-		trafficlight->reset_trafficlight();
+		trafficlightblinken = new TrafficLightBlinken();
 		trafficlight->redOn();
 	}
 	if (trafficlight_lokal_outputs[AMPEL_ROT_B] == true) {
