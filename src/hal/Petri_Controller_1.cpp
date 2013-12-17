@@ -30,7 +30,7 @@ bool newPuk = true;
 bool test;
 bool fehler = false;
 static SerialCom* sc;
-bool band2Frei;
+bool band2Frei = true;
 
 Petri_Controller_1::Petri_Controller_1() {
 
@@ -434,6 +434,7 @@ void Petri_Controller_1::process_transitions() {
 		//			timer_Gate->pause();
 		//		}
 
+		printf("<<<<<<<<PUK TYP : %d,,,,,,", p[18]->get_typ() );
 		puts("Petri_Controller_1:  T19		moving to END (4)\n");
 		fflush(stdout);
 	}
@@ -491,7 +492,7 @@ void Petri_Controller_1::process_transitions() {
 	}
 
 	/*_________T31_________*/
-	if (p[30] != NULL && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == true) && (fehler == false) && band2Frei == true) {
+	if (p[30] != NULL && (petri_controller_1_inputs[AUSLAUF_WERKSTUECK] == false) && (fehler == false) && band2Frei == true) {
 
 		sc->send_puk_data_pkg(p[30]->get_id(), p[30]->get_typ(), p[30]->get_hoehenmessung1());
 
