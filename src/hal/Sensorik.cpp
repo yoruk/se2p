@@ -177,7 +177,7 @@ int Sensorik::getHeightPukType() {
 		type = PUK_GROSS;
 	}
 
-	if ((height > 3300) && (height < 3600)) {
+	if ((height > 3300) && (height < 3650)) {
 		type = PUK_LOCH;
 	}
 	return type;

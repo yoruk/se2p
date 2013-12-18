@@ -35,7 +35,7 @@ private:
 	Dispatcher* disp_petri_controller_1;
 	TimerHandler* timer;
 	Timer* timer_Gate;
-	Timer* kick_time;
+	Timer* timer_move;
 	Timer* timer_C1_SlideFull;
 
 	void init_places();

@@ -197,12 +197,17 @@ void Petri_Controller_2::process_transitions() {
 
 		puk_tmp_type = petri_controller_2_sen->getHeightPukType();
 
-		if (puk_c2.get_typ() == PUK_GROSS && puk_tmp_type == PUK_GROSS) {
+		if ((puk_c2.get_typ() == PUK_GROSS) && (puk_tmp_type == PUK_GROSS)) {
+			printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ");fflush(stdout);
 			aussortieren = true;
 		} else {
 			puk_c2.set_hoehenmessung2(petri_controller_2_sen->getHeight());
 			puk_c2.set_typ(petri_controller_2_sen->getHeightPukType());
 		}
+
+
+		printf("<<<<<BOOL :  %s  \n",aussortieren ? "true":"false");fflush(stdout);
+		fflush(stdout);
 
 		puts("Petri_Controller_2:  T1\n");
 		fflush(stdout);
