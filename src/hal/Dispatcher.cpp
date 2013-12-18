@@ -16,10 +16,11 @@ Dispatcher::Dispatcher() {
 		perror("Dispatcher: ChannelCreate signalChid failed");
 		exit(EXIT_FAILURE);
 	}
-	printf("Dispatcher::  GELBE Chid: %d\n", dispatcher_Chid);
-	fflush(stdout);
+//	printf("Dispatcher::  GELBE Chid: %d\n", dispatcher_Chid);
+//	fflush(stdout);
 	// attach to signal channel(stellt die verbindung zu dem channel des Prozesses PID)
-	dispatcher_Coid = ConnectAttach(0, 0, dispatcher_Chid, _NTO_SIDE_CHANNEL, 0);
+	dispatcher_Coid
+			= ConnectAttach(0, 0, dispatcher_Chid, _NTO_SIDE_CHANNEL, 0);
 	if (dispatcher_Coid == -1) {
 		perror("Dispatcher: ConnectAttach signalCoid failed");
 		exit(EXIT_FAILURE);
@@ -31,16 +32,17 @@ Dispatcher::Dispatcher() {
 		perror("Dispatcher: Channel Create TrafficLight failed");
 		exit(EXIT_FAILURE);
 	}
-	printf("Dispatcher:: GRUEN: Chid %d\n", trafficlight_Chid);
-	fflush(stdout);
+//	printf("Dispatcher:: GRUEN: Chid %d\n", trafficlight_Chid);
+//	fflush(stdout);
 	// attach to signal channel(stellt die verbindung zu dem channel des Prozesses PID)
-	trafficlight_Coid = ConnectAttach(0, 0, trafficlight_Chid, _NTO_SIDE_CHANNEL, 0);
+	trafficlight_Coid = ConnectAttach(0, 0, trafficlight_Chid,
+			_NTO_SIDE_CHANNEL, 0);
 	if (trafficlight_Coid == -1) {
 		perror("Dispatcher: ConnectAttach trafficlight failed");
 		exit(EXIT_FAILURE);
 	}
-	printf("Dispatcher:: GRUEN: Coid %d\n", trafficlight_Coid);
-	fflush(stdout);
+//	printf("Dispatcher:: GRUEN: Coid %d\n", trafficlight_Coid);
+//	fflush(stdout);
 
 	// create channel for conveyor
 	conveyor_Chid = ChannelCreate(0);
@@ -48,21 +50,21 @@ Dispatcher::Dispatcher() {
 		perror("Dispatcher: Channel Create TrafficLight failed");
 		exit(EXIT_FAILURE);
 	}
-	printf("Dispatcher:: ORANGE: Chid %d\n", conveyor_Chid);
-	fflush(stdout);
+//	printf("Dispatcher:: ORANGE: Chid %d\n", conveyor_Chid);
+//	fflush(stdout);
 	// attach to signal channel(stellt die verbindung zu dem channel des Prozesses PID)
 	conveyor_Coid = ConnectAttach(0, 0, conveyor_Chid, _NTO_SIDE_CHANNEL, 0);
 	if (conveyor_Coid == -1) {
 		perror("Dispatcher: ConnectAttach trafficlight failed");
 		exit(EXIT_FAILURE);
 	}
-	printf("Dispatcher:: ORANGE Coid %d\n", conveyor_Coid);
-	fflush(stdout);
+//	printf("Dispatcher:: ORANGE Coid %d\n", conveyor_Coid);
+//	fflush(stdout);
 
 	Sensorik* sen = Sensorik::getInstance();
 	sensorik_Chid = sen->getSignalChid();
-	printf("Dispatcher:: BLAU: Chid %d\n", sensorik_Chid);
-	fflush(stdout);
+//	printf("Dispatcher:: BLAU: Chid %d\n", sensorik_Chid);
+//	fflush(stdout);
 }
 
 Dispatcher::~Dispatcher() {
@@ -96,44 +98,51 @@ void Dispatcher::execute(void* arg) {
 			exit(EXIT_FAILURE);
 		}
 
-
 		//printf("Dispatcher::    code:%d,  value:%d \n", pulse.code, pulse.value.sival_int);
 		//		printf("Dispatcher::MesgRecievePulse\n");fflush(stdout);
 
 		read_inputs(pulse.code, pulse.value.sival_int);
 
 		if (pulse.code == PA_TRAFFICLIGHT) {
-			printf("----------------------------------------TRAFFICLIGHT----------------------------------------------------------\n");
+			printf(
+					"----------------------------------------TRAFFICLIGHT----------------------------------------------------------\n");
 			fflush(stdout);
-			printf("Dispatcher::GRUEN Coid: %d\n", trafficlight_Coid);
-			fflush(stdout);
-			if (-1 == MsgSendPulse(trafficlight_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+//			printf("Dispatcher::GRUEN Coid: %d\n", trafficlight_Coid);
+//			fflush(stdout);
+			if (-1 == MsgSendPulse(trafficlight_Coid, SIGEV_PULSE_PRIO_INHERIT,
+					pulse.code, pulse.value.sival_int)) {
 				perror("Dispatcher: MsgSendPulse an trafficlight failed\n");
 				exit(EXIT_FAILURE);
 			}
 		} else if (pulse.code == PA_CONVEYOR) {
 
 			//printf("Dispatcher:: ORANGE Coid: %d\n", conveyor_Coid); fflush(stdout);
-			if(pulse.value.sival_int == (CONTROLLER_2_BUSY || CONTROLLER_2_FREE)){
-				printf("------------------------------------------VON CTRL_2 AN CTRL_1--------------------------------------------------------\n"); fflush(stdout);
-				if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PULSE_TO_CONTROLLER1, pulse.value.sival_int)) {
+			if ((pulse.value.sival_int == CONTROLLER_2_FREE) || (pulse.value.sival_int == CONTROLLER_2_BUSY)) {
+				printf("------------------------------------------VON CTRL_2 AN CTRL_1--------------------------------------------------------\n");
+				fflush(stdout);
+				if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
 					perror("Dispatcher: MsgSendPulse\n");
 					exit(EXIT_FAILURE);
 				}
-			}else {
-				printf("------------------------------------------CONVEYOR--------------------------------------------------------\n"); fflush(stdout);
-				if (-1 == MsgSendPulse(conveyor_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+			} else {
+				printf(
+						"------------------------------------------CONVEYOR--------------------------------------------------------\n");
+				fflush(stdout);
+				if (-1 == MsgSendPulse(conveyor_Coid, SIGEV_PULSE_PRIO_INHERIT,
+						pulse.code, pulse.value.sival_int)) {
 					perror("Dispatcher: MsgSendPulse an conveyor failed\n");
 					exit(EXIT_FAILURE);
 				}
 			}
 
 		} else if (pulse.code == PULSE_FROM_TIMER) {
-			printf("------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");
+			printf(
+					"------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");
 			//fflush(stdout);
 			//printf("Dispatcher:: BLAU Coid: %d\n", dispatcher_Coid);
 			//fflush(stdout);
-			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
+					pulse.code, pulse.value.sival_int)) {
 				perror("Dispatcher: MsgSendPulse an conveyor failed\n");
 				exit(EXIT_FAILURE);
 			}
@@ -142,7 +151,8 @@ void Dispatcher::execute(void* arg) {
 			//fflush(stdout);
 
 			// pulsenachricht an controller weiterleiten
-			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
+					pulse.code, pulse.value.sival_int)) {
 				perror("Dispatcher: MsgSendPulse\n");
 				exit(EXIT_FAILURE);
 			}
@@ -150,7 +160,8 @@ void Dispatcher::execute(void* arg) {
 		} else {
 			//printf("Dispatcher:: GELB Coid: %d\n", dispatcher_Coid);
 			//fflush(stdout);
-			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
+					pulse.code, pulse.value.sival_int)) {
 				perror("Dispatcher: MsgSendPulse\n");
 				exit(EXIT_FAILURE);
 			}

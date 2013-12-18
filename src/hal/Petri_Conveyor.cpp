@@ -46,9 +46,9 @@ void Petri_Conveyor::execute(void* arg) {
 
 	struct _pulse pulse;
 
-	printf("Petri_Motor:: conveyor_dispatcher_Chid: %d\n",
-			conveyor_dispatcher_Chid);
-	fflush(stdout);
+//	printf("Petri_Motor:: conveyor_dispatcher_Chid: %d\n",
+//			conveyor_dispatcher_Chid);
+//	fflush(stdout);
 
 	init_places();
 	while (!isStopped()) {
