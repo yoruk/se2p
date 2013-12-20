@@ -18,6 +18,7 @@ public:
 	void set_typ(char par);
 	void set_hoehenmessung1(int par);
 	void set_hoehenmessung2(int par);
+	void print_puk();
 
 	//Util
 	static unsigned int pukToInt(Puk* p);

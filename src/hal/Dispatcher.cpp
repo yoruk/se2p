@@ -107,7 +107,7 @@ void Dispatcher::execute(void* arg) {
 		}
 
 		if (pulse.code == PA_TRAFFICLIGHT) {
-			printf("----------------------------------------TRAFFICLIGHT----------------------------------------------------------\n");
+			//printf("----------------------------------------TRAFFICLIGHT------------------------------------------------------\n");
 			fflush(stdout);
 			//			printf("Dispatcher::GRUEN Coid: %d\n", trafficlight_Coid);
 			//			fflush(stdout);
@@ -132,7 +132,7 @@ void Dispatcher::execute(void* arg) {
 					}
 
 				} else {
-				printf("------------------------------------------CONVEYOR--------------------------------------------------------\n");
+				//printf("------------------------------------------CONVEYOR--------------------------------------------------------\n");
 				fflush(stdout);
 				if (-1 == MsgSendPulse(conveyor_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
 					perror("Dispatcher: MsgSendPulse an conveyor failed\n");
@@ -183,23 +183,23 @@ void Dispatcher::read_inputs(int code, int value) {
 	switch (code) {
 	case PB_STATUS:
 		if (((value & BIT_0) == 0) && !inputs[EINLAUF_WERKSTUECK]) {
-			std::cout << "LS-Eingang unterbrochen" << std::endl;
+			std::cout << "Dispatcher: LS-Eingang unterbrochen" << std::endl;
 			inputs[EINLAUF_WERKSTUECK] = true;
 		} else if ((value & BIT_0) && inputs[EINLAUF_WERKSTUECK]) {
-			std::cout << "LS-Eingang frei" << std::endl;
+			std::cout << "Dispatcher: LS-Eingang frei" << std::endl;
 			inputs[EINLAUF_WERKSTUECK] = false;
 		}
 
 		if (((value & BIT_1) == 0) && !inputs[WERKSTUECK_IN_HOEHENMESSUNG]) {
-			std::cout << "LS-Hoehenmessung unterbrochen" << std::endl;
+			std::cout << "Dispatcher: LS-Hoehenmessung unterbrochen" << std::endl;
 			inputs[WERKSTUECK_IN_HOEHENMESSUNG] = true;
 		} else if ((value & BIT_1) && inputs[WERKSTUECK_IN_HOEHENMESSUNG]) {
-			std::cout << "LS-Hoehenmessung frei" << std::endl;
+			std::cout << "Dispatcher: LS-Hoehenmessung frei" << std::endl;
 			inputs[WERKSTUECK_IN_HOEHENMESSUNG] = false;
 		}
 
 		if ((value & BIT_2) && !inputs[HOENMESSUNG]) {
-			std::cout << "Werkstueck nicht flach" << std::endl;
+			std::cout << "Dispatcher: Werkstueck nicht flach" << std::endl;
 			inputs[HOENMESSUNG] = true;
 		} else if (((value & BIT_2) == 0) && inputs[HOENMESSUNG]) {
 			std::cout << "Werkstueck flach" << std::endl;
@@ -207,7 +207,7 @@ void Dispatcher::read_inputs(int code, int value) {
 		}
 
 		if (((value & BIT_3) == 0) && !inputs[WERKSTUECK_IN_WEICHE]) {
-			std::cout << "LS-Weiche unterbrochen" << std::endl;
+			std::cout << "Dispatcher: LS-Weiche unterbrochen" << std::endl;
 			inputs[WERKSTUECK_IN_WEICHE] = true;
 		} else if ((value & BIT_3) && inputs[WERKSTUECK_IN_WEICHE]) {
 			std::cout << "LS-Weiche frei" << std::endl;
@@ -215,67 +215,67 @@ void Dispatcher::read_inputs(int code, int value) {
 		}
 
 		if ((value & BIT_4) && !inputs[WERKSTUECK_METALL]) {
-			std::cout << "Werkstueck Metall" << std::endl;
+			std::cout << "Dispatcher: Werkstueck Metall" << std::endl;
 			inputs[WERKSTUECK_METALL] = true;
 		} else if (((value & BIT_4) == 0) && inputs[WERKSTUECK_METALL]) {
-			std::cout << "Werkstueck kein Metall" << std::endl;
+			std::cout << "Dispatcher: Werkstueck kein Metall" << std::endl;
 			inputs[WERKSTUECK_METALL] = false;
 		}
 
 		if ((value & BIT_5) && !inputs[WEICHE_OFFEN]) {
-			std::cout << "Weiche offen" << std::endl;
+			std::cout << "Dispatcher: Weiche offen" << std::endl;
 			inputs[WEICHE_OFFEN] = true;
 		} else if (((value & BIT_5) == 0) && inputs[WEICHE_OFFEN]) {
-			std::cout << "Weiche geschlossen" << std::endl;
+			std::cout << "Dispatcher: Weiche geschlossen" << std::endl;
 			inputs[WEICHE_OFFEN] = false;
 		}
 
 		if (((value & BIT_6) == 0) && !inputs[RUTSCHE_VOLL]) {
-			std::cout << "Rutsche ist voll" << std::endl;
+			std::cout << "Dispatcher: Rutsche ist voll" << std::endl;
 			inputs[RUTSCHE_VOLL] = true;
 		} else if ((value & BIT_6) && inputs[RUTSCHE_VOLL]) {
-			std::cout << "Rutsche nicht voll" << std::endl;
+			std::cout << "Dispatcher: Rutsche nicht voll" << std::endl;
 			inputs[RUTSCHE_VOLL] = false;
 		}
 
 		if (((value & BIT_7) == 0) && !inputs[AUSLAUF_WERKSTUECK]) {
-			std::cout << "LS-Auslauf unterbrochen" << std::endl;
+			std::cout << "Dispatcher: LS-Auslauf unterbrochen" << std::endl;
 			inputs[AUSLAUF_WERKSTUECK] = true;
 		} else if ((value & BIT_7) && inputs[AUSLAUF_WERKSTUECK]) {
-			std::cout << "LS-Auslauf frei" << std::endl;
+			std::cout << "Dispatcher: LS-Auslauf frei" << std::endl;
 			inputs[AUSLAUF_WERKSTUECK] = false;
 		}
 		break;
 	case PC_STATUS:
 		if ((value & BIT_4) && !inputs[TASTE_START]) {
-			std::cout << "Starttaste gedrueckt" << std::endl;
+			std::cout << "Dispatcher: Starttaste gedrueckt" << std::endl;
 			inputs[TASTE_START] = true;
 		} else if (((value & BIT_4) == 0) && inputs[TASTE_START]) {
-			std::cout << "Starttaste nicht gedrueckt" << std::endl;
+			std::cout << "Dispatcher: Starttaste nicht gedrueckt" << std::endl;
 			inputs[TASTE_START] = false;
 		}
 
 		if (((value & BIT_5) == 0) && !inputs[TASTE_STOP]) {
-			std::cout << "Stoptaste gedrueckt" << std::endl;
+			std::cout << "Dispatcher: Stoptaste gedrueckt" << std::endl;
 			inputs[TASTE_STOP] = true;
 		} else if ((value & BIT_5) && inputs[TASTE_STOP]) {
-			std::cout << "Stoptaste nicht gedrueckt" << std::endl;
+			std::cout << "Dispatcher: Stoptaste nicht gedrueckt" << std::endl;
 			inputs[TASTE_STOP] = false;
 		}
 
 		if ((value & BIT_6) && !inputs[TASTE_RESET]) {
-			std::cout << "Resettaste gedrueckt" << std::endl;
+			std::cout << "Dispatcher: Resettaste gedrueckt" << std::endl;
 			inputs[TASTE_RESET] = true;
 		} else if (((value & BIT_6) == 0) && inputs[TASTE_RESET]) {
-			std::cout << "Resettaste nicht gedrueckt" << std::endl;
+			std::cout << "Dispatcher: Resettaste nicht gedrueckt" << std::endl;
 			inputs[TASTE_RESET] = false;
 		}
 
 		if (((value & BIT_7) == 0) && !inputs[TASTE_E_STOP]) {
-			std::cout << "E-stop gedrueckt" << std::endl;
+			std::cout << "Dispatcher: E-stop gedrueckt" << std::endl;
 			inputs[TASTE_E_STOP] = true;
 		} else if ((value & BIT_7) && inputs[TASTE_E_STOP]) {
-			std::cout << "E-stop nicht gedrueckt" << std::endl;
+			std::cout << "Dispatcher: E-stop nicht gedrueckt" << std::endl;
 			inputs[TASTE_E_STOP] = false;
 		}
 		break;

@@ -66,7 +66,7 @@ int SerialCom::send_puk_data_pkg(int puk_id, int puk_type, int puk_height) {
 	int res = 0;
 	package p;
 
-	//printf("DEBUG:SerialCom: sending puk package\n");fflush(stdout);
+	printf("DEBUG:SerialCom: sending puk package\n");fflush(stdout);
 
 	// wrapping package
 	p.is_msg = FALSE;

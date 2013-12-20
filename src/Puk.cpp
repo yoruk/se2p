@@ -1,5 +1,5 @@
 #include "Puk.h"
-
+#include <stdio.h>
 int Puk::count = 0;
 
 Puk::Puk() {
@@ -83,4 +83,8 @@ Puk* Puk::intToPuk(unsigned int i) {
 	p->set_hoehenmessung1(i & PUK_HEIGHT_MASK);
 
 	return p;
+}
+
+void Puk::print_puk(){
+	printf("Puk(%d) Hoehe:%d  Typ:%d   ", id,hoehenmessung1,typ);fflush(stdout);
 }
