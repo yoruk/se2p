@@ -133,7 +133,9 @@
 #define TIMER_GATE 1
 #define TIMER_MOVE 2
 #define TIMER_REMOVED 3
-#define TIMER_ADDED 4
+#define TIMER_ADDED_LSH 4
+#define TIMER_ADDED_LSW 5
+#define TIMER_ADDED_LSEND 6
 
 /*--------Times-----------*/
 #define C1_MOVE_TO_TIME 750

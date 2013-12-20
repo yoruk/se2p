@@ -39,7 +39,9 @@ private:
 	Timer* timer_C2_GateClose;
 	Timer* timer_C2_SlideFull;
 	Timer* timer_C2_To_removed;
-	Timer* timer_C2_To_added;
+	Timer* timer_C2_To_added_LSH;
+	Timer* timer_C2_To_added_LSW;
+	Timer* timer_C2_To_added_LSEND;
 
 	void init_places();
 	void process_transitions();
