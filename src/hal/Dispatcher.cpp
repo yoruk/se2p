@@ -6,9 +6,11 @@ bool outputs[N_OUT];
 bool trafficlight_inputs[TRAFFICLIGHT_N_IN];
 bool conveyor_inputs[CONVEYOR_N_IN];
 
+
 Dispatcher* Dispatcher::instance = NULL;
 
 Dispatcher::Dispatcher() {
+	controller_2_free = true;
 
 	// create channel for dispatcher
 	dispatcher_Chid = ChannelCreate(0);
@@ -99,7 +101,10 @@ void Dispatcher::execute(void* arg) {
 		//printf("Dispatcher::    code:%d,  value:%d \n", pulse.code, pulse.value.sival_int);
 		//		printf("Dispatcher::MesgRecievePulse\n");fflush(stdout);
 
+		if((pulse.value.sival_int != CONTROLLER_2_BUSY) || (pulse.value.sival_int != CONTROLLER_2_FREE)){
+
 		read_inputs(pulse.code, pulse.value.sival_int);
+		}
 
 		if (pulse.code == PA_TRAFFICLIGHT) {
 			printf("----------------------------------------TRAFFICLIGHT----------------------------------------------------------\n");
@@ -113,14 +118,20 @@ void Dispatcher::execute(void* arg) {
 		} else if (pulse.code == PA_CONVEYOR) {
 
 			//printf("Dispatcher:: ORANGE Coid: %d\n", conveyor_Coid); fflush(stdout);
-			if ((pulse.value.sival_int == CONTROLLER_2_FREE) || (pulse.value.sival_int == CONTROLLER_2_BUSY)) {
-				printf("------------------------------------------VON CTRL_2 AN CTRL_1--------------------------------------------------------\n");
-				fflush(stdout);
-				if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
-					perror("Dispatcher: MsgSendPulse\n");
-					exit(EXIT_FAILURE);
-				}
-			} else {
+
+
+				if (pulse.value.sival_int == CONTROLLER_2_BUSY) {
+					printf("------------------------------------------VON CTRL_2 AN CTRL_1----------------------------BUSY----------------------------\n");fflush(stdout);
+					controller_2_free = false;
+				}else if (pulse.value.sival_int == CONTROLLER_2_FREE) {
+					printf("------------------------------------------VON CTRL_2 AN CTRL_1----------------------------FREE----------------------------\n");fflush(stdout);
+					controller_2_free = true;
+					if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, DUMMY_CODE, DUMMY_VALUE)) {
+						perror("Dispatcher: MsgSendPulse an conveyor failed\n");
+						exit(EXIT_FAILURE);
+					}
+
+				} else {
 				printf("------------------------------------------CONVEYOR--------------------------------------------------------\n");
 				fflush(stdout);
 				if (-1 == MsgSendPulse(conveyor_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {

@@ -14,6 +14,8 @@ public:
 	virtual ~Dispatcher();
 	static Dispatcher* getInstance();
 
+	bool controller_2_free;
+
 	int get_disp_Chid();
 	int get_disp_Coid();
 	bool* get_disp_Inputs();

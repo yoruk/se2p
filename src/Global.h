@@ -134,8 +134,8 @@
 #define TIMER_MOVE 2
 
 /*--------Times-----------*/
-#define C1_MOVE_TO_TIME 500
-#define C1_CLOSE_GATE_TIME 10
+#define C1_MOVE_TO_TIME 750
+#define C1_CLOSE_GATE_TIME 100
 #define C1_KICK_TIME 50
 #define SLIDE_FULL_TIME 2
 #define C1_PUK_LOST_TIME 4
@@ -154,6 +154,10 @@
 #define PULSE_TO_CONTROLLER1 90
 //#define PULSE_CONVEYOR_OK 30
 //#define PULSE_CONVEYOR_ESTOP 40
+
+
+#define DUMMY_CODE 9999
+#define DUMMY_VALUE 8888
 
 
 /*--------PUK_BUFFER-----------*/

@@ -61,10 +61,10 @@ void Petri_Conveyor::execute(void* arg) {
 			exit(EXIT_FAILURE);
 		}
 
-		printf("Petri_Motor:: MesgRecievePulse angekommen! \n");
-		fflush(stdout);
-		printf("Petri_Motor::    code:%d,  value:%d \n", pulse.code,
-				pulse.value.sival_int);
+//		printf("Petri_Motor:: MesgRecievePulse angekommen! \n");
+//		fflush(stdout);
+//		printf("Petri_Motor::    code:%d,  value:%d \n", pulse.code,
+//				pulse.value.sival_int);
 
 		conveyor_tmpArr = conveyor_dispatcher->get_conveyor_inputs();
 		set_conveyor_inputs();
