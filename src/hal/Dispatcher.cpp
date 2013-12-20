@@ -411,7 +411,7 @@ void Dispatcher::set_disp_Outputs(bool tmpArr[]) {
 	outputs[9] = tmpArr[9];
 	outputs[10] = tmpArr[10];
 	outputs[11] = tmpArr[11];
-	outputs[11] = tmpArr[12];
+	outputs[12] = tmpArr[12];
 }
 
 void Dispatcher::set_disp_Inputs(bool tmpArr[]) {

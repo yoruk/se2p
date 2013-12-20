@@ -47,7 +47,6 @@ private:
 
 
 	void setInputs();
-	void setOutputs();
 
 
 protected:

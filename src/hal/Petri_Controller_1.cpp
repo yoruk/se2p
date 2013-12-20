@@ -116,9 +116,9 @@ void Petri_Controller_1::execute(void* arg) {
 
 		tmpArr_1 = disp_petri_controller_1->get_disp_Inputs();
 		setInputs();
-		tmpArr_1 = disp_petri_controller_1->get_disp_Outputs();
 
-		//setOutputs();
+
+
 		process_transitions();
 		calculate_outputs();
 		NotifyReactor();
@@ -334,7 +334,7 @@ void Petri_Controller_1::process_transitions() {
 	}
 
 	/*_________T14_________*/
-	if (p[12] != NULL && p[13] == NULL && (petri_controller_1_inputs[TASTE_E_STOP] == false) && (fehler == false)) {
+	if (p[12] != NULL && p[13] == NULL  && (fehler == false)) {
 
 		p[13] = p[12];
 		p[12] = NULL;
@@ -755,7 +755,6 @@ void Petri_Controller_1::calculate_outputs() {
 void Petri_Controller_1::NotifyReactor() {
 
 	if (petri_controller_1_outputs[WEICHE_AUF] == true) {
-		//puts("HIERRR OPEN.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");fflush(stdout);
 		gate1->open();
 	} else {
 
@@ -785,6 +784,10 @@ void Petri_Controller_1::NotifyReactor() {
 }
 
 void Petri_Controller_1::setInputs() {
+
+	printf("vorher: petri_controller_1_inputs[TASTE_E_STOP] = %d\n", petri_controller_1_inputs[TASTE_E_STOP]); fflush(stdout);
+	printf("vorher: tmpArr_1[TASTE_E_STOP] = %d\n", tmpArr_1[TASTE_E_STOP]); fflush(stdout);
+
 	petri_controller_1_inputs[EINLAUF_WERKSTUECK] = tmpArr_1[EINLAUF_WERKSTUECK];
 	petri_controller_1_inputs[WERKSTUECK_IN_HOEHENMESSUNG] = tmpArr_1[WERKSTUECK_IN_HOEHENMESSUNG];
 	petri_controller_1_inputs[HOENMESSUNG] = tmpArr_1[HOENMESSUNG];
@@ -797,23 +800,11 @@ void Petri_Controller_1::setInputs() {
 	petri_controller_1_inputs[TASTE_STOP] = tmpArr_1[TASTE_STOP];
 	petri_controller_1_inputs[TASTE_RESET] = tmpArr_1[TASTE_RESET];
 	petri_controller_1_inputs[TASTE_E_STOP] = tmpArr_1[TASTE_E_STOP];
-}
-void Petri_Controller_1::setOutputs() {
-	//	petri_controller_1_outputs[MOTOR_RECHTSLAUF] = tmpArr[0];
-	//	petri_controller_1_outputs[MOTOR_LINKSLAUF] = tmpArr[1];
-	//	petri_controller_1_outputs[MOTOR_LANGSAM] = tmpArr[2];
-	//	petri_controller_1_outputs[MOTOR_STOP] = tmpArr[3];
-	petri_controller_1_outputs[WEICHE_AUF] = tmpArr_1[4];
 
-	//	petri_controller_1_outputs[AMPEL_GRUEN] = tmpArr[5];
-	//	petri_controller_1_outputs[AMPEL_GELB] = tmpArr[6];
-	//	petri_controller_1_outputs[AMPEL_ROT] = tmpArr[7];
-	petri_controller_1_outputs[LED_STARTTASTE] = tmpArr_1[8];
-	petri_controller_1_outputs[LED_RESETTASTE] = tmpArr_1[9];
-	petri_controller_1_outputs[LED_Q1] = tmpArr_1[10];
-	petri_controller_1_outputs[LED_Q2] = tmpArr_1[11];
-	//	petri_controller_1_outputs[AMPEL_ROT_B] = tmpArr[12];
+	printf("nachher: petri_controller_1_inputs[TASTE_E_STOP] = %d\n", petri_controller_1_inputs[TASTE_E_STOP]); fflush(stdout);
+	printf("nachher: tmpArr_1[TASTE_E_STOP] = %d\n", tmpArr_1[TASTE_E_STOP]); fflush(stdout);
 }
+
 
 void Petri_Controller_1::shutdown() {
 
