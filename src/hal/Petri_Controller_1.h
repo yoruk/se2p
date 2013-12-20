@@ -33,7 +33,7 @@ private:
 	Gate* gate1;
 	Led* led;
 	Dispatcher* disp_petri_controller_1;
-	TimerHandler* timer;
+	TimerHandler* timer_c1;
 	Timer* timer_Gate;
 	Timer* timer_move;
 	Timer* timer_C1_SlideFull;

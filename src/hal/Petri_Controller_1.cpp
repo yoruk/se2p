@@ -33,12 +33,12 @@ Petri_Controller_1::Petri_Controller_1() {
 	//			petri_controller_1_sensorik_Chid);
 	//	fflush(stdout);
 
-	timer = TimerHandler::getInstance();
-	timer_Gate = timer->createTimer(petri_controller_1_sensorik_Chid, 0, C1_CLOSE_GATE_TIME, TIMER_GATE);
+	timer_c1 = TimerHandler::getInstance();
+	timer_Gate = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 0, C1_CLOSE_GATE_TIME, TIMER_GATE);
 
-	timer_C1_SlideFull = timer->createTimer(petri_controller_1_sensorik_Chid, SLIDE_FULL_TIME, 0, TIMER_FULL);
+	timer_C1_SlideFull = timer_c1->createTimer(petri_controller_1_sensorik_Chid, SLIDE_FULL_TIME, 0, TIMER_FULL);
 
-	timer_move = timer->createTimer(petri_controller_1_sensorik_Chid, 0 , C1_MOVE_TO_TIME, TIMER_MOVE);
+	timer_move = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 0 , C1_MOVE_TO_TIME, TIMER_MOVE);
 
 	// attach to signal channel
 	petri_controller_1_dispatcher_Coid = ConnectAttach(0, 0, petri_controller_1_sensorik_Chid, _NTO_SIDE_CHANNEL, 0);
@@ -384,8 +384,8 @@ void Petri_Controller_1::process_transitions() {
 		p[14] = NULL;
 
 		petri_controller_1_outputs[WEICHE_AUF] = false;
-		timer->deleteTimer(timer_Gate);
-		timer_Gate = timer->createTimer(petri_controller_1_sensorik_Chid, 0, C1_CLOSE_GATE_TIME, TIMER_GATE);
+		timer_c1->deleteTimer(timer_Gate);
+		timer_Gate = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 0, C1_CLOSE_GATE_TIME, TIMER_GATE);
 		puts("Petri_Controller_1:  T16	gate_close_c1_timeout == True \n");
 		fflush(stdout);
 	}
@@ -514,8 +514,8 @@ void Petri_Controller_1::process_transitions() {
 		}
 
 		move_to_c2_timeout = false;
-		timer->deleteTimer(timer_move);
-		timer_move = timer->createTimer(petri_controller_1_sensorik_Chid, 0 , C1_MOVE_TO_TIME, TIMER_MOVE);
+		timer_c1->deleteTimer(timer_move);
+		timer_move = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 0 , C1_MOVE_TO_TIME, TIMER_MOVE);
 
 		puts("Petri_Controller_1:  T24	move_to_c2_timeout == true \n");
 		fflush(stdout);

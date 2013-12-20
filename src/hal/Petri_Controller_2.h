@@ -35,10 +35,11 @@ private:
 	Gate* gate;
 	Led* led;
 	Dispatcher* disp_petri_controller_2;
-	TimerHandler* timer;
+	TimerHandler* timer_c2;
 	Timer* timer_C2_GateClose;
 	Timer* timer_C2_SlideFull;
-	Timer* timer3_C2;
+	Timer* timer_C2_To_removed;
+	Timer* timer_C2_To_added;
 
 	void init_places();
 	void process_transitions();

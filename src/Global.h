@@ -132,6 +132,8 @@
 #define TIMER_FULL 0
 #define TIMER_GATE 1
 #define TIMER_MOVE 2
+#define TIMER_REMOVED 3
+#define TIMER_ADDED 4
 
 /*--------Times-----------*/
 #define C1_MOVE_TO_TIME 750
