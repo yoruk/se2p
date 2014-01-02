@@ -115,8 +115,11 @@
 #define P_CONVEYOR_NOTAUS_X 8
 #define P_CONVEYOR_END 9
 
+/*---------Serial_values-----------*/
 #define CONTROLLER_2_FREE 20
 #define CONTROLLER_2_BUSY 21
+#define SERIAL_NOTAUS 123
+#define SERIAL_NOTAUS_X 124
 
 /*----------trafficlight_INPUTS----------*/
 #define TRAFFICLIGHT_N_IN 6

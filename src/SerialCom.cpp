@@ -90,7 +90,7 @@ int SerialCom::send_msg_pkg(int msg_content) {
 	int res = 0;
 	package p;
 
-	//printf("DEBUG:SerialCom: sending message package\n");fflush(stdout);
+	printf("DEBUG:SerialCom: sending message package\n");fflush(stdout);
 
 	// wrapping package
 	p.is_msg = TRUE;
