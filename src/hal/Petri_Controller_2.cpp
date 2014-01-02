@@ -509,7 +509,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T18_________*/
-	if (places[15] && !places[16] && (petri_controller_2_inputs[TASTE_RESET] == false)&&(notaus ==false)) {
+	if (places[15] && !places[16] && (petri_controller_2_inputs[TASTE_RESET] == true)&&(notaus ==false)) {
 
 		places[15] = false;
 		places[16] = true;
@@ -738,7 +738,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T24_________*/
-	if (places[19] && !places[20] && (petri_controller_2_inputs[TASTE_RESET] == false)&&(notaus ==false)) {
+	if (places[19] && !places[20] && (petri_controller_2_inputs[TASTE_RESET] == true)&&(notaus ==false)) {
 
 		places[19] = false;
 		places[20] = true;
