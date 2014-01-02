@@ -13,6 +13,7 @@
 #include "TimerHandler.h"
 #include "Puk.h"
 
+
 #define N_PLACE 38
 
 class Petri_Controller_1: public thread::HAWThread {
@@ -33,10 +34,14 @@ private:
 	Gate* gate1;
 	Led* led;
 	Dispatcher* disp_petri_controller_1;
+
 	TimerHandler* timer_c1;
 	Timer* timer_Gate;
 	Timer* timer_move;
 	Timer* timer_C1_SlideFull;
+	Timer* timer_C1_removed_LSH;
+	Timer* timer_C1_removed_LSW;
+	Timer* timer_C1_removed_LSEND;
 
 	void init_places();
 	void process_transitions();

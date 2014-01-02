@@ -20,6 +20,7 @@ static bool Puk_added_LSEND_c2_timeout;
 
 static bool aussortieren;
 static SerialCom* sc;
+extern bool notaus;
 
 Petri_Controller_2::Petri_Controller_2() {
 
@@ -178,7 +179,7 @@ void Petri_Controller_2::init_places() {
 
 void Petri_Controller_2::process_transitions() {
 	/*_________T0_________*/
-	if (places[0] && !places[1] && (petri_controller_2_inputs[EINLAUF_WERKSTUECK] == true)) {
+	if (places[0] && !places[1] && (petri_controller_2_inputs[EINLAUF_WERKSTUECK] == true) && (notaus ==false)) {
 
 		places[0] = false;
 		places[1] = true;
@@ -202,7 +203,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T1 _________*/
-	if (places[1] && !places[2] && (petri_controller_2_inputs[WERKSTUECK_IN_HOEHENMESSUNG] == true) && (Puk_added_LSH_c2_timeout == true)) {
+	if (places[1] && !places[2] && (petri_controller_2_inputs[WERKSTUECK_IN_HOEHENMESSUNG] == true) && (Puk_added_LSH_c2_timeout == true)&& (notaus ==false)) {
 
 		places[1] = false;
 		places[2] = true;
@@ -237,7 +238,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T2_________*/
-	if (places[2] && !places[3] && (petri_controller_2_inputs[WERKSTUECK_IN_HOEHENMESSUNG] == false)) {
+	if (places[2] && !places[3] && (petri_controller_2_inputs[WERKSTUECK_IN_HOEHENMESSUNG] == false)&& (notaus ==false)) {
 
 		places[2] = false;
 		places[3] = true;
@@ -254,7 +255,7 @@ void Petri_Controller_2::process_transitions() {
 		fflush(stdout);
 	}
 	/*_________T3_________*/
-	if (places[3] && !places[4] && (petri_controller_2_inputs[WERKSTUECK_IN_WEICHE] == true) && (Puk_added_LSW_c2_timeout == true)) {
+	if (places[3] && !places[4] && (petri_controller_2_inputs[WERKSTUECK_IN_WEICHE] == true) && (Puk_added_LSW_c2_timeout == true)&& (notaus ==false)) {
 
 		Puk_added_LSW_c2_timeout = false;
 
@@ -279,7 +280,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T4_________*/
-	if (places[4] && !places[5] && (petri_controller_2_inputs[WERKSTUECK_METALL] == false) && aussortieren == false) {
+	if (places[4] && !places[5] && (petri_controller_2_inputs[WERKSTUECK_METALL] == false) && aussortieren == false&& (notaus ==false)) {
 
 		places[4] = false;
 		places[5] = true;
@@ -291,7 +292,7 @@ void Petri_Controller_2::process_transitions() {
 		fflush(stdout);
 	}
 	/*_________T5_________*/
-	if (places[5] && !places[6] && gate_close_c2_timeout == true) {
+	if (places[5] && !places[6] && gate_close_c2_timeout == true&& (notaus ==false)) {
 
 		places[5] = false;
 		places[6] = true;
@@ -304,7 +305,7 @@ void Petri_Controller_2::process_transitions() {
 		fflush(stdout);
 	}
 	/*_________T6_________*/
-	if (places[6] && !places[7] && (petri_controller_2_inputs[AUSLAUF_WERKSTUECK] == true) && (Puk_added_LSEND_c2_timeout == true)) {
+	if (places[6] && !places[7] && (petri_controller_2_inputs[AUSLAUF_WERKSTUECK] == true) && (Puk_added_LSEND_c2_timeout == true)&& (notaus ==false)) {
 
 		Puk_added_LSEND_c2_timeout = false;
 
@@ -332,7 +333,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T7_________*/
-	if (places[7] && !places[0] && (petri_controller_2_inputs[AUSLAUF_WERKSTUECK] == false)) {
+	if (places[7] && !places[0] && (petri_controller_2_inputs[AUSLAUF_WERKSTUECK] == false)&& (notaus ==false)) {
 
 		places[7] = false;
 		places[0] = true;
@@ -357,7 +358,7 @@ void Petri_Controller_2::process_transitions() {
 
 	//ToDo Metal erkennung + Second Chance
 	/*_________T8_________*/
-	if (places[4] && !places[8] && (petri_controller_2_inputs[WERKSTUECK_METALL] == true)) {
+	if (places[4] && !places[8] && (petri_controller_2_inputs[WERKSTUECK_METALL] == true)&& (notaus ==false)) {
 
 		places[4] = false;
 		places[8] = true;
@@ -372,7 +373,7 @@ void Petri_Controller_2::process_transitions() {
 	if (first_chance == true) {
 
 		/*_________T9_________*/
-		if (places[8] && !places[9]) {
+		if (places[8] && !places[9]&& (notaus ==false)) {
 
 			places[8] = false;
 			places[9] = true;
@@ -397,7 +398,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T10_________*/
-	if (places[9] && !places[10] && (petri_controller_2_inputs[EINLAUF_WERKSTUECK] == true)) {
+	if (places[9] && !places[10] && (petri_controller_2_inputs[EINLAUF_WERKSTUECK] == true)&& (notaus ==false)) {
 
 		places[9] = false;
 		places[10] = true;
@@ -412,7 +413,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T11_________*/
-	if (places[10] && !places[11] && (petri_controller_2_inputs[EINLAUF_WERKSTUECK] == false)) {
+	if (places[10] && !places[11] && (petri_controller_2_inputs[EINLAUF_WERKSTUECK] == false)&& (notaus ==false)) {
 
 		places[10] = false;
 		places[11] = true;
@@ -422,7 +423,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T12_________*/
-	if (places[11] && !places[1] && (petri_controller_2_inputs[EINLAUF_WERKSTUECK] == true)) {
+	if (places[11] && !places[1] && (petri_controller_2_inputs[EINLAUF_WERKSTUECK] == true)&& (notaus ==false)) {
 
 		places[11] = false;
 		places[1] = true;
@@ -440,7 +441,7 @@ void Petri_Controller_2::process_transitions() {
 
 	if (first_chance == false) {
 		/*_________T13_________*/
-		if (places[8] && !places[12]) {
+		if (places[8] && !places[12]&& (notaus ==false)) {
 
 			places[8] = false;
 			places[12] = true;
@@ -457,7 +458,7 @@ void Petri_Controller_2::process_transitions() {
 
 	//ToDo Rutsche
 	/*_________T14_________*/
-	if (places[12] && !places[13] && (petri_controller_2_inputs[RUTSCHE_VOLL] == true)) {
+	if (places[12] && !places[13] && (petri_controller_2_inputs[RUTSCHE_VOLL] == true) &&(notaus ==false)) {
 
 		places[12] = false;
 		places[13] = true;
@@ -471,7 +472,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T15_________*/
-	if (places[13] && !places[14] && (petri_controller_2_inputs[RUTSCHE_VOLL] == false)) {
+	if (places[13] && !places[14] && (petri_controller_2_inputs[RUTSCHE_VOLL] == false)&&(notaus ==false)) {
 
 		places[13] = false;
 		places[14] = true;
@@ -484,7 +485,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T17_________*/
-	if (places[13] && !places[15] && rutsche_voll_c2_timeout == true) {
+	if (places[13] && !places[15] && rutsche_voll_c2_timeout == true&&(notaus ==false)) {
 
 		places[13] = false;
 		places[15] = true;
@@ -508,7 +509,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T18_________*/
-	if (places[15] && !places[16] && (petri_controller_2_inputs[TASTE_RESET] == false)) {
+	if (places[15] && !places[16] && (petri_controller_2_inputs[TASTE_RESET] == false)&&(notaus ==false)) {
 
 		places[15] = false;
 		places[16] = true;
@@ -523,7 +524,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T19_________*/
-	if (places[16] && !places[17] && (petri_controller_2_inputs[RUTSCHE_VOLL] == false)) {
+	if (places[16] && !places[17] && (petri_controller_2_inputs[RUTSCHE_VOLL] == false)&&(notaus ==false)) {
 
 		places[16] = false;
 		places[17] = true;
@@ -532,7 +533,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T20_________*/
-	if (places[17] && !places[14] && (petri_controller_2_inputs[TASTE_START] == true)) {
+	if (places[17] && !places[14] && (petri_controller_2_inputs[TASTE_START] == true)&&(notaus ==false)) {
 
 		places[17] = false;
 		places[14] = true;
@@ -546,6 +547,8 @@ void Petri_Controller_2::process_transitions() {
 			perror("Petri_Controller_2:: MsgSendPulse an trafficLight\n");
 			exit(EXIT_FAILURE);
 		}
+
+		sc->send_msg_pkg(CONTROLLER_2_FREE);
 		puts("Petri_Controller_2:  T20 \n");
 
 	}
@@ -570,7 +573,7 @@ void Petri_Controller_2::process_transitions() {
 
 	//ToDo  Zurück zum Anfang
 	/*_________T16_________*/
-	if (places[14] && !places[0]) {
+	if (places[14] && !places[0]&&(notaus ==false)) {
 
 		places[0] = true;
 		places[14] = false;
@@ -594,7 +597,7 @@ void Petri_Controller_2::process_transitions() {
 	//ToDO  Puk Verschwindet to LSH
 
 	/*_________T22_________*/
-	if (places[1] && !places[18] && (Puk_removed_c2_timeout == true)) {
+	if (places[1] && !places[18] && (Puk_removed_c2_timeout == true)&&(notaus ==false)) {
 
 		Puk_removed_c2_timeout = false;
 
@@ -618,7 +621,7 @@ void Petri_Controller_2::process_transitions() {
 
 	//ToDO  Puk Verschwindet to LSW
 	/*_________T26_________*/
-	if (places[3] && !places[18] && (Puk_removed_c2_timeout == true)) {
+	if (places[3] && !places[18] && (Puk_removed_c2_timeout == true)&&(notaus ==false)) {
 
 		Puk_removed_c2_timeout = false;
 		Puk_added_LSW_c2_timeout = false;
@@ -640,7 +643,7 @@ void Petri_Controller_2::process_transitions() {
 	//ToDO  Puk Verschwindet to LSEND
 
 	/*_________T27_________*/
-	if (places[6] && !places[18] && (Puk_removed_c2_timeout == true)) {
+	if (places[6] && !places[18] && (Puk_removed_c2_timeout == true)&&(notaus ==false)) {
 
 		Puk_removed_c2_timeout = false;
 		Puk_added_LSEND_c2_timeout = false;
@@ -661,7 +664,7 @@ void Petri_Controller_2::process_transitions() {
 
 	//ToDO Puk wurde hinzugefügt LSH
 	/*_________T28_________*/
-	if (places[1] && !places[18] && (petri_controller_2_inputs[WERKSTUECK_IN_HOEHENMESSUNG] == true) && (Puk_added_LSH_c2_timeout == false) && (first_chance == true)) {
+	if (places[1] && !places[18] && (petri_controller_2_inputs[WERKSTUECK_IN_HOEHENMESSUNG] == true) && (Puk_added_LSH_c2_timeout == false) && (first_chance == true)&&(notaus ==false)) {
 
 		places[1] = false;
 		places[18] = true;
@@ -678,7 +681,7 @@ void Petri_Controller_2::process_transitions() {
 
 	//ToDo PUK Hinzugefügt LSW
 	/*_________T29_________*/
-	if (places[3] && !places[18] && (petri_controller_2_inputs[WERKSTUECK_IN_WEICHE] == true) && (Puk_added_LSW_c2_timeout == false)) {
+	if (places[3] && !places[18] && (petri_controller_2_inputs[WERKSTUECK_IN_WEICHE] == true) && (Puk_added_LSW_c2_timeout == false)&&(notaus ==false)) {
 
 		places[3] = false;
 		places[18] = true;
@@ -696,7 +699,7 @@ void Petri_Controller_2::process_transitions() {
 
 	//ToDo PUK Hinzugefügt LSEND
 	/*_________T30_________*/
-	if (places[6] && !places[18] && (petri_controller_2_inputs[AUSLAUF_WERKSTUECK] == true) && (Puk_added_LSEND_c2_timeout == false)) {
+	if (places[6] && !places[18] && (petri_controller_2_inputs[AUSLAUF_WERKSTUECK] == true) && (Puk_added_LSEND_c2_timeout == false)&&(notaus ==false)) {
 
 		places[6] = false;
 		places[18] = true;
@@ -713,7 +716,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T23_________*/
-	if (places[18] && !places[19]) {
+	if (places[18] && !places[19]&&(notaus ==false)) {
 
 		places[18] = false;
 		places[19] = true;
@@ -735,7 +738,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T24_________*/
-	if (places[19] && !places[20] && (petri_controller_2_inputs[TASTE_RESET] == false)) {
+	if (places[19] && !places[20] && (petri_controller_2_inputs[TASTE_RESET] == false)&&(notaus ==false)) {
 
 		places[19] = false;
 		places[20] = true;
@@ -750,7 +753,7 @@ void Petri_Controller_2::process_transitions() {
 	}
 
 	/*_________T25_________*/
-	if (places[20] && !places[0] && (petri_controller_2_inputs[TASTE_START] == true)) {
+	if (places[20] && !places[0] && (petri_controller_2_inputs[TASTE_START] == true)&&(notaus ==false)) {
 
 		places[20] = false;
 		places[0] = true;
@@ -776,6 +779,8 @@ void Petri_Controller_2::process_transitions() {
 
 		timer_c2->deleteTimer(timer_C2_To_added_LSEND);
 		timer_C2_To_added_LSEND = timer_c2->createTimer(petri_controller_2_sensorik_Chid, 1, 0, TIMER_ADDED_LSEND);
+
+		sc->send_msg_pkg(CONTROLLER_2_FREE);
 
 		puts("Petri_Controller_2:  T25 \n");
 

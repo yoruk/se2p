@@ -10,7 +10,7 @@ bool trafficlight_lokal_inputs[TRAFFICLIGHT_N_IN];
 bool trafficlight_lokal_outputs[N_OUT];
 
 bool* trafficlight_tmpArr;
-
+extern bool notaus;
 Petri_TrafficLight::Petri_TrafficLight() {
 
 	trafficlight = TrafficLight::getInstance();
@@ -50,9 +50,9 @@ void Petri_TrafficLight::execute(void* arg) {
 
 	struct _pulse pulse;
 
-//	printf("Petri_TrafficLight:: trafficlight_dispatcher_Chid: %d\n",
-//			trafficlight_dispatcher_Chid);
-//	fflush(stdout);
+	//	printf("Petri_TrafficLight:: trafficlight_dispatcher_Chid: %d\n",
+	//			trafficlight_dispatcher_Chid);
+	//	fflush(stdout);
 
 	init_places();
 	while (!isStopped()) {
@@ -65,20 +65,17 @@ void Petri_TrafficLight::execute(void* arg) {
 			exit(EXIT_FAILURE);
 		}
 
-//		printf("Petri_TrafficLight:: MesgRecievePulse angekommen! \n");
-//		fflush(stdout);
-//		printf("Petri_TrafficLight::    code:%d,  value:%d \n", pulse.code,
-//				pulse.value.sival_int);
+		//		printf("Petri_TrafficLight:: MesgRecievePulse angekommen! \n");
+		//		fflush(stdout);
+		//		printf("Petri_TrafficLight::    code:%d,  value:%d \n", pulse.code,
+		//				pulse.value.sival_int);
 
 		trafficlight_tmpArr
 				= trafficlight_dispatcher->get_trafficlight_inputs();
 		set_trafficlight_inputs();
-
 		process_transitions();
 		calculate_outputs();
 		NotifyReactor();
-
-		trafficlight_dispatcher->set_disp_Inputs(trafficlight_lokal_inputs);
 
 	}
 }
@@ -96,7 +93,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (trafficlight_places[0] && !trafficlight_places[1]
 			&& !trafficlight_places[2] && !trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_START] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_START] == true)
+			&& (notaus == false)) {
 
 		trafficlight_places[0] = false;
 		trafficlight_places[1] = true;
@@ -113,7 +111,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && trafficlight_places[1]
 			&& !trafficlight_places[2] && !trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_YELLOW] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_YELLOW] == true)
+			&& (notaus == false)) {
 
 		trafficlight_places[0] = false;
 		trafficlight_places[1] = false;
@@ -129,7 +128,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && !trafficlight_places[1]
 			&& trafficlight_places[2] && !trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] == true)
+			&& (notaus == false)) {
 
 		trafficlight_places[0] = false;
 		trafficlight_places[1] = true;
@@ -146,7 +146,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && trafficlight_places[1]
 			&& !trafficlight_places[2] && !trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_RED] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_RED] == true) && (notaus
+			== false)) {
 
 		trafficlight_places[0] = false;
 		trafficlight_places[1] = false;
@@ -163,7 +164,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && !trafficlight_places[1]
 			&& !trafficlight_places[2] && trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] == true)
+			&& (notaus == false)) {
 
 		trafficlight_places[0] = false;
 		trafficlight_places[1] = true;
@@ -180,7 +182,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && trafficlight_places[1]
 			&& !trafficlight_places[2] && !trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_RED_B] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_RED_B] == true)
+			&& (notaus == false)) {
 
 		trafficlight_places[0] = false;
 		trafficlight_places[1] = false;
@@ -195,7 +198,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && !trafficlight_places[1]
 			&& !trafficlight_places[2] && !trafficlight_places[3]
 			&& trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] == true)
+			&& (notaus == false)) {
 
 		trafficlight_places[0] = false;
 		trafficlight_places[1] = true;
@@ -212,7 +216,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && !trafficlight_places[1]
 			&& !trafficlight_places[2] && !trafficlight_places[3]
 			&& trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_RED] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_RED] == true) && (notaus
+			== false)) {
 
 		trafficlight_places[0] = false;
 		trafficlight_places[1] = false;
@@ -229,7 +234,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && trafficlight_places[1]
 			&& !trafficlight_places[2] && !trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_END] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_END] == true) && (notaus
+			== false)) {
 
 		trafficlight_places[0] = true;
 		trafficlight_places[1] = false;
@@ -248,7 +254,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && !trafficlight_places[1]
 			&& trafficlight_places[2] && !trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_END] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_END] == true) && (notaus
+			== false)) {
 
 		trafficlight_places[0] = true;
 		trafficlight_places[1] = false;
@@ -267,7 +274,8 @@ void Petri_TrafficLight::process_transitions() {
 	if (!trafficlight_places[0] && !trafficlight_places[1]
 			&& !trafficlight_places[2] && trafficlight_places[3]
 			&& !trafficlight_places[4]
-			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_END] == true)) {
+			&& (trafficlight_lokal_inputs[TRAFFICLIGHT_END] == true) && (notaus
+			== false)) {
 
 		trafficlight_places[0] = true;
 		trafficlight_places[1] = false;

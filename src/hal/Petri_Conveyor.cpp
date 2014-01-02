@@ -10,6 +10,7 @@ bool conveyor_lokal_inputs[CONVEYOR_N_IN];
 bool conveyor_lokal_outputs[N_OUT];
 
 bool* conveyor_tmpArr;
+extern bool notaus;
 
 Petri_Conveyor::Petri_Conveyor() {
 
@@ -72,9 +73,7 @@ void Petri_Conveyor::execute(void* arg) {
 		process_transitions();
 		calculate_outputs();
 		NotifyReactor();
-
-		conveyor_dispatcher->set_disp_Inputs(conveyor_lokal_inputs);
-		conveyor_dispatcher->set_disp_Outputs(conveyor_lokal_outputs);
+		//conveyor_dispatcher->set_disp_Outputs(conveyor_lokal_outputs);
 
 	}
 }
@@ -95,7 +94,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T0_________*/
 	if (conveyor_places[0] && !conveyor_places[1] && !conveyor_places[2]
 			&& !conveyor_places[3] && !conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_START] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_START] == true) && (notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = true;
@@ -111,7 +110,7 @@ void Petri_Conveyor::process_transitions() {
 	if (!conveyor_places[0] && conveyor_places[1] && !conveyor_places[2]
 			&& !conveyor_places[3] && !conveyor_places[4]
 			&& ((conveyor_lokal_inputs[P_CONVEYOR_STOP] == true)
-					|| conveyor_lokal_inputs[P_CONVEYOR_NOTAUS] == true)) {
+					|| conveyor_lokal_inputs[P_CONVEYOR_NOTAUS] == true)&&(notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = false;
@@ -127,7 +126,7 @@ void Petri_Conveyor::process_transitions() {
 	if (!conveyor_places[0] && !conveyor_places[1] && conveyor_places[2]
 			&& !conveyor_places[3] && !conveyor_places[4]
 			&& ((conveyor_lokal_inputs[P_CONVEYOR_STOP_X] == true)
-					|| conveyor_lokal_inputs[P_CONVEYOR_NOTAUS_X] == true)) {
+					|| conveyor_lokal_inputs[P_CONVEYOR_NOTAUS_X] == true)&& (notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = true;
@@ -142,7 +141,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T3_________*/
 	if (!conveyor_places[0] && conveyor_places[1] && !conveyor_places[2]
 			&& !conveyor_places[3] && !conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_SLOW] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_SLOW] == true)&& (notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = false;
@@ -157,7 +156,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T4_________*/
 	if (!conveyor_places[0] && !conveyor_places[1] && !conveyor_places[2]
 			&& conveyor_places[3] && !conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_SLOW_X] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_SLOW_X] == true)&& (notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = true;
@@ -172,7 +171,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T5_________*/
 	if (!conveyor_places[0] && conveyor_places[1] && !conveyor_places[2]
 			&& !conveyor_places[3] && !conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_LEFT] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_LEFT] == true)&& (notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = false;
@@ -187,7 +186,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T6_________*/
 	if (!conveyor_places[0] && !conveyor_places[1] && !conveyor_places[2]
 			&& !conveyor_places[3] && conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_RIGHT] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_RIGHT] == true)&& (notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = true;
@@ -202,7 +201,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T7_________*/
 	if (!conveyor_places[0] && !conveyor_places[1] && !conveyor_places[2]
 			&& !conveyor_places[3] && conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_STOP] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_STOP] == true) && (notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = false;
@@ -217,7 +216,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T8_________*/
 	if (!conveyor_places[0] && !conveyor_places[1] && !conveyor_places[2]
 			&& conveyor_places[3] && !conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_STOP] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_STOP] == true) && (notaus ==false)) {
 
 		conveyor_places[0] = false;
 		conveyor_places[1] = false;
@@ -231,7 +230,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T9_________*/
 	if (!conveyor_places[0] && conveyor_places[1] && !conveyor_places[2]
 			&& !conveyor_places[3] && !conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_END] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_END] == true) && (notaus ==false)) {
 
 		conveyor_places[0] = true;
 		conveyor_places[1] = false;
@@ -246,7 +245,7 @@ void Petri_Conveyor::process_transitions() {
 	/*_________T10_________*/
 	if (!conveyor_places[0] && !conveyor_places[1] && conveyor_places[2]
 			&& !conveyor_places[3] && !conveyor_places[4]
-			&& (conveyor_lokal_inputs[P_CONVEYOR_END] == true)) {
+			&& (conveyor_lokal_inputs[P_CONVEYOR_END] == true) && (notaus ==false)) {
 
 		conveyor_places[0] = true;
 		conveyor_places[1] = false;
@@ -334,15 +333,6 @@ void Petri_Conveyor::set_conveyor_outputs() {
 	conveyor_lokal_outputs[MOTOR_LINKSLAUF] = conveyor_tmpArr[1];
 	conveyor_lokal_outputs[MOTOR_LANGSAM] = conveyor_tmpArr[2];
 	conveyor_lokal_outputs[MOTOR_STOP] = conveyor_tmpArr[3];
-//	conveyor_lokal_outputs[WEICHE_AUF] = conveyor_tmpArr[4];
-//	conveyor_lokal_outputs[AMPEL_GRUEN] = conveyor_tmpArr[5];
-//	conveyor_lokal_outputs[AMPEL_GELB] = conveyor_tmpArr[6];
-//	conveyor_lokal_outputs[AMPEL_ROT] = conveyor_tmpArr[7];
-//	conveyor_lokal_outputs[LED_STARTTASTE] = conveyor_tmpArr[8];
-//	conveyor_lokal_outputs[LED_RESETTASTE] = conveyor_tmpArr[9];
-//	conveyor_lokal_outputs[LED_Q1] = conveyor_tmpArr[10];
-//	conveyor_lokal_outputs[LED_Q2] = conveyor_tmpArr[11];
-//	conveyor_lokal_outputs[AMPEL_ROT_B] = conveyor_tmpArr[12];
 }
 
 void Petri_Conveyor::reset_conveyor_inputs(){
