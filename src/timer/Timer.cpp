@@ -52,7 +52,7 @@ void Timer::stop() {
 }
 
 void Timer::pause() {
-	if (!isPaused) {
+	if (isPaused==false && isStarted==true) {
 		if (timer_settime(timerid, 0, &timer, &backupTimer) == -1) {
 			printf("Timer: Error in pause() timer_settime(), errno:%d\n", errno);
 		}
@@ -61,7 +61,7 @@ void Timer::pause() {
 }
 
 void Timer::tcontinue() {
-	if (isPaused) {
+	if (isPaused==true && isStarted==true) {
 		if (timer_settime(timerid, 0, &backupTimer, NULL) == -1) {
 			printf("Timer: Error in cont() timer_settime(), errno:%d\n", errno);
 		}

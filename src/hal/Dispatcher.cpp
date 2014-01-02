@@ -5,7 +5,7 @@ bool inputs[N_IN];
 bool outputs[N_OUT];
 bool trafficlight_inputs[TRAFFICLIGHT_N_IN];
 bool conveyor_inputs[CONVEYOR_N_IN];
-
+bool notaus = false;
 
 Dispatcher* Dispatcher::instance = NULL;
 
@@ -140,15 +140,15 @@ void Dispatcher::execute(void* arg) {
 				}
 			}
 
-		} else if (pulse.code == PULSE_FROM_TIMER) {
-			printf("------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");
-			//fflush(stdout);
-			//printf("Dispatcher:: BLAU Coid: %d\n", dispatcher_Coid);
-			//fflush(stdout);
-			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
-				perror("Dispatcher: MsgSendPulse an conveyor failed\n");
-				exit(EXIT_FAILURE);
-			}
+//		} else if (pulse.code == PULSE_FROM_TIMER) {
+//			printf("------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");
+//			//fflush(stdout);
+//			//printf("Dispatcher:: BLAU Coid: %d\n", dispatcher_Coid);
+//			//fflush(stdout);
+//			if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int)) {
+//				perror("Dispatcher: MsgSendPulse an conveyor failed\n");
+//				exit(EXIT_FAILURE);
+//			}
 		} else if (pulse.code == PULSE_PUK_INFORMATION) {
 			//printf("DEBUG:Dispatcher: package with puk information arrived, sending it further to controller\n");
 			//fflush(stdout);
@@ -166,16 +166,6 @@ void Dispatcher::execute(void* arg) {
 				exit(EXIT_FAILURE);
 			}
 		}
-		//		tmpArr = pet->read_inputs(inputs, pulse.code, pulse.value.sival_int);
-		//		setInputs();
-		//
-		//		tmpArr = pet->process_transitions(inputs, outputs);
-		//		setOutputs();
-		//
-		//		pet->calculate_outputs(outputs);
-		//		setOutputs();
-		//
-		//		pet->NotifyReactor(outputs);
 	}
 }
 
@@ -273,9 +263,17 @@ void Dispatcher::read_inputs(int code, int value) {
 
 		if (((value & BIT_7) == 0) && !inputs[TASTE_E_STOP]) {
 			std::cout << "Dispatcher: E-stop gedrueckt" << std::endl;
+			notaus = true;
+			disp_trafficlight->redOn();
+			disp_conveyor->conveyorStop();
+
 			inputs[TASTE_E_STOP] = true;
 		} else if ((value & BIT_7) && inputs[TASTE_E_STOP]) {
 			std::cout << "Dispatcher: E-stop nicht gedrueckt" << std::endl;
+			notaus = false;
+			disp_conveyor->conveyorContinue();
+			disp_trafficlight->redOff();
+
 			inputs[TASTE_E_STOP] = false;
 		}
 		break;
@@ -428,6 +426,7 @@ void Dispatcher::set_disp_Inputs(bool tmpArr[]) {
 	inputs[10] = tmpArr[10];
 	inputs[11] = tmpArr[11];
 }
+
 
 bool* Dispatcher::get_disp_Inputs() {
 	return inputs;

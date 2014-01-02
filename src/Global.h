@@ -136,6 +136,10 @@
 #define TIMER_ADDED_LSH 4
 #define TIMER_ADDED_LSW 5
 #define TIMER_ADDED_LSEND 6
+#define TIMER_REMOVED_C1_LSH 20
+#define TIMER_REMOVED_C1_LSW 22
+#define TIMER_REMOVED_C1_LSEND 24
+
 
 /*--------Times-----------*/
 #define C1_MOVE_TO_TIME 750

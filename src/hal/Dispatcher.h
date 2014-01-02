@@ -7,6 +7,8 @@
 #include "hw.h"
 #include "Global.h"
 #include "Sensorik.h"
+#include "Conveyor.h"
+#include "TrafficLight.h"
 
 class Dispatcher: public thread::HAWThread {
 
@@ -39,6 +41,9 @@ private:
 	int conveyor_Coid;
 
 	static Dispatcher* instance;
+	Conveyor* disp_conveyor;
+	TrafficLight* disp_trafficlight;
+
 	Dispatcher();
 
 protected:
