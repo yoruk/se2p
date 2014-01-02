@@ -45,6 +45,9 @@ Petri_Controller_1::Petri_Controller_1() {
 
 	timer_C1_removed_LSH = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 4,0, TIMER_REMOVED_C1_LSH);
 
+	timer_C1_removed_LSW = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 3,0, TIMER_REMOVED_C1_LSW);
+
+	timer_C1_removed_LSEND = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 3,0, TIMER_REMOVED_C1_LSEND);
 
 	// attach to signal channel
 	petri_controller_1_dispatcher_Coid = ConnectAttach(0, 0, petri_controller_1_sensorik_Chid, _NTO_SIDE_CHANNEL, 0);
@@ -214,6 +217,7 @@ void Petri_Controller_1::process_transitions() {
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	T0	EINLAUF_WERKSTUECK  \n", p[0]->get_id(), p[0]->get_hoehenmessung1(), p[0]->get_typ());
 		fflush(stdout);
 
+		timer_C1_removed_LSH->start();
 
 	}
 
@@ -272,6 +276,9 @@ void Petri_Controller_1::process_transitions() {
 		p[5]->set_hoehenmessung1(petri_controller_1_sen->getHeight());
 		p[5]->set_typ(petri_controller_1_sen->getHeightPukType());
 
+		timer_c1->deleteTimer(timer_C1_removed_LSH);
+		timer_C1_removed_LSH = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 4, 0, TIMER_REMOVED_C1_LSH);
+
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	T5	WERKSTUECK_IN_HOEHENMESSUNG\n", p[5]->get_id(), p[5]->get_hoehenmessung1(), p[5]->get_typ());
 		fflush(stdout);
 
@@ -287,6 +294,9 @@ void Petri_Controller_1::process_transitions() {
 			perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
 			exit(EXIT_FAILURE);
 		}
+
+		timer_C1_removed_LSW->start();
+
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	T6	 WERKSTUECK_IN_HOEHENMESSUNG x\n", p[6]->get_id(), p[6]->get_hoehenmessung1(), p[6]->get_typ());
 		fflush(stdout);
 
@@ -329,6 +339,9 @@ void Petri_Controller_1::process_transitions() {
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	 T10		WERKSTUECK_IN_WEICHE\n", p[10]->get_id(), p[10]->get_hoehenmessung1(), p[10]->get_typ());
 		fflush(stdout);
 
+		timer_c1->deleteTimer(timer_C1_removed_LSW);
+		timer_C1_removed_LSW = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 3,0, TIMER_REMOVED_C1_LSW);
+
 	}
 
 	/*_________T11	METAL_________*/
@@ -361,6 +374,7 @@ void Petri_Controller_1::process_transitions() {
 
 		//gate1->open();
 		petri_controller_1_outputs[WEICHE_AUF] = true;
+
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	T13		FLACH x\n", p[12]->get_id(), p[12]->get_hoehenmessung1(), p[12]->get_typ());
 		fflush(stdout);
 	}
@@ -383,6 +397,8 @@ void Petri_Controller_1::process_transitions() {
 
 		timer_Gate->start();
 
+
+
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	T15		WERKSTUECK_IN_WEICHE \n", p[14]->get_id(), p[14]->get_hoehenmessung1(), p[14]->get_typ());
 		fflush(stdout);
 
@@ -399,6 +415,8 @@ void Petri_Controller_1::process_transitions() {
 		petri_controller_1_outputs[WEICHE_AUF] = false;
 		timer_c1->deleteTimer(timer_Gate);
 		timer_Gate = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 0, C1_CLOSE_GATE_TIME, TIMER_GATE);
+
+		timer_C1_removed_LSEND->start();
 
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	T16	gate_close_c1_timeout == True\n", p[15]->get_id(), p[15]->get_hoehenmessung1(), p[15]->get_typ());
 		fflush(stdout);
@@ -456,6 +474,9 @@ void Petri_Controller_1::process_transitions() {
 			exit(EXIT_FAILURE);
 		}
 
+		timer_c1->deleteTimer(timer_C1_removed_LSEND);
+		timer_C1_removed_LSEND = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 3,0, TIMER_REMOVED_C1_LSEND);
+
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	T20  AUSLAUF_WERKSTUECK & PUK != LOCH\n", p[19]->get_id(), p[19]->get_hoehenmessung1(),
 				p[19]->get_typ());
 		fflush(stdout);
@@ -491,6 +512,9 @@ void Petri_Controller_1::process_transitions() {
 			perror("Petri_Controller_1:: MsgSendPulse an trafficLight\n");
 			exit(EXIT_FAILURE);
 		}
+
+		timer_c1->deleteTimer(timer_C1_removed_LSEND);
+		timer_C1_removed_LSEND = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 3,0, TIMER_REMOVED_C1_LSEND);
 
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ---->	T22	AUSLAUF_WERKSTUECK \n", p[21]->get_id(), p[21]->get_hoehenmessung1(), p[21]->get_typ());
 		fflush(stdout);
@@ -786,6 +810,41 @@ void Petri_Controller_1::process_transitions() {
 	}
 
 
+	//ToDo PUK VERSCHWINDET LSW
+
+	/*_________T38_________*/
+	if (p[9] != NULL && p[31]== NULL && (removed_C1_timeout_LSW == true)&&(notaus ==false)) {
+
+		removed_C1_timeout_LSW = false;
+
+		p[31] = p[9];
+		p[9] = NULL;
+
+		timer_c1->deleteTimer(timer_C1_removed_LSW);
+		timer_C1_removed_LSW = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 3,0, TIMER_REMOVED_C1_LSW);
+
+		printf("Puk(%d) Hoehe:%d  Typ:%d   ----> T38 PUK Verwindet  LSH \n", p[31]->get_id(), p[31]->get_hoehenmessung1(), p[31]->get_typ());
+		fflush(stdout);
+	}
+
+	//ToDo PUK VERSCHWINDET LSEND
+
+	/*_________T39_________*/
+	if (p[18] != NULL && p[31]== NULL && (removed_C1_timeout_LSEND == true)&&(notaus ==false)) {
+
+		removed_C1_timeout_LSEND = false;
+
+		p[31] = p[18];
+		p[18] = NULL;
+
+		timer_c1->deleteTimer(timer_C1_removed_LSEND);
+		timer_C1_removed_LSEND = timer_c1->createTimer(petri_controller_1_sensorik_Chid, 3,0, TIMER_REMOVED_C1_LSEND);
+
+		printf("Puk(%d) Hoehe:%d  Typ:%d   ----> T38 PUK Verwindet  LSH \n", p[31]->get_id(), p[31]->get_hoehenmessung1(), p[31]->get_typ());
+		fflush(stdout);
+	}
+
+
 
 	//ToDo ERROR ZUSTAND
 
@@ -805,12 +864,13 @@ void Petri_Controller_1::process_transitions() {
 			exit(EXIT_FAILURE);
 		}
 
+		timer_c1->pauseAllTimers();
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ----> T43 ERROR NICHT QUITIERT \n", p[32]->get_id(), p[32]->get_hoehenmessung1(), p[32]->get_typ());
 		fflush(stdout);
 	}
 
 	/*_________T44_________*/
-	if (p[32] != NULL && p[33]== NULL && (petri_controller_1_inputs[TASTE_RESET] == false) && (notaus ==false)) {
+	if (p[32] != NULL && p[33]== NULL && (petri_controller_1_inputs[TASTE_RESET] == true) && (notaus ==false)) {
 
 		p[33] = p[32];
 		p[32] = NULL;
@@ -829,19 +889,33 @@ void Petri_Controller_1::process_transitions() {
 
 		gz++;
 
-		if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_CONVEYOR, P_CONVEYOR_END)) {
-			perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
-			exit(EXIT_FAILURE);
-		}
+		if (gz == 4) {
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_CONVEYOR, P_CONVEYOR_END)) {
+				perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+				exit(EXIT_FAILURE);
+			}
 
-		if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_END)) {
-			perror("Petri_Controller_1:: MsgSendPulse an trafficLight\n");
-			exit(EXIT_FAILURE);
-		}
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_END)) {
+				perror("Petri_Controller_1:: MsgSendPulse an trafficLight\n");
+				exit(EXIT_FAILURE);
+			}
 
+		} else {
+
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_TRAFFICLIGHT, TRAFFICLIGHT_GREEN)) {
+				perror("Petri_Controller_1:: MsgSendPulse an trafficLight\n");
+				exit(EXIT_FAILURE);
+			}
+			if (-1 == MsgSendPulse(petri_controller_1_dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT, PA_CONVEYOR, P_CONVEYOR_STOP_X)) {
+				perror("Petri_Controller_1:: MsgSendPulse an coveyour\n");
+				exit(EXIT_FAILURE);
+			}
+		}
 		printf("Puk(%d) Hoehe:%d  Typ:%d   ----> T43 ERROR NICHT QUITIERT \n", p[33]->get_id(), p[33]->get_hoehenmessung1(), p[33]->get_typ());
 		fflush(stdout);
 		p[33] = NULL;
+
+		timer_c1->continueAllTimers();
 	}
 
 }
