@@ -1,5 +1,12 @@
 #include "Simple_Milestone2.h"
 
+#include <unistd.h>
+#include "../hal/Led.h"
+#include "../hal/TrafficLight.h"
+#include "../hal/Gate.h"
+#include "../hal/Conveyor.h"
+#include <stdio.h>
+
 #define WAIT 2
 #define LONG_WAIT 5
 

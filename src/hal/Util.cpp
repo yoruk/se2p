@@ -1,4 +1,5 @@
 #include "Util.h"
+#include "Global.h"
 
 /// This module contents some util functions
 /// which are used for setting/resetting bits

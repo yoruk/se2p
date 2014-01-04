@@ -2,14 +2,10 @@
 #define PETRI_TRAFFICLIGHT_H_
 
 #include "HAWThread.h"
-#include "HWaccess.h"
-#include <iostream>
-#include "hw.h"
-#include "Mutex.h"
 #include "TrafficLight.h"
-#include "Dispatcher.h"
 #include "TrafficLightBlinken.h"
 #include "TrafficLightGelbBlinken.h"
+#include "Dispatcher.h"
 
 #define TRAFFICLIGHT_N_PLACE 5
 class Petri_TrafficLight: public thread::HAWThread {

@@ -1,5 +1,12 @@
 #include "TrafficLightBlinken.h"
 
+#include "HWaccess.h"
+#include "../Mutex.h"
+//#include "hw.h"
+#include "Util.h"
+#include <unistd.h>
+#include "Global.h"
+
 static Mutex* mutex = new Mutex();
 
 TrafficLightBlinken::TrafficLightBlinken() {

@@ -1,4 +1,12 @@
 #include "Dispatcher.h"
+//#include "HWaccess.h"
+#include "../Mutex.h"
+#include "hw.h"
+#include "Global.h"
+#include "Sensorik.h"
+#include <string.h>
+#include "Petri_Controller_1.h"
+
 
 static Mutex* mutex = new Mutex();
 bool inputs[N_IN];
@@ -7,9 +15,12 @@ bool trafficlight_inputs[TRAFFICLIGHT_N_IN];
 bool conveyor_inputs[CONVEYOR_N_IN];
 bool notaus = false;
 Dispatcher* Dispatcher::instance = NULL;
+Petri_Controller_1* petri_Controller_1;
 
 Dispatcher::Dispatcher() {
     controller_2_free = true;
+
+//    petri_Controller_1 = Petri_Controller_1::getInstance();
 
     // create channel for dispatcher
     dispatcher_Chid = ChannelCreate(0);
@@ -102,6 +113,7 @@ void Dispatcher::execute(void* arg) {
             exit(EXIT_FAILURE);
         }
 
+
         //printf("Dispatcher::    code:%d,  value:%d \n", pulse.code, pulse.value.sival_int);
         //      printf("Dispatcher::MesgRecievePulse\n");fflush(stdout);
 
@@ -131,7 +143,7 @@ void Dispatcher::execute(void* arg) {
             if (pulse.value.sival_int == SERIAL_NOTAUS) {
                 printf("------------------------------------------SERIAL_NOTAUS------------------------------------------------\n");fflush(stdout);
 
-
+                //petri_Controller_2->timer_PauseAll();
                 notaus = true;
                 disp_trafficlight->redOn();
                 disp_conveyor->conveyorStop();
@@ -139,7 +151,7 @@ void Dispatcher::execute(void* arg) {
             } else if (pulse.value.sival_int == SERIAL_NOTAUS_X) {
                 printf("------------------------------------------SERIAL_NOTAUS_X------------------------------------------------\n");fflush(stdout);
 
-
+                //petri_Controller_2->timer_ContinueAll();
                 notaus = false;
                 disp_conveyor->conveyorContinue();
                 disp_trafficlight->redOff();
@@ -171,6 +183,7 @@ void Dispatcher::execute(void* arg) {
             }
 
 //      } else if (pulse.code == PULSE_FROM_TIMER) {
+//    	  pulse_from_timer = true;
 //          printf(
 //                  "------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");
 //          //fflush(stdout);
@@ -300,8 +313,9 @@ void Dispatcher::read_inputs(int code, int value) {
             std::cout << "Dispatcher: E-stop gedrueckt" << std::endl;
 
             disp_serial->send_msg_pkg(SERIAL_NOTAUS);
-
+            //petri_Controller_1->timer_ContinueAll();
             notaus = true;
+
             disp_trafficlight->redOn();
             disp_conveyor->conveyorStop();
             inputs[TASTE_E_STOP] = true;

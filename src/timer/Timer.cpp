@@ -31,6 +31,7 @@ Timer::~Timer() {
 
 void Timer::start() {
 	if (!isStarted) {
+		printf("->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hier startet der TIMER \n");fflush(stdout);
 		if (timer_settime(timerid, 0, &timer, NULL) == -1) {
 			printf("Timer: Error in start() timer_settime()\n");
 		}
@@ -44,6 +45,7 @@ void Timer::start() {
 
 void Timer::stop() {
 	// Stop Timer
+
 	if (timer_settime(timerid, 0, &timer, NULL) == -1) {
 		printf("Timer: Error in stop() timer_settime(), errno:%d\n", errno);
 	}
@@ -80,5 +82,14 @@ void Timer::reset() {
 void Timer::changeTime(int sec, int msec) {
 	seconds = sec;
 	miliSeconds = msec;
+	reset();
 	stop();
+}
+
+void Timer::del() {
+	timer_delete(timerid);
+	if (timer_create(CLOCK_REALTIME, &event, &timerid) == -1) {
+		printf("Timer: Error in timer_create()\n");
+	}
+	reset();
 }

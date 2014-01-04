@@ -10,14 +10,12 @@ void test_Timer_start() {
 	Timer* timer2;
 	Timer* timer3;
 
-	timer1 = timers->createTimer(chid, 2, 0, 1);
-	timer2 = timers->createTimer(chid, 4, 0, 2);
-	timer3 = timers->createTimer(chid, 6, 0, 3);
+	timer1 = timers->createTimer(chid, 10, 0, 1);
+
 
 	timers->startTimer(timer1);
-	timers->startTimer(timer2);
-	timers->startTimer(timer3);
 
+	timers->deleteTimer(timer1);
 	bool start = true;
 	while (start) {
 		MsgReceivePulse(chid, &pulse, sizeof(pulse), NULL);
@@ -25,22 +23,10 @@ void test_Timer_start() {
 			printf("recved timer 2sec timeout pulse\n");
 			fflush(stdout);
 		}
-
-		if (pulse.code == PULSE_FROM_TIMER && pulse.value.sival_int == 2) {
-			printf("recved timer 4sec timeout pulse\n");
-			fflush(stdout);
-		}
-
-		if (pulse.code == PULSE_FROM_TIMER && pulse.value.sival_int == 3) {
-			printf("recved timer 6sec timeout pulse\n");
-			fflush(stdout);
-			start = false;
-		}
 	}
 
 	timers->deleteTimer(timer1);
-	timers->deleteTimer(timer2);
-	timers->deleteTimer(timer3);
+
 
 
 	timer1 = timers->createTimer(chid, 2, 0, 1);

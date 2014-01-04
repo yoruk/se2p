@@ -1,11 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
+#include "Serial.h"
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <unistd.h>
+//#include <string.h>
 #include <fcntl.h>
 #include <../Global.h>
 #include <../Mutex.h>
-#include "Serial.h"
+
 
 /// This class's methods can transfer byte(s)
 /// over the serial interface

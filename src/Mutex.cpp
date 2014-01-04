@@ -20,7 +20,7 @@ Mutex::~Mutex() {
 /// locks the mutex
 void Mutex::lock() {
     if(pthread_mutex_lock(&mutex) != 0) {
-		perror("mutex failed to lock\n");
+		perror("mutex failed to lock");
 		exit(EXIT_FAILURE);
     }
 }

@@ -2,11 +2,6 @@
 #define TRAFFICLIGHTBLINKEN_H_
 
 #include "HAWThread.h"
-#include "HWaccess.h"
-#include "../Mutex.h"
-#include "hw.h"
-#include "Util.h"
-#include <unistd.h>
 
 class TrafficLightBlinken: public thread::HAWThread {
 public:

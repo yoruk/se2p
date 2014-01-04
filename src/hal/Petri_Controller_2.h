@@ -2,16 +2,13 @@
 #define PETRI_CONTROLLER_2_H_
 
 #include "HAWThread.h"
-#include "HWaccess.h"
-#include <iostream>
-#include "hw.h"
-#include "Mutex.h"
-#include "Gate.h"
-#include "Led.h"
-#include "Dispatcher.h"
 #include "Timer.h"
 #include "TimerHandler.h"
 #include "Puk.h"
+#include "Sensorik.h"
+#include "Gate.h"
+#include "Led.h"
+#include "Dispatcher.h"
 
 #define N_PLACE_2 19
 
@@ -20,6 +17,8 @@ public:
 	static Petri_Controller_2* getInstance();
 
 	virtual ~Petri_Controller_2();
+	void timer_PauseAll();
+	void timer_ContinueAll();
 
 private:
 

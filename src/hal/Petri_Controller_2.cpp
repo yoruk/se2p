@@ -1,7 +1,11 @@
 #include "Petri_Controller_2.h"
-#include "Puk.h"
-#include "SerialCom.h"
+
+//#include "SerialCom.h"
 #include <unistd.h>
+//#include "HWaccess.h"
+//#include <iostream>
+#include "hw.h"
+//#include "Mutex.h"
 
 static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
 static Petri_Controller_2* petri; /// the Petri_Controller_2 object itself
@@ -861,4 +865,13 @@ void Petri_Controller_2::setOutputs() {
 
 void Petri_Controller_2::shutdown() {
 
+}
+
+
+void Petri_Controller_2::timer_PauseAll(){
+	timer_c2->pauseAllTimers();
+}
+
+void Petri_Controller_2::timer_ContinueAll(){
+	timer_c2->continueAllTimers();
 }

@@ -2,14 +2,9 @@
 #define DISPATCHER_H_
 
 #include "HAWThread.h"
-#include "HWaccess.h"
-#include "../Mutex.h"
-#include "hw.h"
-#include "Global.h"
-#include "Sensorik.h"
+#include "SerialCom.h"
 #include "Conveyor.h"
 #include "TrafficLight.h"
-#include "SerialCom.h"
 
 class Dispatcher: public thread::HAWThread {
 
@@ -45,6 +40,8 @@ private:
     Conveyor* disp_conveyor;
     TrafficLight* disp_trafficlight;
     SerialCom* disp_serial;
+
+
 
     Dispatcher();
 

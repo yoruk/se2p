@@ -1,5 +1,9 @@
 #include "Test_Util.h"
 
+#include <stdio.h>
+#include "../hal/Util.h"
+#include "Global.h"
+
 void test_Util_start() {
 	unsigned char reg = 0;
 

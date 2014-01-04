@@ -1,4 +1,5 @@
 #include "Test_Simple_Gate.h"
+#include "Mutex.h"
 
 #define RUNTIME 200
 #define WAIT 1000000

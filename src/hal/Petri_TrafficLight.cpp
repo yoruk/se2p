@@ -1,4 +1,11 @@
 #include "Petri_TrafficLight.h"
+//#include "HWaccess.h"
+//#include <iostream>
+#include "hw.h"
+#include "Mutex.h"
+#include "Global.h"
+
+
 
 static Mutex* mutex = new Mutex(); /// the mutex for controlling the access
 static Petri_TrafficLight* petri; /// the Petri_Bsp object itself

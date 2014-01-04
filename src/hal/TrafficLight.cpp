@@ -1,5 +1,14 @@
 #include "TrafficLight.h"
 
+#include "../Mutex.h"
+#include "hw.h"
+#include "Util.h"
+//#include <pthread.h>
+//#include <unistd.h>
+//#include <iostream.h>
+#include "HWaccess.h"
+#include "Global.h"
+
 /// This class gives access to the Trafficlight
 /// can light it green a/o yellow a/o red
 

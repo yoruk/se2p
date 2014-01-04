@@ -2,10 +2,6 @@
 #define PETRI_CONVEYOR_H_
 
 #include "HAWThread.h"
-#include "HWaccess.h"
-#include <iostream>
-#include "hw.h"
-#include "Mutex.h"
 #include "Conveyor.h"
 #include "Dispatcher.h"
 
