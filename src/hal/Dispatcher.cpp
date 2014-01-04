@@ -5,8 +5,7 @@
 #include "Global.h"
 #include "Sensorik.h"
 #include <string.h>
-#include "Petri_Controller_1.h"
-
+#include "Petri_Controller_2.h"
 
 static Mutex* mutex = new Mutex();
 bool inputs[N_IN];
@@ -15,13 +14,9 @@ bool trafficlight_inputs[TRAFFICLIGHT_N_IN];
 bool conveyor_inputs[CONVEYOR_N_IN];
 bool notaus = false;
 Dispatcher* Dispatcher::instance = NULL;
-Petri_Controller_1* petri_Controller_1;
 
 Dispatcher::Dispatcher() {
     controller_2_free = true;
-
-//    petri_Controller_1 = Petri_Controller_1::getInstance();
-
     // create channel for dispatcher
     dispatcher_Chid = ChannelCreate(0);
     if (dispatcher_Chid == -1) {
@@ -103,7 +98,7 @@ Dispatcher* Dispatcher::getInstance() {
 
 void Dispatcher::execute(void* arg) {
     struct _pulse pulse;
-
+    Petri_Controller_2* petri_controller_2_a = Petri_Controller_2::getInstance();
     while (!isStopped()) {
         if (-1 == MsgReceivePulse(sensorik_Chid, &pulse, sizeof(pulse), NULL)) {
             if (isStopped()) {
@@ -143,7 +138,7 @@ void Dispatcher::execute(void* arg) {
             if (pulse.value.sival_int == SERIAL_NOTAUS) {
                 printf("------------------------------------------SERIAL_NOTAUS------------------------------------------------\n");fflush(stdout);
 
-                //petri_Controller_2->timer_PauseAll();
+                petri_controller_2_a->timer_PauseAll();
                 notaus = true;
                 disp_trafficlight->redOn();
                 disp_conveyor->conveyorStop();
@@ -151,7 +146,7 @@ void Dispatcher::execute(void* arg) {
             } else if (pulse.value.sival_int == SERIAL_NOTAUS_X) {
                 printf("------------------------------------------SERIAL_NOTAUS_X------------------------------------------------\n");fflush(stdout);
 
-                //petri_Controller_2->timer_ContinueAll();
+                petri_controller_2_a->timer_ContinueAll();
                 notaus = false;
                 disp_conveyor->conveyorContinue();
                 disp_trafficlight->redOff();
@@ -182,18 +177,7 @@ void Dispatcher::execute(void* arg) {
                 }
             }
 
-//      } else if (pulse.code == PULSE_FROM_TIMER) {
-//    	  pulse_from_timer = true;
-//          printf(
-//                  "------------------------------------------PULSE_FROM_TIMER--------------------------------------------------------\n");
-//          //fflush(stdout);
-//          //printf("Dispatcher:: BLAU Coid: %d\n", dispatcher_Coid);
-//          //fflush(stdout);
-//          if (-1 == MsgSendPulse(dispatcher_Coid, SIGEV_PULSE_PRIO_INHERIT,
-//                  pulse.code, pulse.value.sival_int)) {
-//              perror("Dispatcher: MsgSendPulse an conveyor failed\n");
-//              exit(EXIT_FAILURE);
-//          }
+
         } else if (pulse.code == PULSE_PUK_INFORMATION) {
             //printf("DEBUG:Dispatcher: package with puk information arrived, sending it further to controller\n");
             //fflush(stdout);
@@ -217,6 +201,7 @@ void Dispatcher::execute(void* arg) {
 }
 
 void Dispatcher::read_inputs(int code, int value) {
+	Petri_Controller_2* petri_controller_2_a = Petri_Controller_2::getInstance();
     switch (code) {
     case PB_STATUS:
         if (((value & BIT_0) == 0) && !inputs[EINLAUF_WERKSTUECK]) {
@@ -313,7 +298,7 @@ void Dispatcher::read_inputs(int code, int value) {
             std::cout << "Dispatcher: E-stop gedrueckt" << std::endl;
 
             disp_serial->send_msg_pkg(SERIAL_NOTAUS);
-            //petri_Controller_1->timer_ContinueAll();
+            petri_controller_2_a->timer_PauseAll();
             notaus = true;
 
             disp_trafficlight->redOn();
@@ -324,7 +309,7 @@ void Dispatcher::read_inputs(int code, int value) {
             std::cout << "Dispatcher: E-stop nicht gedrueckt" << std::endl;
 
             disp_serial->send_msg_pkg(SERIAL_NOTAUS_X);
-
+            petri_controller_2_a->timer_ContinueAll();
             notaus = false;
             disp_conveyor->conveyorContinue();
             disp_trafficlight->redOff();
