@@ -1,7 +1,6 @@
 #include "Petri_Conveyor.h"
 
-//#include "HWaccess.h"
-//#include <iostream>
+
 #include "hw.h"
 #include "Mutex.h"
 #include "Global.h"
@@ -54,9 +53,7 @@ void Petri_Conveyor::execute(void* arg) {
 
 	struct _pulse pulse;
 
-//	printf("Petri_Motor:: conveyor_dispatcher_Chid: %d\n",
-//			conveyor_dispatcher_Chid);
-//	fflush(stdout);
+
 
 	init_places();
 	while (!isStopped()) {
@@ -69,10 +66,7 @@ void Petri_Conveyor::execute(void* arg) {
 			exit(EXIT_FAILURE);
 		}
 
-//		printf("Petri_Motor:: MesgRecievePulse angekommen! \n");
-//		fflush(stdout);
-//		printf("Petri_Motor::    code:%d,  value:%d \n", pulse.code,
-//				pulse.value.sival_int);
+
 
 		conveyor_tmpArr = conveyor_dispatcher->get_conveyor_inputs();
 		set_conveyor_inputs();
@@ -110,7 +104,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = false;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T0\n");fflush(stdout);
+
 	}
 
 	/*_________T1_________*/
@@ -126,7 +120,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = false;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T1\n");fflush(stdout);
+
 	}
 
 	/*_________T2_________*/
@@ -142,7 +136,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = false;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T2\n");fflush(stdout);
+
 	}
 
 	/*_________T3_________*/
@@ -157,7 +151,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = false;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T3\n");fflush(stdout);
+
 	}
 
 	/*_________T4_________*/
@@ -172,7 +166,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = false;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T4\n");fflush(stdout);
+
 	}
 
 	/*_________T5_________*/
@@ -187,7 +181,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = true;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T5\n");fflush(stdout);
+
 	}
 
 	/*_________T6_________*/
@@ -202,7 +196,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = false;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T6\n");fflush(stdout);
+
 	}
 
 	/*_________T7_________*/
@@ -217,7 +211,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = false;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T7\n");fflush(stdout);
+
 	}
 
 	/*_________T8_________*/
@@ -232,7 +226,7 @@ void Petri_Conveyor::process_transitions() {
 		conveyor_places[4] = false;
 
 		reset_conveyor_inputs();
-		puts("Conveyor: T8\n");fflush(stdout);
+
 	}
 	/*_________T9_________*/
 	if (!conveyor_places[0] && conveyor_places[1] && !conveyor_places[2]
@@ -247,7 +241,7 @@ void Petri_Conveyor::process_transitions() {
 
 		reset_conveyor_inputs();
 		conveyor->resetConveyorBits();
-		puts("Conveyor: T8\n");fflush(stdout);
+
 	}
 	/*_________T10_________*/
 	if (!conveyor_places[0] && !conveyor_places[1] && conveyor_places[2]
@@ -262,7 +256,7 @@ void Petri_Conveyor::process_transitions() {
 
 		reset_conveyor_inputs();
 		conveyor->resetConveyorBits();
-		puts("Conveyor: T8\n");fflush(stdout);
+
 	}
 }
 

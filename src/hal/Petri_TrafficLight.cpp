@@ -1,6 +1,4 @@
 #include "Petri_TrafficLight.h"
-//#include "HWaccess.h"
-//#include <iostream>
 #include "hw.h"
 #include "Mutex.h"
 #include "Global.h"
@@ -57,9 +55,6 @@ void Petri_TrafficLight::execute(void* arg) {
 
 	struct _pulse pulse;
 
-	//	printf("Petri_TrafficLight:: trafficlight_dispatcher_Chid: %d\n",
-	//			trafficlight_dispatcher_Chid);
-	//	fflush(stdout);
 
 	init_places();
 	while (!isStopped()) {
@@ -71,11 +66,6 @@ void Petri_TrafficLight::execute(void* arg) {
 			perror("Petri_TrafficLight: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-
-		//		printf("Petri_TrafficLight:: MesgRecievePulse angekommen! \n");
-		//		fflush(stdout);
-		//		printf("Petri_TrafficLight::    code:%d,  value:%d \n", pulse.code,
-		//				pulse.value.sival_int);
 
 		trafficlight_tmpArr
 				= trafficlight_dispatcher->get_trafficlight_inputs();
@@ -110,8 +100,7 @@ void Petri_TrafficLight::process_transitions() {
 		trafficlight_places[4] = false;
 
 		trafficlight_lokal_inputs[TRAFFICLIGHT_START] = false;
-		puts("Trafficlight: T0\n");
-		fflush(stdout);
+
 
 	}
 	/*_________T1_________*/
@@ -127,8 +116,7 @@ void Petri_TrafficLight::process_transitions() {
 		trafficlight_places[3] = false;
 		trafficlight_places[4] = false;
 		trafficlight_lokal_inputs[TRAFFICLIGHT_YELLOW] = false;
-		puts("Trafficlight: T1\n");
-		fflush(stdout);
+
 
 	}
 	/*_________T2_________*/
@@ -144,8 +132,7 @@ void Petri_TrafficLight::process_transitions() {
 		trafficlight_places[3] = false;
 		trafficlight_places[4] = false;
 		trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] = false;
-		puts("Trafficlight: T2\n");
-		fflush(stdout);
+
 
 	}
 
@@ -162,8 +149,7 @@ void Petri_TrafficLight::process_transitions() {
 		trafficlight_places[3] = true;
 		trafficlight_places[4] = false;
 		trafficlight_lokal_inputs[TRAFFICLIGHT_RED] = false;
-		puts("Trafficlight: T3\n");
-		fflush(stdout);
+
 
 	}
 
@@ -180,8 +166,7 @@ void Petri_TrafficLight::process_transitions() {
 		trafficlight_places[3] = false;
 		trafficlight_places[4] = false;
 		trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] = false;
-		puts("Trafficlight: T4\n");
-		fflush(stdout);
+
 
 	}
 
@@ -198,8 +183,7 @@ void Petri_TrafficLight::process_transitions() {
 		trafficlight_places[3] = false;
 		trafficlight_places[4] = true;
 		trafficlight_lokal_inputs[TRAFFICLIGHT_RED_B] = false;
-		puts("Trafficlight: T5\n");
-		fflush(stdout);
+
 	}
 	/*_________T6_________*/
 	if (!trafficlight_places[0] && !trafficlight_places[1]
@@ -214,8 +198,7 @@ void Petri_TrafficLight::process_transitions() {
 		trafficlight_places[3] = false;
 		trafficlight_places[4] = false;
 		trafficlight_lokal_inputs[TRAFFICLIGHT_GREEN] = false;
-		puts("Trafficlight: T6\n");
-		fflush(stdout);
+
 
 	}
 
@@ -232,8 +215,7 @@ void Petri_TrafficLight::process_transitions() {
 		trafficlight_places[3] = true;
 		trafficlight_places[4] = false;
 		trafficlight_lokal_inputs[TRAFFICLIGHT_RED] = false;
-		puts("Trafficlight: T7\n");
-		fflush(stdout);
+
 
 	}
 
@@ -252,8 +234,8 @@ void Petri_TrafficLight::process_transitions() {
 
 		trafficlight_lokal_inputs[TRAFFICLIGHT_END] = false;
 		trafficlight->reset_trafficlight();
-		puts("Trafficlight: T8\n");
-		fflush(stdout);
+
+
 
 	}
 
@@ -272,8 +254,7 @@ void Petri_TrafficLight::process_transitions() {
 
 		trafficlight_lokal_inputs[TRAFFICLIGHT_END] = false;
 		trafficlight->reset_trafficlight();
-		puts("Trafficlight: T9\n");
-		fflush(stdout);
+
 
 	}
 
@@ -292,8 +273,7 @@ void Petri_TrafficLight::process_transitions() {
 
 		trafficlight_lokal_inputs[TRAFFICLIGHT_END] = false;
 		trafficlight->reset_trafficlight();
-		puts("Trafficlight: T10\n");
-		fflush(stdout);
+
 
 	}
 
@@ -331,7 +311,7 @@ void Petri_TrafficLight::calculate_outputs() {
 }
 
 void Petri_TrafficLight::write_outputs() {
-	// TODO Auto-generated
+
 }
 void Petri_TrafficLight::NotifyReactor() {
 	if (trafficlight_lokal_outputs[AMPEL_GRUEN] == true) {
@@ -356,7 +336,7 @@ void Petri_TrafficLight::NotifyReactor() {
 	}
 }
 void Petri_TrafficLight::print_places() {
-	// TODO Auto-generated
+
 }
 
 void Petri_TrafficLight::set_trafficlight_inputs() {
@@ -369,19 +349,9 @@ void Petri_TrafficLight::set_trafficlight_inputs() {
 }
 
 void Petri_TrafficLight::set_trafficlight_outputs() {
-	// TODO Auto-generated
-	//	trafficlight_lokal_outputs[MOTOR_RECHTSLAUF] = trafficlight_tmpArr[0];
-	//	trafficlight_lokal_outputs[MOTOR_LINKSLAUF] = trafficlight_tmpArr[1];
-	//	trafficlight_lokal_outputs[MOTOR_LANGSAM] = trafficlight_tmpArr[2];
-	//	trafficlight_lokal_outputs[MOTOR_STOP] = trafficlight_tmpArr[3];
-	//	trafficlight_lokal_outputs[WEICHE_AUF] = trafficlight_tmpArr[4];
 	trafficlight_lokal_outputs[AMPEL_GRUEN] = trafficlight_tmpArr[5];
 	trafficlight_lokal_outputs[AMPEL_GELB] = trafficlight_tmpArr[6];
 	trafficlight_lokal_outputs[AMPEL_ROT] = trafficlight_tmpArr[7];
-	//	trafficlight_lokal_outputs[LED_STARTTASTE] = trafficlight_tmpArr[8];
-	//	trafficlight_lokal_outputs[LED_RESETTASTE] = trafficlight_tmpArr[9];
-	//	trafficlight_lokal_outputs[LED_Q1] = trafficlight_tmpArr[10];
-	//	trafficlight_lokal_outputs[LED_Q2] = trafficlight_tmpArr[11];
 	trafficlight_lokal_outputs[AMPEL_ROT_B] = trafficlight_tmpArr[12];
 }
 

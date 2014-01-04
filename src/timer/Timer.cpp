@@ -31,7 +31,6 @@ Timer::~Timer() {
 
 void Timer::start() {
 	if (!isStarted) {
-		printf("->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hier startet der TIMER \n");fflush(stdout);
 		if (timer_settime(timerid, 0, &timer, NULL) == -1) {
 			printf("Timer: Error in start() timer_settime()\n");
 		}

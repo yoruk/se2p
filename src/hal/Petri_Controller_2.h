@@ -28,6 +28,13 @@ private:
 	int petri_controller_2_sensorik_Chid;
 	Puk puk_c2;
 	int puk_tmp_type;
+	int puk_tmp_hoehe;
+
+	//PUK INFORMATIONEN
+	int id;
+	int typ;
+	int hoehenmessung1;
+	int hoehenmessung2;
 
 	Petri_Controller_2();
 

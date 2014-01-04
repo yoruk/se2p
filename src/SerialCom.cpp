@@ -90,7 +90,7 @@ int SerialCom::send_msg_pkg(int msg_content) {
 	int res = 0;
 	package p;
 
-	printf("DEBUG:SerialCom: sending message package\n");fflush(stdout);
+	//printf("DEBUG:SerialCom: sending message package\n");fflush(stdout);
 
 	// wrapping package
 	p.is_msg = TRUE;
@@ -155,8 +155,8 @@ void SerialCom::execute(void *arg) {
 				}
 
 				//DEBUG
-				printf("pulse message with code = %d, value = %d has been sent\n",
-						PULSE_MSG_FROM_CONVEYOR, p.msg_content);fflush(stdout);
+//				printf("pulse message with code = %d, value = %d has been sent\n",
+//						PULSE_MSG_FROM_CONVEYOR, p.msg_content);fflush(stdout);
 
 			} else {
 
@@ -174,8 +174,8 @@ void SerialCom::execute(void *arg) {
 				}
 
 				//DEBUG
-				printf("pulse message with code = %d, value = %d has been sent\n",
-						PULSE_PUK_INFORMATION, pulse_val);fflush(stdout);
+//				printf("pulse message with code = %d, value = %d has been sent\n",
+//						PULSE_PUK_INFORMATION, pulse_val);fflush(stdout);
 			}
 
 
