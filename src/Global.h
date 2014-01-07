@@ -115,8 +115,11 @@
 #define P_CONVEYOR_NOTAUS_X 8
 #define P_CONVEYOR_END 9
 
+/*---------Serial_values-----------*/
 #define CONTROLLER_2_FREE 20
 #define CONTROLLER_2_BUSY 21
+#define SERIAL_NOTAUS 123
+#define SERIAL_NOTAUS_X 124
 
 /*----------trafficlight_INPUTS----------*/
 #define TRAFFICLIGHT_N_IN 6
@@ -132,6 +135,14 @@
 #define TIMER_FULL 0
 #define TIMER_GATE 1
 #define TIMER_MOVE 2
+#define TIMER_REMOVED 3
+#define TIMER_ADDED_LSH 4
+#define TIMER_ADDED_LSW 5
+#define TIMER_ADDED_LSEND 6
+#define TIMER_REMOVED_C1_LSH 20
+#define TIMER_REMOVED_C1_LSW 22
+#define TIMER_REMOVED_C1_LSEND 24
+
 
 /*--------Times-----------*/
 #define C1_MOVE_TO_TIME 750

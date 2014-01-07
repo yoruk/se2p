@@ -1,11 +1,6 @@
 #ifndef CONVEYOR_H_
 #define CONVEYOR_H_
 
-#include "../Mutex.h"
-#include "hw.h"
-#include "../HWaccess.h"
-#include "../Global.h"
-#include "Util.h"
 
 class Conveyor {
 public:

@@ -1,4 +1,9 @@
 #include "Conveyor.h"
+#include "../Mutex.h"
+#include "hw.h"
+#include "../HWaccess.h"
+#include "Global.h"
+#include "Util.h"
 
 /// This class gives access to the Conveyor-belt
 /// can move it in both direction (Left/Right) with a determine Direction (Fast/Slow) and also checks the status

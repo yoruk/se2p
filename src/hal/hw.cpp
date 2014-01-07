@@ -1,4 +1,7 @@
 #include "hw.h"
+#include <stdlib.h>
+#include "../HWaccess.h"
+#include "../Global.h"
 
 /// This module holds the function for
 /// getting the correct access right to the hardware

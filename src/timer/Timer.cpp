@@ -44,6 +44,7 @@ void Timer::start() {
 
 void Timer::stop() {
 	// Stop Timer
+
 	if (timer_settime(timerid, 0, &timer, NULL) == -1) {
 		printf("Timer: Error in stop() timer_settime(), errno:%d\n", errno);
 	}
@@ -52,7 +53,7 @@ void Timer::stop() {
 }
 
 void Timer::pause() {
-	if (!isPaused) {
+	if (isPaused==false && isStarted==true) {
 		if (timer_settime(timerid, 0, &timer, &backupTimer) == -1) {
 			printf("Timer: Error in pause() timer_settime(), errno:%d\n", errno);
 		}
@@ -61,7 +62,7 @@ void Timer::pause() {
 }
 
 void Timer::tcontinue() {
-	if (isPaused) {
+	if (isPaused==true && isStarted==true) {
 		if (timer_settime(timerid, 0, &backupTimer, NULL) == -1) {
 			printf("Timer: Error in cont() timer_settime(), errno:%d\n", errno);
 		}
@@ -80,5 +81,14 @@ void Timer::reset() {
 void Timer::changeTime(int sec, int msec) {
 	seconds = sec;
 	miliSeconds = msec;
+	reset();
 	stop();
+}
+
+void Timer::del() {
+	timer_delete(timerid);
+	if (timer_create(CLOCK_REALTIME, &event, &timerid) == -1) {
+		printf("Timer: Error in timer_create()\n");
+	}
+	reset();
 }

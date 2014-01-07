@@ -2,16 +2,12 @@
 #define PETRI_CONTROLLER_1_H_
 
 #include "HAWThread.h"
-#include "HWaccess.h"
-#include <iostream>
-#include "hw.h"
-#include "Mutex.h"
+#include "Sensorik.h"
 #include "Gate.h"
 #include "Led.h"
-#include "Dispatcher.h"
 #include "Timer.h"
 #include "TimerHandler.h"
-#include "Puk.h"
+#include "Dispatcher.h"
 
 #define N_PLACE 38
 
@@ -20,6 +16,8 @@ public:
 	static Petri_Controller_1* getInstance();
 
 	virtual ~Petri_Controller_1();
+	void timer_PauseAll();
+	void timer_ContinueAll();
 
 private:
 
@@ -33,10 +31,14 @@ private:
 	Gate* gate1;
 	Led* led;
 	Dispatcher* disp_petri_controller_1;
-	TimerHandler* timer;
+
+	TimerHandler* timer_c1;
 	Timer* timer_Gate;
 	Timer* timer_move;
 	Timer* timer_C1_SlideFull;
+	Timer* timer_C1_removed_LSH;
+	Timer* timer_C1_removed_LSW;
+	Timer* timer_C1_removed_LSEND;
 
 	void init_places();
 	void process_transitions();
@@ -45,9 +47,7 @@ private:
 	void NotifyReactor();
 	void print_places();
 
-
 	void setInputs();
-	void setOutputs();
 
 
 protected:

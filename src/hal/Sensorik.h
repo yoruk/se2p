@@ -2,8 +2,6 @@
 #define SENSORIK_H_
 
 #include "HAWThread.h"
-#include "../Mutex.h"
-#include "hw.h"
 #include <stdint.h>
 
 const struct sigevent * ISR(void *arg, int id);

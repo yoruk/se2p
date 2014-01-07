@@ -1,4 +1,9 @@
 #include "Sensorik.h"
+#include "../HWaccess.h"
+#include "../Global.h"
+#include "../Mutex.h"
+#include "hw.h"
+
 
 static int isr_coid;
 static Mutex* mutex = new Mutex(); /// the mutex for controlling the access

@@ -1,4 +1,9 @@
 #include "Led.h"
+#include "../Mutex.h"
+#include "Util.h"
+#include "hw.h"
+#include "../HWaccess.h"
+#include "Global.h"
 
 /// This class gives access to the writeable
 /// Leds on Port C

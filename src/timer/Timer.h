@@ -63,6 +63,8 @@ public:
          */
         void changeTime(int sec, int msec);
 
+        void del();
+
         /**
          * Timer ID
          * TODO: nur public wg debug ausgaben, change that!
@@ -109,6 +111,7 @@ private:
          * Is set if timer was started
          */
         bool isStarted;
+
 };
 
 #endif /* TIMER_H_ */
